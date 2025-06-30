@@ -31,7 +31,7 @@ export default function Home() {
       <span className="text-6xl mb-6 animate-float relative z-10">🚀</span>
       <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4 text-center drop-shadow-lg relative z-10">Welcome to Your Modern Landing Pages</h1>
       <p className="text-lg text-white md:text-2xl text-gray-600 mb-10 text-center max-w-xl relative z-10">Create beautiful, effective landing pages for service businesses. Explore a live example below!</p>
-      <div className="flex flex-col md:flex-row gap-4 relative z-10">
+      <div className="flex flex-col flex-wrap md:flex-row gap-4 relative z-10">
         <Link
           href="/passionpreneur"
           className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
@@ -55,6 +55,12 @@ export default function Home() {
           className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
         >
           Retiree MVP Landing Page
+        </Link>
+        <Link
+          href="/local-services-modern"
+          className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
+        >
+          Local Services Modern Landing Page
         </Link>
       </div>
       <style jsx>{`
