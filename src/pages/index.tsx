@@ -74,6 +74,12 @@ export default function Home() {
         >
           Midmarket Tech Landing Page
         </Link>
+        <Link
+        href="/ops-logistics"
+        className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
+        >
+          Ops Consultant Landing Page
+        </Link>
       </div>
       <style jsx>{`
         @keyframes float {

@@ -87,7 +87,7 @@ export default function MidMarketTech() {
         <span className="absolute right-20 top-40 text-4xl animate-float z-10">🤖</span>
         <span className="absolute left-1/3 bottom-20 text-4xl animate-float z-10">⚙️</span>
         <span className="absolute right-1/4 bottom-32 text-4xl animate-float-slow z-10">🔗</span>
-        <h1 className="text-5xl font-bold mb-4 max-w-2xl relative z-10 text-blue-200 drop-shadow">Modernize Your Tech Stack</h1>
+        <h1 className="text-5xl font-bold mb-4 max-w-2xl relative z-10 text-white drop-shadow">Modernize Your Tech Stack</h1>
         <h6 className="text-lg text-blue-100 mb-2 relative z-10">Microservices, AI/ML, and DevOps for Mid-Market Leaders</h6>
         <p className="text-xl max-w-xl mb-8 text-blue-200 relative z-10">
           CTOs & VPs of 50–500-headcount tech firms. $10K–$100K/project. Solve legacy bottlenecks, scale AI, and automate delivery.
