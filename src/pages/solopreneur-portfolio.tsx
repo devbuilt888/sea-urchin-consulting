@@ -1,4 +1,25 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+
+// Custom hook for scroll reveal
+function useReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return [ref, visible] as const;
+}
 
 const features = [
   {
@@ -63,6 +84,9 @@ const testimonials = [
 
 export default function SolopreneurPortfolio() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [featuresRef, featuresVisible] = useReveal();
+  const [stepsRef, stepsVisible] = useReveal();
+  const [testimonialsRef, testimonialsVisible] = useReveal();
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-pink-50 to-blue-50 text-gray-800 font-sans">
@@ -98,11 +122,15 @@ export default function SolopreneurPortfolio() {
       </section>
 
       {/* Features */}
-      <section className="py-20 px-6 text-center">
+      <section ref={featuresRef} className={`py-20 px-6 text-center transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="text-3xl font-semibold mb-12">Everything You Need</h2>
         <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {features.map((f) => (
-            <div key={f.title} className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center hover:shadow-2xl hover:scale-105 transition-transform duration-200 border-t-4 border-pink-100">
+          {features.map((f, idx) => (
+            <div
+              key={f.title}
+              className={`bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center hover:shadow-2xl hover:scale-105 transition-transform duration-200 border-t-4 border-pink-100 transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: featuresVisible ? `${idx * 0.1 + 0.2}s` : '0s' }}
+            >
               <span className="text-4xl mb-4">{f.icon}</span>
               <h3 className="text-xl font-bold mb-2">{f.title}</h3>
               <p className="text-gray-600">{f.desc}</p>
@@ -112,11 +140,11 @@ export default function SolopreneurPortfolio() {
       </section>
 
       {/* How it works timeline/stepper */}
-      <section className="py-20 px-6 bg-gradient-to-br from-white via-pink-50 to-blue-50 text-center shadow-inner rounded-2xl max-w-5xl mx-auto my-16">
+      <section ref={stepsRef} className={`py-20 px-6 bg-gradient-to-br from-white via-pink-50 to-blue-50 text-center shadow-inner rounded-2xl max-w-5xl mx-auto my-16 transition-all duration-700 ${stepsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="text-3xl font-semibold mb-12">How It Works</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0 relative">
           {steps.map((step, i) => (
-            <div key={step.title} className="flex flex-col items-center flex-1 min-w-[120px] relative z-10 group">
+            <div key={step.title} className={`flex flex-col items-center flex-1 min-w-[120px] relative z-10 group transition-all duration-700 ${stepsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: stepsVisible ? `${i * 0.1 + 0.2}s` : '0s' }}>
               <div
                 className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 border-4 border-pink-200 bg-white shadow-lg text-3xl transition-transform duration-200 group-hover:scale-110 animate-step-float`}
                 style={{ animationDelay: `${i * 0.5}s`, backgroundColor: i === 0 ? '#fce7f3' : i === 1 ? '#fef9c3' : i === 2 ? '#bbf7d0' : '#e0e7ff' }}
@@ -134,7 +162,7 @@ export default function SolopreneurPortfolio() {
       </section>
 
       {/* Testimonial carousel */}
-      <section className="py-20 px-6 mb-20 bg-gradient-to-br from-pink-50 to-blue-50 text-center">
+      <section ref={testimonialsRef} className={`py-20 px-6 mb-20 bg-gradient-to-br from-pink-50 to-blue-50 text-center transition-all duration-700 ${testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="text-3xl font-semibold mb-10">What Clients Say</h2>
         <div className="max-w-xl mx-auto">
           <div className="relative bg-white rounded-2xl shadow-lg p-8 min-h-[160px] flex flex-col items-center">
