@@ -31,6 +31,12 @@ export default function Home() {
       >
         Retailer Digital Landing Page
       </Link>
+      <Link
+      href="/solopreneur-portfolio"
+      className="px-8 py-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-lg"
+      >
+        Solopreneur Landing Page
+      </Link>
       <style jsx>{`
         @keyframes float {
           0% { transform: translateY(0); }
