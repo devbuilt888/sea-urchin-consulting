@@ -82,12 +82,12 @@ export default function ArtistLandingPage() {
         </div>
       </section>
 
-      <section className="flex justify-center px-4 -mt-8 sm:-mt-12 mb-8 sm:mb-12 relative z-10">
-        <div className="bg-gray-800/90 backdrop-blur-lg border-4 border-purple-500 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-3xl w-full">
-          <div className="text-center mb-4">
+      <section className="w-full flex justify-center px-4 -mt-8 sm:-mt-12 mb-8 sm:mb-12 relative z-10">
+        <div className="bg-gray-800/90 backdrop-blur-lg border-4 border-purple-500 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-3xl w-full" style={{backgroundImage: 'url(https://img.freepik.com/premium-vector/sunset-mountains-wild-mountains-landscape_263779-1389.jpg?semt=ais_hybrid&w=740)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <div className="text-center mb-4 bg-black/50 backdrop-blur-lg rounded-2xl p-4">
             <span className="text-2xl mb-2 block">🧭</span>
-            <span className="uppercase text-xs tracking-widest text-purple-400 font-bold">Explore Artist Demos</span><br />
-            <span className="text-xs tracking-widest text-purple-400 font-bold">Choose a starting point tailored for your craft.</span>
+            <span className="uppercase text-xs tracking-widest text-purple-100 font-bold">Explore Artist Demos</span><br />
+            <span className="text-xs tracking-widest text-purple-100 font-bold">Choose a starting point tailored for your craft.</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
             <Link href="/demo/photographers" className="bg-gradient-to-br from-purple-900 to-gray-900 rounded-lg p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
@@ -108,7 +108,10 @@ export default function ArtistLandingPage() {
 
       <section ref={featuresRef} className={`py-20 px-6 text-center transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="text-3xl font-semibold mb-12 text-purple-300">Why Artists Love This</h2>
-        <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className='flex absolute top-100 left-0 justify-center items-center'>
+          <img src="https://i.pinimg.com/736x/c9/7e/e1/c97ee10c43feb76184d200736b71b8b8.jpg" alt="" className='w-[400px] h-[400px]' style={{ clipPath: 'polygon(0 1%, 70% 0, 79% 100%, 9% 100%)' }} />
+        </div>
+        <div className="relative z-10 grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {features.map((f, idx) => (
             <div
               key={f.title}
