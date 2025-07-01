@@ -188,7 +188,8 @@ export default function RetailerDigital() {
         <div className="bg-white/95 backdrop-blur-lg border-4 border-amber-300 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-3xl w-full">
           <div className="text-center mb-4">
             <span className="text-2xl mb-2 block">📋</span>
-            <span className="uppercase text-xs tracking-widest text-amber-600 font-bold">Store Directory</span>
+            <span className="uppercase text-xs tracking-widest text-amber-600 font-bold">Store Directory</span> <br />
+            <span className="text-xs tracking-widest text-amber-600 font-bold">Check out our landing pages for each service.</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
             <Link href="/retailer-digital/fashion-boutique" className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-4 border border-amber-200 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
