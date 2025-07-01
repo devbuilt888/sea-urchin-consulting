@@ -31,15 +31,15 @@ export default function Home() {
       <span className="text-6xl mb-6 animate-float relative z-10">🚀</span>
       <h1 className="inline-block animate-wiggle text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 text-center drop-shadow-lg relative z-10"><span className="inline-block animate-wiggle ">Welcome</span> to Your Modern Landing <span className="inline-block animate-wiggle">Pages</span></h1>
       <p className="text-lg text-white md:text-2xl text-gray-600 mb-10 text-center max-w-xl relative z-10">Create beautiful, effective landing pages for service businesses. Explore a live example below!</p>
-      <div className="flex flex-col flex-wrap md:flex-row gap-4 relative z-10">
+      <div className="flex flex-col justify-evenly flex-wrap md:flex-row gap-4 relative z-10">
         <Link
-          href="/passionpreneur"
+          href="/passion-preneur/passionpreneur"
           className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
         >
           Passionpreneur Landing Page
         </Link>
         <Link
-          href="/retailer-digital"
+          href="/retailer-digital/retailer-digital"
           className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
         >
           Retailer Digital Landing Page

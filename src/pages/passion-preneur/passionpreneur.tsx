@@ -148,18 +148,29 @@ export default function Home() {
 
       {/* Enhanced Audience Info Card */}
       <section className="flex justify-center px-4 -mt-12 mb-12 relative z-10">
-        <div className="bg-white/95 backdrop-blur-lg border-l-4 border-purple-400 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] rounded-xl px-8 py-6 max-w-2xl w-full flex flex-col items-center hover:shadow-[0_25px_35px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 border border-white/20">
-          <span className="uppercase text-xs tracking-widest text-purple-500 font-bold mb-2">Who is this for?</span>
-          <div className="text-lg font-semibold text-gray-700 mb-1 hover:text-purple-600 transition-colors duration-200">Yoga/Pilates Instructors</div>
-          <div className="text-lg font-semibold text-gray-700 mb-1 hover:text-purple-600 transition-colors duration-200">Life Coaches</div>
-          <div className="text-lg font-semibold text-gray-700 mb-1 hover:text-purple-600 transition-colors duration-200">Freelance Marketers</div>
+        <div className="bg-white/95 backdrop-blur-lg border-l-4 border-purple-400 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] rounded-xl px-8 py-6 max-w-2xl w-full flex flex-col items-center hover:shadow-[0_25px_35px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 border border-white/20 text-center">
+          <span className="uppercase text-xs tracking-widest text-purple-500 font-bold mb-2">Who is this for?<br /> Check out our landing pages for each service.</span>
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-2">
+            <a href="/passion-preneur/yoga-pilates" className="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
+              <span className="text-2xl block mb-1">🧘‍♀️</span>
+              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Yoga/Pilates Instructors</span>
+            </a>
+            <a href="/passion-preneur/life-coach" className="flex-1 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
+              <span className="text-2xl block mb-1">🧑‍💼</span>
+              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Life Coaches</span>
+            </a>
+            <a href="/passion-preneur/freelance-marketer" className="flex-1 bg-gradient-to-br from-pink-50 to-blue-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
+              <span className="text-2xl block mb-1">💡</span>
+              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Freelance Marketers</span>
+            </a>
+          </div>
           <div className="mt-2 text-sm text-gray-500">...and any solo service professional ready to grow online!</div>
         </div>
       </section>
 
       {/* Enhanced Features */}
       <section ref={featuresRef} className={`py-20 px-6 text-center transition-all duration-700 relative z-10 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-        <h2 className="text-4xl font-semibold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Everything You Need</h2>
+        <h2 className="text-4xl font-semibold mb-12 text-white">Everything You Need</h2>
         <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {features.map((f, idx) => (
             <div
