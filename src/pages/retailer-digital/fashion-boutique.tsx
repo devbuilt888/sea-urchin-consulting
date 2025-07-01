@@ -124,17 +124,39 @@ export default function FashionBoutique() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section id="leadform" className="py-20 px-6 text-center bg-white">
-        <h2 className="text-3xl font-semibold text-rose-600 mb-6">Get in Touch</h2>
-        <p className="text-gray-700 mb-6">Need help with styling or placing an order? We’re just a message away.</p>
-        <form className="max-w-md mx-auto flex flex-col gap-4">
-          <input type="text" placeholder="Your Name" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
-          <input type="email" placeholder="Your Email" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
-          <input type="tel" placeholder="Phone Number" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
-          <textarea placeholder="Your Message" rows={4} className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
-          <button type="submit" className="px-6 py-3 bg-rose-500 text-white font-semibold rounded-full hover:bg-rose-600 transition">Send Message</button>
-        </form>
+      {/* Map and Contact Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="flex flex-col md:flex-row gap-12 max-w-5xl mx-auto items-start">
+          {/* Map */}
+          <div className="flex-1 text-center">
+            <h2 className="text-3xl font-semibold text-rose-600 mb-6">Visit Our Boutique</h2>
+            <p className="text-gray-700 mb-8">Find us at the heart of fashion. Drop by for a personalized shopping experience!</p>
+            <div className="rounded-xl overflow-hidden shadow-lg border border-rose-100">
+              <iframe
+                title="Boutique Location Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999349857885!2d2.292292615674839!3d48.8583730792877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fddf1f6b1b1%3A0x8c1b1b1b1b1b1b1b!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1710000000000!5m2!1sen!2sfr"
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+          {/* Contact Form */}
+          <div className="flex-1 text-center" id="leadform">
+            <h2 className="text-3xl font-semibold text-rose-600 mb-6">Get in Touch</h2>
+            <p className="text-gray-700 mb-6">Need help with styling or placing an order? We're just a message away.</p>
+            <form className="max-w-md mx-auto flex flex-col gap-4">
+              <input type="text" placeholder="Your Name" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
+              <input type="email" placeholder="Your Email" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
+              <input type="tel" placeholder="Phone Number" className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400" />
+              <textarea placeholder="Your Message" rows={4} className="px-4 py-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+              <button type="submit" className="px-6 py-3 bg-rose-500 text-white font-semibold rounded-full hover:bg-rose-600 transition">Send Message</button>
+            </form>
+          </div>
+        </div>
       </section>
 
       {/* Footer Section */}
