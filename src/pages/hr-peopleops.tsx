@@ -79,7 +79,7 @@ export default function HRPeopleOps() {
   const [testimonialsRef, testimonialsVisible] = useReveal();
 
   return (
-    <main className="min-h-screen text-gray-900 font-sans overflow-x-hidden relative" style={{ background: 'radial-gradient(ellipse at 60% 40%, #a78bfa 0%, #60a5fa 60%, #fff 100%)' }}>
+    <main className="min-h-screen text-gray-900 font-sans relative" style={{ background: 'radial-gradient(ellipse at 60% 40%, #a78bfa 0%, #60a5fa 60%, #fff 100%)' }}>
       {/* Animated gradient blobs */}
       <div className="absolute top-[-120px] left-[-120px] w-[340px] h-[340px] bg-purple-200 rounded-full blur-3xl opacity-40 animate-blob1 z-0" />
       <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-blue-200 rounded-full blur-3xl opacity-30 animate-blob2 z-0" />
