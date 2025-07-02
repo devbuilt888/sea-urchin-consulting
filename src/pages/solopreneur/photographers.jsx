@@ -17,7 +17,7 @@ const galleryImages = [
         cover: 'https://i0.wp.com/picjumbo.com/wp-content/uploads/chilled-young-black-male-model-in-studio-portrait-free-image.jpeg?w=2210&quality=70',
         images: [
             'https://i0.wp.com/picjumbo.com/wp-content/uploads/chilled-young-black-male-model-in-studio-portrait-free-image.jpeg?w=2210&quality=70',
-            'https://121clicks.com/wp-content/uploads/2018/11/cristina_venedict_fine_art_photography_14.jpg',
+            'https://i.pinimg.com/236x/a1/c7/53/a1c7530916235aac63724e169fe34330.jpg',
             'https://i.pinimg.com/736x/b5/aa/70/b5aa70465b13aee35de3b2ce250fabc1.jpg',
             'https://images.squarespace-cdn.com/content/v1/5264f7c9e4b0a3247c641860/1534825000745-2149Z46TTP0PBL9V1LFY/george_027.jpg?format=1500w'
             // ...more forest images
@@ -113,6 +113,9 @@ export default function PhotographerLanding() {
     // Determine which categories to show
     const categoriesToShow = showAllCategories ? galleryImages : galleryImages.slice(0, 3);
 
+    // For staggered animation
+    const getDelay = idx => ({ animationDelay: `${idx * 120}ms` });
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans overflow-x-hidden">
             {/* Lightbox Overlay */}
@@ -140,7 +143,7 @@ export default function PhotographerLanding() {
                         >
                             &#8594;
                         </button>
-                        <img src={lightbox.images[lightbox.index]} alt="Enlarged view" className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-pink-500" />
+                        <img src={lightbox.images[lightbox.index]} alt="Enlarged view" className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-pink-500 animate-scalein" />
                         <div className="text-center mt-4 text-pink-300 text-lg font-semibold capitalize">{lightbox.category} photo</div>
                     </div>
                 </div>
@@ -186,7 +189,8 @@ export default function PhotographerLanding() {
                     {categoriesToShow.map((cat, idx) => (
                         <div
                             key={cat.category}
-                            className="overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer"
+                            className="overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer opacity-0 translate-y-8 animate-fadeinup"
+                            style={getDelay(idx)}
                             onClick={() => setLightbox({ open: true, category: cat.category, images: cat.images, index: 0 })}
                         >
                             <img src={cat.cover} alt={cat.category + ' cover'} className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500" />
