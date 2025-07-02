@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const galleryImages = [
     {
@@ -17,7 +17,7 @@ const galleryImages = [
         cover: 'https://i0.wp.com/picjumbo.com/wp-content/uploads/chilled-young-black-male-model-in-studio-portrait-free-image.jpeg?w=2210&quality=70',
         images: [
             'https://i0.wp.com/picjumbo.com/wp-content/uploads/chilled-young-black-male-model-in-studio-portrait-free-image.jpeg?w=2210&quality=70',
-            'https://i.pinimg.com/236x/a1/c7/53/a1c7530916235aac63724e169fe34330.jpg',
+            'https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?cs=srgb&dl=pexels-tomaz-barcellos-999425-1987301.jpg&fm=jpg',
             'https://i.pinimg.com/736x/b5/aa/70/b5aa70465b13aee35de3b2ce250fabc1.jpg',
             'https://images.squarespace-cdn.com/content/v1/5264f7c9e4b0a3247c641860/1534825000745-2149Z46TTP0PBL9V1LFY/george_027.jpg?format=1500w'
             // ...more forest images
@@ -90,10 +90,93 @@ const testimonials = [
     },
 ];
 
+// Custom hook for intersection observer (fixed: not to be called inside loops)
+function useInView(ref, options) {
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        if (!ref.current) return;
+        const observer = new window.IntersectionObserver(
+            ([entry]) => setInView(entry.isIntersecting),
+            options
+        );
+        observer.observe(ref.current);
+        return () => {
+            if (ref.current) observer.unobserve(ref.current);
+        };
+    }, [ref, options]);
+
+    return inView;
+}
+
 export default function PhotographerLanding() {
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [lightbox, setLightbox] = useState({ open: false, category: '', images: [], index: 0 });
     const [showAllCategories, setShowAllCategories] = useState(false);
+
+    // For gallery animation
+    const galleryRefs = useRef([]);
+    const [galleryInView, setGalleryInView] = useState([]);
+
+    // For testimonials animation
+    const testimonialRefs = useRef([]);
+    const [testimonialInView, setTestimonialInView] = useState([]);
+
+    // For staggered animation
+    const getDelay = idx => ({ animationDelay: `${idx * 120}ms` });
+
+    // Determine which categories to show
+    const categoriesToShow = showAllCategories ? galleryImages : galleryImages.slice(0, 3);
+
+    // Set up intersection observer for gallery
+    useEffect(() => {
+        setGalleryInView(Array(categoriesToShow.length).fill(false));
+        const observers = [];
+        categoriesToShow.forEach((_, idx) => {
+            if (!galleryRefs.current[idx]) return;
+            const observer = new window.IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setGalleryInView(prev => {
+                            const updated = [...prev];
+                            updated[idx] = true;
+                            return updated;
+                        });
+                        observer.disconnect();
+                    }
+                },
+                { threshold: 0.15 }
+            );
+            observer.observe(galleryRefs.current[idx]);
+            observers.push(observer);
+        });
+        return () => observers.forEach(observer => observer.disconnect());
+    }, [categoriesToShow.length]);
+
+    // Set up intersection observer for testimonials
+    useEffect(() => {
+        setTestimonialInView(Array(testimonials.length).fill(false));
+        const observers = [];
+        testimonials.forEach((_, idx) => {
+            if (!testimonialRefs.current[idx]) return;
+            const observer = new window.IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTestimonialInView(prev => {
+                            const updated = [...prev];
+                            updated[idx] = true;
+                            return updated;
+                        });
+                        observer.disconnect();
+                    }
+                },
+                { threshold: 0.15 }
+            );
+            observer.observe(testimonialRefs.current[idx]);
+            observers.push(observer);
+        });
+        return () => observers.forEach(observer => observer.disconnect());
+    }, [testimonials.length]);
 
     const nextSlide = () => setCarouselIndex((carouselIndex + 1) % carouselImages.length);
     const prevSlide = () => setCarouselIndex((carouselIndex - 1 + carouselImages.length) % carouselImages.length);
@@ -110,12 +193,6 @@ export default function PhotographerLanding() {
     const lightboxNext = () => setLightbox(l => ({ ...l, index: (l.index + 1) % l.images.length }));
     const lightboxPrev = () => setLightbox(l => ({ ...l, index: (l.index - 1 + l.images.length) % l.images.length }));
 
-    // Determine which categories to show
-    const categoriesToShow = showAllCategories ? galleryImages : galleryImages.slice(0, 3);
-
-    // For staggered animation
-    const getDelay = idx => ({ animationDelay: `${idx * 120}ms` });
-
     return (
         <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans overflow-x-hidden">
             {/* Lightbox Overlay */}
@@ -123,21 +200,21 @@ export default function PhotographerLanding() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setLightbox({ open: false, category: '', images: [], index: 0 })}>
                     <div className="relative max-w-3xl w-full px-4" onClick={e => e.stopPropagation()}>
                         <button
-                            className="absolute top-2 right-2 bg-black/70 text-white rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
+                            className="absolute w-10 h-10 top-5 right-10 bg-black/70 text-white rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
                             onClick={() => setLightbox({ open: false, category: '', images: [], index: 0 })}
                             aria-label="Close"
                         >
                             &times;
                         </button>
                         <button
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
+                            className="absolute left-12 top-1/2 -translate-y-1/2 bg-black/70 text-white w-10 h-fit rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
                             onClick={lightboxPrev}
                             aria-label="Previous"
                         >
                             &#8592;
                         </button>
                         <button
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
+                            className="absolute right-12 top-1/2 -translate-y-1/2 bg-black/70 text-white w-10 h-fit rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
                             onClick={lightboxNext}
                             aria-label="Next"
                         >
@@ -189,7 +266,8 @@ export default function PhotographerLanding() {
                     {categoriesToShow.map((cat, idx) => (
                         <div
                             key={cat.category}
-                            className="overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer opacity-0 translate-y-8 animate-fadeinup"
+                            ref={el => (galleryRefs.current[idx] = el)}
+                            className={`overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer opacity-0 translate-y-8${galleryInView[idx] ? ' animate-fadeinup' : ''}`}
                             style={getDelay(idx)}
                             onClick={() => setLightbox({ open: true, category: cat.category, images: cat.images, index: 0 })}
                         >
@@ -201,7 +279,7 @@ export default function PhotographerLanding() {
                     ))}
                 </div>
                 {galleryImages.length > 3 && (
-                    <div className="flex justify-center mt-8">
+                    <div className="flex justify-center mt-18">
                         <button
                             className="px-8 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-full hover:scale-105 transition"
                             onClick={() => setShowAllCategories(v => !v)}
@@ -217,7 +295,12 @@ export default function PhotographerLanding() {
                 <h2 className="text-3xl font-semibold mb-10 text-yellow-400">What Clients Say</h2>
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {testimonials.map(({ quote, author }, idx) => (
-                        <div key={idx} className="bg-black/70 p-8 rounded-2xl shadow-lg border border-pink-500">
+                        <div
+                            key={idx}
+                            ref={el => (testimonialRefs.current[idx] = el)}
+                            className={`bg-black/70 p-8 rounded-2xl shadow-lg border border-pink-500 opacity-0 translate-y-8${testimonialInView[idx] ? ' animate-fadeinup' : ''}`}
+                            style={getDelay(idx)}
+                        >
                             <p className="italic text-lg mb-4 text-gray-100">"{quote}"</p>
                             <p className="font-bold text-pink-400">{author}</p>
                         </div>
