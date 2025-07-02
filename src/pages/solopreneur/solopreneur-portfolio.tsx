@@ -67,15 +67,15 @@ export default function ArtistLandingPage() {
           <FloatingCanvasArt />
         </div>
         <div className="relative z-10 bg-black/70 backdrop-blur-lg p-8 rounded-xl shadow-xl">
-          <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-5xl font-extrabold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
             Your Art, Your Gallery
           </h1>
-          <p className="text-xl max-w-xl mb-6 text-gray-300">
+          <p className="text-sm sm:text-xl max-w-xl mb-6 text-gray-300">
             Launch a stunning portfolio and sell your creative work online with ease.
           </p>
           <a
             href="#book"
-            className="px-8 py-4 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 hover:scale-105 transition-transform duration-300 font-semibold text-lg"
+            className="bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 hover:scale-105 transition-transform duration-300 font-semibold px-4 py-2 sm:px-8 sm:py-4 text-sm sm:text-lg"
           >
             Book Free Consultation
           </a>
@@ -89,16 +89,16 @@ export default function ArtistLandingPage() {
             <span className="uppercase text-xs tracking-widest text-purple-100 font-bold">Explore Artist Demos</span><br />
             <span className="text-xs tracking-widest text-purple-100 font-bold">Choose a starting point tailored for your craft.</span>
           </div>
-          <div className="h-[200px] grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <Link href="/demo/photographers" className="flex items-end justify-center p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer bg-black/50 backdrop-blur-lg rounded-2xl" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1542038784456-1ea8e935640e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <div className="h-[350px] sm:h-[200px] grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <Link href="/demo/photographers" className="h-[100px] sm:h-[200px] flex items-end justify-center p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer bg-black/50 backdrop-blur-lg rounded-2xl" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1542038784456-1ea8e935640e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
               {/* <div className="text-2xl mb-2">📷</div> */}
               <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Photographers</div>
             </Link>
-            <Link href="/demo/artists" className="flex items-end justify-center bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{backgroundImage: 'url(https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0917/usr/images/news/main_image/137/abstract-elegance-6-.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+            <Link href="/demo/artists" className="h-[100px] sm:h-[200px] flex items-end justify-center bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{backgroundImage: 'url(https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0917/usr/images/news/main_image/137/abstract-elegance-6-.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
               {/* <div className="text-2xl mb-2">🎨</div> */}
               <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Artists</div>
             </Link>
-            <Link href="/demo/craft-makers" className="flex items-end justify-center bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{
+            <Link href="/demo/craft-makers" className="h-[100px] sm:h-[200px] flex items-end justify-center bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{
               backgroundImage:"url(https://i0.wp.com/outliermedia.org/wp-content/uploads/2021/01/Untitled-design-35.png?fit=900%2C600&ssl=1)",
               backgroundPosition: 'center'
             }}>
