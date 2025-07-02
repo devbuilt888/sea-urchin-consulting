@@ -114,7 +114,7 @@ export default function ArtistLandingPage() {
       <section ref={featuresRef} className={`overflow-hidden sm:overflow-visible py-20 px-6 text-center transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="relative text-xl sm:text-3xl text-violet-900 font-semibold mb-12 bg-white p-4 rounded-2xl shadow-lg z-100 sm:z-1">Why Artists Love This</h2>
         <div className='flex absolute  top-[-40px] left-0 justify-center items-center animate-float-slow'>
-          <img src="https://media.istockphoto.com/id/577949148/photo/vintage-stylized-photo-of-paintbrushes-closeup-and-artist-palett.jpg?s=612x612&w=0&k=20&c=8fuPBz7S5wGDOMix0t0ubL0578WpIslf8INTDYBQU4Y=" alt="" className='sm:w-[400px] h-[400px] brightness-50 blur-xs' style={{ clipPath: 'polygon(0 1%, 70% 0, 79% 100%, 9% 100%)' }} />
+          <img src="https://media.istockphoto.com/id/577949148/photo/vintage-stylized-photo-of-paintbrushes-closeup-and-artist-palett.jpg?s=612x612&w=0&k=20&c=8fuPBz7S5wGDOMix0t0ubL0578WpIslf8INTDYBQU4Y=" alt="" className='sm:w-[400px] h-[400px] brightness-30 sm:brightness-50 blur-xs' style={{ clipPath: 'polygon(0 1%, 70% 0, 79% 100%, 9% 100%)' }} />
         </div>
         <div className="relative z-10 grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {features.map((f, idx) => (
@@ -130,7 +130,7 @@ export default function ArtistLandingPage() {
           ))}
         </div>
         <div className='flex absolute sm:bottom-70 sm:right-[-70px] sm:top-0 md:top-0 md top-250 right-[-35px] justify-center items-center z-9 animate-float'>
-          <img src="https://i.pinimg.com/474x/85/43/10/8543108ec25f74c16829b6889474fc65.jpg" alt="" className='w-[400px] h-[400px] ' style={{ clipPath: 'polygon(33% 0, 100% 0, 79% 100%, 9% 100%)' }} />
+          <img src="https://i.pinimg.com/474x/85/43/10/8543108ec25f74c16829b6889474fc65.jpg" alt="" className='w-[400px] h-[400px] brightness-80' style={{ clipPath: 'polygon(33% 0, 100% 0, 79% 100%, 9% 100%)' }} />
         </div>
       </section>
 
