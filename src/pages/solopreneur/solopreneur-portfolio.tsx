@@ -83,24 +83,27 @@ export default function ArtistLandingPage() {
       </section>
 
       <section className="w-full flex justify-center px-4 -mt-8 sm:-mt-12 mb-8 sm:mb-12 relative z-10">
-        <div className="bg-gray-800/90 backdrop-blur-lg border-4 border-purple-500 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-3xl w-full" style={{backgroundImage: 'url(https://img.freepik.com/premium-vector/sunset-mountains-wild-mountains-landscape_263779-1389.jpg?semt=ais_hybrid&w=740)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <div className="bg-gray-800/90 backdrop-blur-lg border-4 border-purple-500 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-6xl w-full" style={{backgroundImage: 'url(https://img.freepik.com/premium-vector/sunset-mountains-wild-mountains-landscape_263779-1389.jpg?semt=ais_hybrid&w=740)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
           <div className="text-center mb-4 bg-black/50 backdrop-blur-lg rounded-2xl p-4">
             <span className="text-2xl mb-2 block">🧭</span>
             <span className="uppercase text-xs tracking-widest text-purple-100 font-bold">Explore Artist Demos</span><br />
             <span className="text-xs tracking-widest text-purple-100 font-bold">Choose a starting point tailored for your craft.</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <Link href="/demo/photographers" className="bg-gradient-to-br from-purple-900 to-gray-900 rounded-lg p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
-              <div className="text-2xl mb-2">📷</div>
-              <div className="font-semibold text-gray-100">Photographers</div>
+          <div className="h-[200px] grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <Link href="/demo/photographers" className="flex items-end justify-center p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer bg-black/50 backdrop-blur-lg rounded-2xl" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1542038784456-1ea8e935640e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+              {/* <div className="text-2xl mb-2">📷</div> */}
+              <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Photographers</div>
             </Link>
-            <Link href="/demo/artists" className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
-              <div className="text-2xl mb-2">🎨</div>
-              <div className="font-semibold text-gray-100">Artists</div>
+            <Link href="/demo/artists" className="flex items-end justify-center bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{backgroundImage: 'url(https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0917/usr/images/news/main_image/137/abstract-elegance-6-.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+              {/* <div className="text-2xl mb-2">🎨</div> */}
+              <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Artists</div>
             </Link>
-            <Link href="/demo/craft-makers" className="bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
-              <div className="text-2xl mb-2">🧵</div>
-              <div className="font-semibold text-gray-100">Craft Goods</div>
+            <Link href="/demo/craft-makers" className="flex items-end justify-center bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{
+              backgroundImage:"url(https://i0.wp.com/outliermedia.org/wp-content/uploads/2021/01/Untitled-design-35.png?fit=900%2C600&ssl=1)",
+              backgroundPosition: 'center'
+            }}>
+              {/* <div className="text-2xl mb-2">🧵</div> */}
+              <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Craft Goods</div>
             </Link>
           </div>
         </div>
