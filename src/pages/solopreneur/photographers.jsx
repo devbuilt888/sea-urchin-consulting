@@ -93,6 +93,7 @@ const testimonials = [
 export default function PhotographerLanding() {
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [lightbox, setLightbox] = useState({ open: false, category: '', images: [], index: 0 });
+    const [showAllCategories, setShowAllCategories] = useState(false);
 
     const nextSlide = () => setCarouselIndex((carouselIndex + 1) % carouselImages.length);
     const prevSlide = () => setCarouselIndex((carouselIndex - 1 + carouselImages.length) % carouselImages.length);
@@ -108,6 +109,9 @@ export default function PhotographerLanding() {
     // Lightbox navigation
     const lightboxNext = () => setLightbox(l => ({ ...l, index: (l.index + 1) % l.images.length }));
     const lightboxPrev = () => setLightbox(l => ({ ...l, index: (l.index - 1 + l.images.length) % l.images.length }));
+
+    // Determine which categories to show
+    const categoriesToShow = showAllCategories ? galleryImages : galleryImages.slice(0, 3);
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans overflow-x-hidden">
@@ -155,7 +159,9 @@ export default function PhotographerLanding() {
             <section className="py-20 px-6 text-center bg-black/80">
                 <h2 className="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">Meet Your Photographer</h2>
                 <div className="max-w-3xl mx-auto text-lg text-gray-200 mb-8">With a passion for storytelling and an eye for detail, I transform fleeting moments into timeless art. Whether it's a grand celebration or an intimate portrait, every frame is crafted with creativity and care.</div>
-                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Photographer" className="mx-auto rounded-full w-40 h-40 object-cover border-4 border-pink-500 shadow-xl" />
+                <div className='animate-bounce'>
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Photographer" className="mx-auto rounded-full w-40 h-40 object-cover border-4 border-pink-500 shadow-xl" />
+                </div>
             </section>
 
             {/* Carousel Section */}
@@ -177,7 +183,7 @@ export default function PhotographerLanding() {
             <section className="py-20 px-6 bg-black/90">
                 <h2 className="text-3xl font-semibold mb-10 text-pink-400">Gallery</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {galleryImages.map((cat, idx) => (
+                    {categoriesToShow.map((cat, idx) => (
                         <div
                             key={cat.category}
                             className="overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer"
@@ -190,6 +196,16 @@ export default function PhotographerLanding() {
                         </div>
                     ))}
                 </div>
+                {galleryImages.length > 3 && (
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="px-8 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-full hover:scale-105 transition"
+                            onClick={() => setShowAllCategories(v => !v)}
+                        >
+                            {showAllCategories ? 'Show Less' : 'Extend'}
+                        </button>
+                    </div>
+                )}
             </section>
 
             {/* Testimonials Section */}
