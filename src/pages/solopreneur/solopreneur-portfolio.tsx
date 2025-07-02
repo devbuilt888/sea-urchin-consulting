@@ -91,7 +91,7 @@ export default function ArtistLandingPage() {
             <span className="text-xs tracking-widest text-purple-100 font-bold">Choose a starting point tailored for your craft.</span>
           </div>
           <div className="h-[350px] sm:h-[200px] grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <Link href="/demo/photographers" className="h-[100px] sm:h-[200px] flex items-end justify-center p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer bg-black/50 backdrop-blur-lg rounded-2xl" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1542038784456-1ea8e935640e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+            <Link href="/solopreneur/photographers" className="h-[100px] sm:h-[200px] flex items-end justify-center p-4 border border-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer bg-black/50 backdrop-blur-lg rounded-2xl" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1542038784456-1ea8e935640e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
               {/* <div className="text-2xl mb-2">📷</div> */}
               <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Photographers</div>
             </Link>
