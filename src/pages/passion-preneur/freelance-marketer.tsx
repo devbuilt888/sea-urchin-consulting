@@ -324,7 +324,7 @@ export default function FreelanceMarketerLanding() {
           </div>
           <div className="flex-1 flex justify-center w-full mt-8 md:mt-0">
             <div className="w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-yellow-300 border-4 border-black flex items-center justify-center text-4xl sm:text-6xl">🧑‍💼</div>
-          </div>
+            </div>
         </div>
       </section>); })()}
       {/* Wavy Divider */}
@@ -349,8 +349,8 @@ export default function FreelanceMarketerLanding() {
                     <li key={`${i}-${j}`}>{feature}</li>
                   ))}
                 </ul>
-              </div>
-            ))}
+            </div>
+          ))}
           </div>
         </div>
       </section>); })()}

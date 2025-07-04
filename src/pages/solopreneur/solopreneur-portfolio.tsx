@@ -99,7 +99,7 @@ export default function ArtistLandingPage() {
               {/* <div className="text-2xl mb-2">🎨</div> */}
               <div className="font-semibold text-gray-100 bg-black/50 backdrop-blur-lg rounded-lg p-2">Artists</div>
             </Link>
-            <Link href="/demo/craft-makers" className="h-[100px] sm:h-[200px] flex items-end justify-center bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{
+            <Link href="/solopreneur/craft-makers" className="h-[100px] sm:h-[200px] flex items-end justify-center bg-gradient-to-br from-gray-800 to-gray-950 rounded-lg p-4 border border-gray-600 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer" style={{
               backgroundImage: "url(https://i0.wp.com/outliermedia.org/wp-content/uploads/2021/01/Untitled-design-35.png?fit=900%2C600&ssl=1)",
               backgroundSize: 'cover',
               backgroundPosition: 'center'
