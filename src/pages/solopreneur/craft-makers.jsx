@@ -295,7 +295,7 @@ const makers = [
     bio: 'Jewelry Designer',
   },
   {
-    name: 'Samir Mehta',  
+    name: 'Samir Mehta',
     img: 'https://randomuser.me/api/portraits/men/70.jpg',
     bio: 'Pottery Artist',
   },
@@ -407,7 +407,7 @@ function ModernHeader() {
       {/* Top Layer: Logo + Name */}
       <div
         className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-12 py-4 bg-gradient-to-r from-[#6b4f27] via-[#a47551] to-[#c8b08e] shadow-lg gap-2 md:gap-0"
-       
+
       >
         <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT93PJj_Q7AG22ABFjaJTRsN27bL5nlkJfVww&s" alt="Craft Makers Logo" className="w-10 h-10 sm:w-20 sm:h-20 rounded-full border-4 border-white shadow" />
@@ -656,11 +656,11 @@ export default function CraftMakersShowcase() {
           <div className="flex-1 flex flex-col items-center mb-6 md:mb-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#e7c9a9] flex items-center justify-center mb-2 font-bold text-[#6b4f27]">2020</div>
             <div className="text-[#6b4f27] mb-4 text-sm sm:text-base">Launched our online platform, connecting artisans nationwide.</div>
-              </div>
+          </div>
           <div className="flex-1 flex flex-col items-center">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#c8b08e] flex items-center justify-center mb-2 font-bold text-[#6b4f27]">2023</div>
             <div className="text-[#6b4f27] mb-4 text-sm sm:text-base">Reached 10,000+ customers and expanded to global shipping.</div>
-            </div>
+          </div>
         </div>
       </section>
       {/* Motive & Goal */}
@@ -735,15 +735,42 @@ export default function CraftMakersShowcase() {
             <span className="text-4xl sm:text-5xl mb-2">🤝</span>
             <h3 className="font-bold text-base sm:text-lg mb-1 text-[#6b4f27]">Support Artisans</h3>
             <p className="text-[#a47551] text-xs sm:text-base">Directly empower local and global makers.</p>
-              </div>
+          </div>
           <div className="flex flex-col items-center">
             <span className="text-4xl sm:text-5xl mb-2">🚚</span>
             <h3 className="font-bold text-base sm:text-lg mb-1 text-[#6b4f27]">Fast Delivery</h3>
             <p className="text-[#a47551] text-xs sm:text-base">Reliable, eco-conscious shipping worldwide.</p>
-            </div>
+          </div>
         </div>
       </section>
       <FloatingCTA />
+      {/* Contact Us Book Section */}
+      <section id="contact" className="w-full max-w-4xl mx-auto py-10 sm:py-16 px-2 sm:px-4 flex flex-col md:flex-row items-stretch gap-0 md:gap-10 bg-[#f5eee6] rounded-[32px] shadow-2xl mt-8 sm:mt-16 relative overflow-hidden border border-[#e7c9a9]" style={{boxShadow: '0 8px 32px 0 rgba(107,79,39,0.10)'}}>
+        {/* Book spine */}
+        <div className="hidden md:block absolute left-1/2 top-6 bottom-6 w-1 bg-gradient-to-b from-[#e7c9a9] via-[#bfa181] to-[#e7c9a9] shadow-inner rounded-full z-10" style={{transform: 'translateX(-50%)'}}></div>
+        {/* Left page (form) */}
+        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-4 py-8 md:py-0 md:rounded-l-[32px] relative z-20 shadow-none md:shadow-lg">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-[#a47551]">Contact Us</h2>
+          <form className="w-full max-w-xs flex flex-col gap-4">
+            <input type="text" placeholder="Your Name" className="rounded px-3 py-2 text-[#6b4f27] bg-white/80 border border-[#e7c9a9] focus:outline-none" />
+            <input type="email" placeholder="Your Email" className="rounded px-3 py-2 text-[#6b4f27] bg-white/80 border border-[#e7c9a9] focus:outline-none" />
+            <textarea placeholder="Your Message" rows={4} className="rounded px-3 py-2 text-[#6b4f27] bg-white/80 border border-[#e7c9a9] focus:outline-none" />
+            <button type="submit" className="bg-[#a47551] text-white font-bold rounded px-3 py-2 hover:bg-[#bfa181] hover:text-[#6b4f27] transition">Send Message</button>
+          </form>
+        </div>
+        {/* Right page (info/socials) */}
+        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-4 py-8 md:py-0 md:rounded-r-[32px] relative z-20 shadow-none md:shadow-lg text-center">
+          <h3 className="text-lg font-bold text-[#a47551] mb-2">Get in Touch</h3>
+          <p className="text-[#6b4f27] mb-2">Email: <a href="mailto:hello@craftmakers.com" className="underline">hello@craftmakers.com</a></p>
+          <p className="text-[#6b4f27] mb-2">Phone: +91 98765 43210</p>
+          <p className="text-[#6b4f27] mb-4">Jaipur, India</p>
+          <div className="flex gap-4 justify-center mt-2">
+            <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-instagram"></i>Instagram</a>
+            <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-facebook"></i>Facebook</a>
+            <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-pinterest"></i>Pinterest</a>
+          </div>
+        </div>
+      </section>
       {/* Footer */}
       <footer className="w-full bg-[#6b4f27] text-[#f5eee6] py-10 sm:py-12 px-2 sm:px-4 mt-12">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
@@ -764,7 +791,7 @@ export default function CraftMakersShowcase() {
               <li><a href="#" className="hover:underline">Contact</a></li>
             </ul>
           </div>
-          <div id='contact'>
+          <div>
             <h4 className="font-semibold mb-2">Contact</h4>
             <ul className="text-sm space-y-1">
               <li>Email: hello@craftmakers.com</li>
@@ -777,7 +804,7 @@ export default function CraftMakersShowcase() {
             <form className="flex flex-col gap-2">
               <input type="email" placeholder="Your email" className="rounded px-3 py-2 text-[#6b4f27]" />
               <button type="submit" className="bg-[#e7c9a9] text-[#6b4f27] font-bold rounded px-3 py-2 hover:bg-[#bfa181] transition">Subscribe</button>
-          </form>
+            </form>
           </div>
         </div>
         <div className="text-center text-xs text-[#e7c9a9] mt-8">&copy; {new Date().getFullYear()} Craft Makers. All rights reserved.</div>
