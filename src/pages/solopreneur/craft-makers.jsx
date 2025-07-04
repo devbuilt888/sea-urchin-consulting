@@ -745,11 +745,11 @@ export default function CraftMakersShowcase() {
       </section>
       <FloatingCTA />
       {/* Contact Us Book Section */}
-      <section id="contact" className="w-full max-w-4xl mx-auto py-10 sm:py-16 px-2 sm:px-4 flex flex-col md:flex-row items-stretch gap-0 md:gap-10 bg-[#f5eee6] rounded-[32px] shadow-2xl mt-8 sm:mt-16 relative overflow-hidden border border-[#e7c9a9]" style={{boxShadow: '0 8px 32px 0 rgba(107,79,39,0.10)'}}>
+      <section id="contact" className="w-full max-w-4xl mx-auto py-10 sm:py-16 px-2 sm:px-4 flex flex-col md:flex-row items-stretch gap-0 md:gap-10 bg-[#f5eee6] rounded-[32px] shadow-2xl mt-8 m-4 sm:mt-16 relative overflow-hidden border border-[#e7c9a9]" style={{boxShadow: '0 8px 32px 0 rgba(107,79,39,0.10)'}}>
         {/* Book spine */}
         <div className="hidden md:block absolute left-1/2 top-6 bottom-6 w-1 bg-gradient-to-b from-[#e7c9a9] via-[#bfa181] to-[#e7c9a9] shadow-inner rounded-full z-10" style={{transform: 'translateX(-50%)'}}></div>
         {/* Left page (form) */}
-        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-4 py-8 md:py-0 md:rounded-l-[32px] relative z-20 shadow-none md:shadow-lg">
+        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-4 py-8 md:py-4 md:rounded-l-[32px] relative z-20 shadow-none md:shadow-lg">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-[#a47551]">Contact Us</h2>
           <form className="w-full max-w-xs flex flex-col gap-4">
             <input type="text" placeholder="Your Name" className="rounded px-3 py-2 text-[#6b4f27] bg-white/80 border border-[#e7c9a9] focus:outline-none" />
@@ -759,12 +759,12 @@ export default function CraftMakersShowcase() {
           </form>
         </div>
         {/* Right page (info/socials) */}
-        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-4 py-8 md:py-0 md:rounded-r-[32px] relative z-20 shadow-none md:shadow-lg text-center">
+        <div className="flex-1 flex flex-col justify-center items-center bg-[#f5eee6] px-2 py-8 md:py-0 md:rounded-r-[32px] relative z-20 shadow-none md:shadow-lg text-center">
           <h3 className="text-lg font-bold text-[#a47551] mb-2">Get in Touch</h3>
           <p className="text-[#6b4f27] mb-2">Email: <a href="mailto:hello@craftmakers.com" className="underline">hello@craftmakers.com</a></p>
           <p className="text-[#6b4f27] mb-2">Phone: +91 98765 43210</p>
           <p className="text-[#6b4f27] mb-4">Jaipur, India</p>
-          <div className="flex gap-4 justify-center mt-2">
+          <div className="hidden md:flex gap-4 justify-center mt-2">
             <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-instagram"></i>Instagram</a>
             <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-facebook"></i>Facebook</a>
             <a href="#" className="text-[#a47551] hover:text-[#bfa181] text-2xl"><i className="fab fa-pinterest"></i>Pinterest</a>
@@ -774,7 +774,7 @@ export default function CraftMakersShowcase() {
       {/* Footer */}
       <footer className="w-full bg-[#6b4f27] text-[#f5eee6] py-10 sm:py-12 px-2 sm:px-4 mt-12">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          <div>
+          <div className="flex flex-col items-center justify-center text-center">
             <h3 className="font-bold text-lg mb-2">Craft Makers</h3>
             <p className="text-sm mb-4">Celebrating handmade creativity. Join our community of makers and craft lovers!</p>
             <div className="flex gap-3">
