@@ -55,7 +55,7 @@ const TESTIMONIALS = [
 ];
 
 const FEATURED_WORK = {
-    image: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/02ae6ea0-eb8c-48ed-96a0-75d421b7c6fc/dg6vp1f-7fa78124-c77f-4ddf-86c1-380ad6d7524a.jpg/v1/fill/w_1032,h_774,q_70,strp/solar_eclipse__traditional_painting__by_benitodlr_dg6vp1f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzQ1NiIsInBhdGgiOiJcL2ZcLzAyYWU2ZWEwLWViOGMtNDhlZC05NmEwLTc1ZDQyMWI3YzZmY1wvZGc2dnAxZi03ZmE3ODEyNC1jNzdmLTRkZGYtODZjMS0zODBhZDZkNzUyNGEuanBnIiwid2lkdGgiOiI8PTQ2MDgifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.fEgbhGrAGNQzFX_Za6rPM9UBdZAPJAGkQU_6HT98zho',
+    image: 'https://auntlizzy.com/wordpress/wp-content/uploads/2024/03/thumbnail_IMG_6078.jpg',
     title: 'Eclipse of Color',
     story: `This piece explores the interplay of shadow and light, using vibrant hues and dynamic brushwork to evoke a sense of movement and transformation. It was inspired by the artist's travels and the ever-changing sky.`,
 };
@@ -89,7 +89,7 @@ export default function ArtistPortfolio() {
     // Navbar links
     const navLinks = [
         { name: 'About', href: '#about' },
-        { name: 'Gallery', href: '#gallery' },
+        { name: 'Works', href: '#works' },
         { name: 'Partners', href: '#partners' },
         { name: 'Contact', href: '#contact' },
     ];
@@ -115,7 +115,7 @@ export default function ArtistPortfolio() {
                     {navLinks.map(link => (
                         <a key={link.name} href={link.href} className="font-semibold text-gray-700 hover:text-pink-500 transition text-lg tracking-wide uppercase">{link.name}</a>
                     ))}
-                    <a href="#gallery" className="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-bold shadow hover:scale-105 transition">Shop Prints</a>
+                    <a href="#works" className="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-bold shadow hover:scale-105 transition">Shop Prints</a>
                 </div>
                 {/* Mobile hamburger (not functional for brevity) */}
                 <div className="md:hidden">
@@ -143,9 +143,154 @@ export default function ArtistPortfolio() {
                 {/* ABOUT */}
                 <section id="about" className="py-20 px-6 bg-white/80 text-center relative">
                     <h2 className="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 tracking-tight">About the Artistry</h2>
-                    <div className="max-w-2xl mx-auto text-lg text-gray-700 mb-8 leading-relaxed">{ARTIST_BIO}</div>
+                    
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-lg text-gray-700 mb-8 leading-relaxed">{ARTIST_BIO}</div>
+                        
+                        <div className="grid md:grid-cols-2 gap-12 mt-12">
+                            {/* Artistic Journey */}
+                            <div className="text-left">
+                                <h3 className="text-2xl font-bold text-pink-600 mb-4">Artistic Journey</h3>
+                                <p className="text-gray-700 mb-4 leading-relaxed">
+                                    My artistic journey began in the vibrant streets of Mumbai, where I discovered my passion for capturing the essence of human emotion through color and form. Over the past decade, I've evolved from traditional techniques to contemporary expressions, always pushing the boundaries of visual storytelling.
+                                </p>
+                                <p className="text-gray-700 leading-relaxed">
+                                    Each piece I create is a reflection of my experiences, travels, and the diverse cultures that have shaped my perspective. From the bustling markets of India to the serene landscapes of Europe, every destination has left its mark on my artistic voice.
+                                </p>
+                            </div>
+
+                            {/* Creative Process */}
+                            <div className="text-left">
+                                <h3 className="text-2xl font-bold text-yellow-600 mb-4">Creative Process</h3>
+                                <p className="text-gray-700 mb-4 leading-relaxed">
+                                    My creative process is deeply intuitive, beginning with meditation and reflection. I believe that art emerges from a place of inner stillness, where emotions and memories flow freely onto the canvas. Each stroke is intentional, each color choice meaningful.
+                                </p>
+                                <p className="text-gray-700 leading-relaxed">
+                                    I work primarily with acrylics and mixed media, experimenting with textures, layering, and unconventional materials. This approach allows me to create depth and dimension that invites viewers to explore beyond the surface.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Inspiration & Philosophy */}
+                        <div className="mt-12 bg-gradient-to-r from-pink-50 to-yellow-50 rounded-3xl p-8 border-2 border-pink-100">
+                            <h3 className="text-2xl font-bold text-purple-600 mb-4">Inspiration & Philosophy</h3>
+                            <div className="grid md:grid-cols-3 gap-6 text-sm">
+                                <div className="text-center">
+                                    <div className="w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="font-bold text-gray-800 mb-2">Emotion</h4>
+                                    <p className="text-gray-600">Capturing the raw, unfiltered emotions that connect us all as human beings.</p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="font-bold text-gray-800 mb-2">Nature</h4>
+                                    <p className="text-gray-600">Drawing inspiration from the organic forms and rhythms of the natural world.</p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="font-bold text-gray-800 mb-2">Culture</h4>
+                                    <p className="text-gray-600">Celebrating the rich tapestry of human culture and shared experiences.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Artistic Statement */}
+                        <div className="mt-12 text-center">
+                            <blockquote className="italic text-xl text-gray-700 mb-6 font-medium leading-relaxed">
+                                "Art is not what you see, but what you make others see. Through my work, I invite viewers to see the world through my eyes, to feel what I feel, and to discover their own stories within the colors and forms."
+                            </blockquote>
+                            <p className="text-gray-600 font-semibold">— Artistry Global</p>
+                        </div>
+                    </div>
+
                     <div className="absolute left-0 bottom-0 w-full h-8 pointer-events-none select-none">
                         <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q720,60 1440,20 V40 H0 Z" fill="#fdf2f8" fillOpacity="0.7" /></svg>
+                    </div>
+                </section>
+
+                    {/* Sell Direct & Mission Cards */}
+                <section className="py-16 px-6 bg-gradient-to-br from-pink-50/80 to-yellow-50/80">
+                    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+                        {/* Sell Direct Card */}
+                        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-pink-200 shadow-2xl hover:shadow-pink-300/50 transition-all duration-500 group">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold text-pink-600 mb-3">Sell Direct</h3>
+                            </div>
+                            <div className="space-y-4 text-gray-700">
+                                <p className="text-lg leading-relaxed">
+                                    Purchase artwork directly from the artist. Skip galleries and intermediaries to get 
+                                    authentic pieces with personal connection and competitive pricing.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                        No gallery commissions or hidden fees
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                        Direct communication with the artist
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                        Custom commissions and personalized pieces
+                                    </li>
+                                </ul>
+                                <button className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-bold rounded-xl hover:scale-105 transition-transform duration-300 shadow-lg">
+                                    Shop Directly
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Our Mission Card */}
+                        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-yellow-200 shadow-2xl hover:shadow-yellow-300/50 transition-all duration-500 group">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold text-yellow-600 mb-3">Our Mission</h3>
+                            </div>
+                            <div className="space-y-4 text-gray-700">
+                                <p className="text-lg leading-relaxed">
+                                    To inspire and connect through the universal language of art. We believe every piece 
+                                    tells a story and every creation has the power to transform spaces and lives.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                        Creating meaningful artistic experiences
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                        Bridging cultures through visual storytelling
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                        Making art accessible to everyone
+                                    </li>
+                                </ul>
+                                <button className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform duration-300 shadow-lg">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -206,9 +351,9 @@ export default function ArtistPortfolio() {
                     </div>
                 </section>
 
-                {/* GALLERY */}
-                <section id="gallery" className="py-20 px-6 bg-gradient-to-br from-yellow-50 to-pink-50/80 text-center relative">
-                    <h2 className="text-4xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 tracking-tight">Gallery</h2>
+                {/* Works */}
+                <section id="works" className="py-20 px-6 bg-gradient-to-br from-yellow-50 to-pink-50/80 text-center relative">
+                    {/* <h2 className="text-4xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 tracking-tight">Gallery</h2> */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
                         {ARTWORKS.map((art, i) => (
                             <div key={i} className="relative group overflow-hidden rounded-2xl shadow-lg border-2 border-pink-100">
@@ -293,7 +438,7 @@ export default function ArtistPortfolio() {
                         </div>
                         <div className="flex gap-6 text-sm">
                             <a href="#about" className="hover:text-pink-500 transition">About</a>
-                            <a href="#gallery" className="hover:text-pink-500 transition">Gallery</a>
+                            <a href="#gallery" className="hover:text-pink-500 transition">Works</a>
                             <a href="#" className="hover:text-pink-500 transition">Contact</a>
                         </div>
                         <div className="flex flex-wrap gap-4 justify-center text-xs text-pink-400 mt-2">

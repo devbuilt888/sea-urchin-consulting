@@ -75,6 +75,14 @@ const carouselImages = [
     'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
 ];
 
+const heroBackgroundImages = [
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+    'https://sarahgodfrey.net/wp-content/uploads/sites/7012/2022/02/Couple_Skiing_Photoshoot_DevilsHead_WI-4.jpg',
+    'https://images.unsplash.com/photo-1542038784456-1ea8e935640e',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'
+];
+
 const testimonials = [
     {
         quote: 'The photos captured the essence of our wedding day perfectly. Absolutely stunning!',
@@ -111,6 +119,7 @@ function useInView(ref, options) {
 
 export default function PhotographerLanding() {
     const [carouselIndex, setCarouselIndex] = useState(0);
+    const [heroBackgroundIndex, setHeroBackgroundIndex] = useState(0);
     const [lightbox, setLightbox] = useState({ open: false, category: '', images: [], index: 0 });
     const [showAllCategories, setShowAllCategories] = useState(false);
 
@@ -189,6 +198,14 @@ export default function PhotographerLanding() {
         return () => clearInterval(interval);
     }, [carouselImages.length]);
 
+    // Auto-slide hero background
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setHeroBackgroundIndex((prev) => (prev + 1) % heroBackgroundImages.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [heroBackgroundImages.length]);
+
     // Lightbox navigation
     const lightboxNext = () => setLightbox(l => ({ ...l, index: (l.index + 1) % l.images.length }));
     const lightboxPrev = () => setLightbox(l => ({ ...l, index: (l.index - 1 + l.images.length) % l.images.length }));
@@ -226,18 +243,108 @@ export default function PhotographerLanding() {
                 </div>
             )}
             {/* Hero Section */}
-            <section className="relative flex flex-col items-center justify-center text-center px-6 pt-32 pb-28 bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1519125323398-675f0ddb6308)' }}>
+            <section className="relative flex flex-col items-center justify-center text-center px-6 pt-32 pb-28 bg-cover bg-center transition-all duration-1000" style={{ backgroundImage: `url(${heroBackgroundImages[heroBackgroundIndex]})` }}>
                 <div className="absolute inset-0 bg-black/60 z-0"></div>
                 <div className="relative z-10 max-w-2xl">
-                    <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">Capturing Moments, Creating Memories</h1>
+                    <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl text-yellow-400">Capturing Moments, Creating Memories</h1>
                     <p className="text-lg md:text-2xl text-white/90 mb-8">Professional Photography for Weddings, Portraits, Events & More</p>
                     <a href="#contact" className="px-10 py-4 bg-gradient-to-r from-pink-500 to-yellow-400 text-black rounded-full shadow-lg hover:scale-105 transition font-bold text-lg">Book a Session</a>
+                </div>
+                {/* Hero Background Carousel Indicators */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
+                    {heroBackgroundImages.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setHeroBackgroundIndex(idx)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                idx === heroBackgroundIndex 
+                                    ? 'bg-yellow-400 scale-125' 
+                                    : 'bg-white/50 hover:bg-white/70'
+                            }`}
+                            aria-label={`Go to background ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+            </section>
+
+            {/* Sell Direct & Mission Cards */}
+            <section className="py-16 px-6 bg-gradient-to-br from-gray-800 to-black">
+                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+                    {/* Sell Direct Card */}
+                    <div className="bg-black/60 backdrop-blur-sm rounded-3xl p-8 border border-pink-500/30 shadow-2xl hover:shadow-pink-500/20 transition-all duration-500 group">
+                        <div className="text-center mb-6">
+                            <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                                </svg>
+                            </div>
+                            <h3 className="text-2xl font-bold text-yellow-400 mb-3">Sell Direct</h3>
+                        </div>
+                        <div className="space-y-4 text-gray-300">
+                            <p className="text-lg leading-relaxed">
+                                Skip the middleman and connect directly with your photographer. Get personalized service, 
+                                custom packages, and competitive pricing without agency fees.
+                            </p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                    No booking fees or hidden costs
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                    Direct communication and planning
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                    Custom packages tailored to your needs
+                                </li>
+                            </ul>
+                            <button className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl hover:scale-105 transition-transform duration-300">
+                                Book Directly
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Our Mission Card */}
+                    <div className="bg-black/60 backdrop-blur-sm rounded-3xl p-8 border border-yellow-500/30 shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 group">
+                        <div className="text-center mb-6">
+                            <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-2xl font-bold text-pink-400 mb-3">Our Mission</h3>
+                        </div>
+                        <div className="space-y-4 text-gray-300">
+                            <p className="text-lg leading-relaxed">
+                                To capture life's most precious moments with artistry and authenticity. We believe every 
+                                story deserves to be told beautifully, creating timeless memories that last forever.
+                            </p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                    Authentic storytelling through photography
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                    Artistic vision meets technical excellence
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                    Creating lasting memories for generations
+                                </li>
+                            </ul>
+                            <button className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-yellow-400 to-pink-500 text-black font-bold rounded-xl hover:scale-105 transition-transform duration-300">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* About Section */}
             <section className="py-20 px-6 text-center bg-black/80">
-                <h2 className="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">Meet Your Photographer</h2>
+                <h2 className="text-4xl font-bold mb-6 text-yellow-400">Meet Your Photographer</h2>
                 <div className="max-w-3xl mx-auto text-lg text-gray-200 mb-8">With a passion for storytelling and an eye for detail, I transform fleeting moments into timeless art. Whether it's a grand celebration or an intimate portrait, every frame is crafted with creativity and care.</div>
                 <div className='animate-bounce'>
                     <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Photographer" className="mx-auto rounded-full w-40 h-40 object-cover border-4 border-pink-500 shadow-xl" />
@@ -246,7 +353,7 @@ export default function PhotographerLanding() {
 
             {/* Carousel Section */}
             <section className="py-20 px-6 bg-gradient-to-br from-gray-800 to-black text-center">
-                <h2 className="text-3xl font-semibold mb-10 text-yellow-400">Featured Shots</h2>
+                <h2 className="text-3xl font-bold mb-10 text-pink-400">Featured Shots</h2>
                 <div className="relative max-w-2xl mx-auto">
                     <img src={carouselImages[carouselIndex]} alt="Featured" className="rounded-3xl shadow-2xl w-full h-96 object-cover transition-all duration-500" />
                     <button onClick={prevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-pink-500 text-white rounded-full p-3 shadow-lg transition z-10"><span className="text-2xl">&#8592;</span></button>
@@ -261,7 +368,7 @@ export default function PhotographerLanding() {
 
             {/* Gallery Section */}
             <section className="py-20 px-6 bg-black/90">
-                <h2 className="text-3xl font-semibold mb-10 text-pink-400">Gallery</h2>
+                <h2 className="text-3xl font-bold mb-10 text-yellow-400">Gallery</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {categoriesToShow.map((cat, idx) => (
                         <div
@@ -292,7 +399,7 @@ export default function PhotographerLanding() {
 
             {/* Testimonials Section */}
             <section className="py-20 px-6 bg-gradient-to-br from-gray-800 to-black text-center">
-                <h2 className="text-3xl font-semibold mb-10 text-yellow-400">What Clients Say</h2>
+                <h2 className="text-3xl font-bold mb-10 text-pink-400">What Clients Say</h2>
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {testimonials.map(({ quote, author }, idx) => (
                         <div
