@@ -111,62 +111,86 @@ function AnimatedBackground() {
   );
 }
 
+
 export default function Home() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [featuresRef, featuresVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
   const [testimonialsRef, testimonialsVisible] = useReveal();
 
+  // Parallax effect for hero floating icons
+  const [parallax, setParallax] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => setParallax(window.scrollY / 8);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="min-h-screen text-gray-800 font-sans relative overflow-hidden">
       <AnimatedBackground />
-      
       {/* Hero */}
-      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 overflow-hidden">
-        <div className="flex flex-col items-center justify-center bg-white/95 backdrop-blur-lg p-10 rounded-[100px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] mb-10 border border-white/20 relative z-10 hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.3)] transition-all duration-300">
-            <h1 className="text-5xl font-bold mb-4 max-w-2xl relative z-10 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">Passionpreneur</h1>
-            <h6 className='font-bold text-gray-900' > Launching a Service Business </h6>
+      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-40 pb-24 overflow-hidden min-h-[80vh]">
+        <div className="flex flex-col items-center justify-center bg-white/80 backdrop-blur-2xl p-12 rounded-[60px] shadow-2xl mb-10 border border-white/30 relative z-10 hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.3)] transition-all duration-500">
+          <h1 className="text-6xl md:text-7xl font-extrabold mb-4 max-w-3xl relative z-10 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent drop-shadow-lg animate-fade-in">Passionpreneur</h1>
+          <h6 className="font-bold text-gray-900 text-xl md:text-2xl mb-2 animate-fade-in delay-100">Launching a Service Business</h6>
+          <p className="text-lg md:text-2xl text-gray-700 mb-8 max-w-2xl animate-fade-in delay-200">Empowering solo professionals to launch, automate, and grow their business online—no tech overwhelm, just results.</p>
+          <a
+            href="#leadform"
+            className="px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 font-bold text-xl border border-white/30 backdrop-blur-sm animate-bounce"
+          >
+            Book Free Call
+          </a>
         </div>
-        
-        {/* Enhanced floating emoji icons with glow effects */}
-        <span role="img" aria-label="Yoga" className="absolute left-12 top-24 text-5xl animate-float-slow z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">🧘‍♂️</span>
-        <span role="img" aria-label="Business" className="absolute right-20 top-40 text-4xl animate-float z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">💼</span>
-        <span role="img" aria-label="Calendar" className="absolute left-1/3 bottom-20 text-4xl animate-float z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">📅</span>
-        <span role="img" aria-label="Email" className="absolute right-1/4 bottom-32 text-4xl animate-float-slow z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">✉️</span>
-        
-        <h1 className="text-white text-6xl font-bold mb-6 max-w-3xl relative z-10 drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] bg-gradient-to-r from-white via-pink-100 to-white bg-clip-text text-transparent">No Website? No Problem.</h1>
-        <p className="text-white/90 text-xl max-w-xl mb-8 text-gray-100 relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-          You're great at your service. Let us handle your online presence. We'll help you get booked, paid, and grow — without tech overwhelm.
-        </p>
-        <a
-          href="#book"
-          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-[0_10px_25px_-5px_rgba(168,85,247,0.4)] hover:shadow-[0_20px_35px_-5px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300 font-semibold text-lg relative z-10 border border-white/20 backdrop-blur-sm"
-        >
-          Book Free Call
-        </a>
+        {/* Parallax/floating emoji icons */}
+        <span style={{transform:`translateY(${parallax}px)`}} role="img" aria-label="Yoga" className="absolute left-12 top-24 text-6xl animate-float-slow z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">🧘‍♂️</span>
+        <span style={{transform:`translateY(${-parallax}px)`}} role="img" aria-label="Business" className="absolute right-20 top-40 text-5xl animate-float z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">💼</span>
+        <span style={{transform:`translateY(${parallax/2}px)`}} role="img" aria-label="Calendar" className="absolute left-1/3 bottom-20 text-5xl animate-float z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">📅</span>
+        <span style={{transform:`translateY(${-parallax/2}px)`}} role="img" aria-label="Email" className="absolute right-1/4 bottom-32 text-5xl animate-float-slow z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-110 transition-transform duration-300">✉️</span>
       </section>
 
       {/* Enhanced Audience Info Card */}
-      <section className="flex justify-center px-4 -mt-12 mb-12 relative z-10">
-        <div className="bg-white/95 backdrop-blur-lg border-l-4 border-purple-400 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] rounded-xl px-8 py-6 max-w-2xl w-full flex flex-col items-center hover:shadow-[0_25px_35px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 border border-white/20 text-center">
-          <span className="uppercase text-xs tracking-widest text-purple-500 font-bold mb-2">Who is this for?<br /> Check out our landing pages for each service.</span>
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-2">
-            <a href="/passion-preneur/yoga-pilates" className="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
-              <span className="text-2xl block mb-1">🧘‍♀️</span>
-              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Yoga/Pilates Instructors</span>
-            </a>
-            <a href="/passion-preneur/life-coach" className="flex-1 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
-              <span className="text-2xl block mb-1">🧑‍💼</span>
-              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Life Coaches</span>
-            </a>
-            <a href="/passion-preneur/freelance-marketer" className="flex-1 bg-gradient-to-br from-pink-50 to-blue-50 rounded-lg px-6 py-4 text-center shadow hover:shadow-lg hover:scale-105 transition-all duration-200 border border-purple-200 cursor-pointer">
-              <span className="text-2xl block mb-1">💡</span>
-              <span className="text-lg font-semibold text-gray-700 hover:text-purple-600 transition-colors duration-200">Freelance Marketers</span>
-            </a>
-          </div>
-          <div className="mt-2 text-sm text-gray-500">...and any solo service professional ready to grow online!</div>
-        </div>
-      </section>
+      <section className="flex justify-center px-4 -mt-12 mb-16 relative z-10">
+  <div className="bg-white/60 backdrop-blur-2xl border border-white/30 shadow-xl rounded-2xl px-10 py-8 max-w-4xl w-full text-center space-y-6">
+    <h3 className="uppercase text-sm tracking-widest text-purple-600 font-bold">Who is this for?</h3>
+    <p className="text-lg text-gray-700 font-medium">Explore tailored landing pages crafted for your service:</p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {[
+        {
+          href: "/passion-preneur/yoga-pilates",
+          label: "Yoga & Pilates Instructors",
+          emoji: "🧘‍♀️",
+          bg: "from-purple-100 to-pink-100",
+        },
+        {
+          href: "/passion-preneur/life-coach",
+          label: "Life Coaches",
+          emoji: "🧑‍💼",
+          bg: "from-purple-100 to-blue-100",
+        },
+        {
+          href: "/passion-preneur/freelance-marketer",
+          label: "Freelance Marketers",
+          emoji: "💡",
+          bg: "from-pink-100 to-blue-100",
+        },
+      ].map(({ href, label, emoji, bg }) => (
+        <a
+          key={href}
+          href={href}
+          className={`bg-gradient-to-br ${bg} border border-purple-200 rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-[1.03] transition-all duration-300`}
+        >
+          <div className="text-3xl mb-2">{emoji}</div>
+          <h4 className="text-lg font-semibold text-gray-800">{label}</h4>
+        </a>
+      ))}
+    </div>
+
+    <p className="text-sm text-gray-500">...and any solo service professional ready to grow online!</p>
+  </div>
+</section>
+
 
       {/* Enhanced Features */}
       <section ref={featuresRef} className={`py-20 px-6 text-center transition-all duration-700 relative z-10 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
@@ -281,7 +305,7 @@ export default function Home() {
           100% { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-          animation: fade-in 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+          animation: fade-in 1s cubic-bezier(0.23, 1, 0.32, 1) both;
         }
         @keyframes step-float {
           0% { transform: translateY(0) scale(1); }
@@ -353,6 +377,13 @@ export default function Home() {
         }
         .animate-wave-delayed {
           animation: wave-delayed 8s ease-in-out infinite;
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
+        .animate-bounce {
+          animation: bounce 2s infinite;
         }
       `}</style>
     </main>
