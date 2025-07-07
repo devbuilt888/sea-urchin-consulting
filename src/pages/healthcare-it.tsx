@@ -149,7 +149,7 @@ export default function HealthcareIT() {
 
               What sets Curacart apart is its focus on convenience and care. The platform supports personalized services such as automated refill alerts, pharmacist consultations, and transparent pricing, making it easier for individuals and families to stay on track with their medications.
 
-              In a world where healthcare is becoming increasingly digital, Curacart stands at the forefront of innovation—combining technology, trust, and compassion to enhance everyday wellness. Whether managing long-term health needs or short-term recovery, Curacart is committed to being a reliable partner in every patient’s healthcare journey.</div>
+              In a world where healthcare is becoming increasingly digital, Curacart stands at the forefront of innovation—combining technology, trust, and compassion to enhance everyday wellness. Whether managing long-term health needs or short-term recovery, Curacart is committed to being a reliable partner in every patient's healthcare journey.</div>
           </div>
         </div>
       </section>
@@ -202,6 +202,35 @@ export default function HealthcareIT() {
           <button type="submit" className="px-6 py-3 bg-teal-600 text-white rounded-full shadow hover:bg-teal-700 hover:scale-105 transition-transform duration-200 font-semibold">Submit</button>
         </form>
       </section>
+
+      {/* Footer */}
+      <footer className="w-full bg-gradient-to-r from-teal-600 via-teal-500 to-blue-500 mt-16 z-20 relative text-white">
+        <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+          {/* Logo and tagline */}
+          <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
+            <span className="text-2xl font-extrabold mb-1">CuraCart</span>
+            <span className="italic text-xs opacity-80 mb-2">Your Trusted Health Partner</span>
+            <span className="text-xs opacity-60">© {new Date().getFullYear()} CuraCart. All rights reserved.</span>
+          </div>
+          {/* Navigation */}
+          <div className="flex flex-col md:flex-row gap-6 text-sm font-medium items-center">
+            <a href="#" className="hover:text-yellow-200 transition">Medicine</a>
+            <a href="#" className="hover:text-yellow-200 transition">Lab Tests</a>
+            <a href="#" className="hover:text-yellow-200 transition">Doctor Consult</a>
+            <a href="#" className="hover:text-yellow-200 transition">Healthcare</a>
+            <a href="#" className="hover:text-yellow-200 transition">Offers</a>
+            <a href="#" className="hover:text-yellow-200 transition">Contact</a>
+          </div>
+          {/* Contact info */}
+          <div className="flex flex-col items-center md:items-end text-sm">
+            <div className="mb-1"><span className="font-semibold">Customer Care:</span> +91 90000 00000</div>
+            <div className="mb-1"><span className="font-semibold">Email:</span> support@curacart.com</div>
+            <div><span className="font-semibold">Address:</span> 123 Health St, Mumbai, India</div>
+          </div>
+        </div>
+        <div className="w-full h-px bg-white/20 mt-2 mb-0" />
+        <div className="text-center text-xs py-3 opacity-70">Made with ❤️ for your health & wellness</div>
+      </footer>
 
       {/* Sticky CTA */}
       <div className="fixed bottom-0 left-0 w-full bg-teal-600/90 shadow-lg py-4 flex justify-center items-center z-50 backdrop-blur-md">
