@@ -24,7 +24,7 @@ export default function FloatingPerson() {
   }, []);
 
   // Floating effect: base top + scroll-based offset + sine wave
-  const baseTop = 120;
+  const baseTop = 20;
   const float = Math.sin(scrollY / 120) * 24;
   const top = baseTop + scrollY * 0.18 + float;
   const left = 'calc(100vw - 90px)';

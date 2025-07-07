@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import RetailEcom3DBackground from '../components/RetailEcom3DBackground';
+// import RetailEcom3DBackground from '../components/RetailEcom3DBackground';
+import RetailEcomPatternBg from '../components/RetailEcomPatternBg';
+import FloatingPerson from '@/components/FloatingPerson';
 
 // Custom hook for scroll reveal
 function useReveal(threshold = 0.15) {
@@ -102,7 +104,6 @@ export default function RetailEcommerce() {
   const [painRef, painVisible] = useReveal();
   const [formRef, formVisible] = useReveal();
 
-  // Testimonial carousel
   useEffect(() => {
     const timer = setInterval(() => {
       setTestimonialIdx((idx) => (idx + 1) % testimonials.length);
@@ -111,43 +112,37 @@ export default function RetailEcommerce() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden relative">
-      <RetailEcom3DBackground />
-      {/* SVG/Geometric Backgrounds */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <svg width="100%" height="100%" className="absolute top-0 left-0" style={{opacity:0.13}}>
-          <defs>
-            <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#f472b6" />
-              <stop offset="100%" stopColor="#60a5fa" />
-            </linearGradient>
-          </defs>
-          <circle cx="20%" cy="15%" r="180" fill="url(#bg1)" />
-          <rect x="70%" y="70" width="320" height="320" rx="160" fill="#fef9c3" />
-          <rect x="-80" y="70%" width="220" height="220" rx="110" fill="#bbf7d0" />
-        </svg>
-      </div>
+    <main className="min-h-screen bg-gradient-to-br from-[#fff1f2] via-[#f0f9ff] to-[#fef9c3] text-gray-900 font-sans overflow-x-hidden relative">
+      {/* <RetailEcom3DBackground /> */}
+      <RetailEcomPatternBg />
+      <FloatingPerson />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 overflow-hidden">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 max-w-3xl relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-blue-500 to-yellow-400 drop-shadow-lg">
-          Retail & eCommerce Growth, Powered by AI
-        </h1>
-        <h6 className="text-lg text-blue-600 mb-2 relative z-10 font-semibold">For Marketing & Digital Leaders at Mid-Sized Retailers</h6>
-        <p className="text-xl max-w-xl mb-8 text-blue-700 relative z-10">
-          Personalize, unify, and automate your marketing with next-gen data and AI. $5K–$75K/project.
-        </p>
-        <a
-          href="#leadform"
-          className="px-8 py-4 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-200 font-semibold text-lg relative z-10"
-        >
-          Book a Free Demo
-        </a>
-        {/* Floating icons */}
-        <span className="absolute left-16 top-32 text-5xl animate-float z-10">🤖</span>
-        <span className="absolute right-20 top-40 text-4xl animate-float-slow z-10">💸</span>
-        <span className="absolute left-1/3 bottom-20 text-4xl animate-float z-10">🧑‍💻</span>
-        <span className="absolute right-1/4 bottom-32 text-4xl animate-float-slow z-10">📈</span>
+      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-36 pb-28 overflow-hidden mb-10" style={{ backgroundImage: 'url(/hd4.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundBlendMode: 'overlay' }}>
+        <div className="backdrop-blur-3xl bg-white/30 border border-white/50 shadow-2xl rounded-xl p-10 w-full max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-white">
+            Retail & eCommerce Growth, Powered by AI
+          </h1>
+          <p className="text-lg md:text-xl mb-6 text-gray-700">
+            Personalize, unify, and automate your marketing with next-gen data and AI. $5K–$75K/project.
+          </p>
+          <div className="flex items-center justify-center mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-bold text-lg shadow-lg animate-pulse">
+              🎁 Sign up now & get <span className="mx-1 text-2xl">20% OFF</span> your first order!
+            </span>
+          </div>
+          <a
+            href="#leadform"
+            className="px-8 py-4 bg-gradient-to-r from-pink-600 to-blue-500 text-white rounded-full shadow-xl hover:scale-105 transition-transform duration-200 font-semibold text-lg"
+          >
+            SignUp Now
+          </a>
+        </div>
+
+        <span className="absolute left-10 top-20 text-6xl animate-float">🤖</span>
+        <span className="absolute right-10 top-32 text-5xl animate-float-slow">💸</span>
+        <span className="absolute left-1/3 bottom-24 text-5xl animate-float">🧑‍💻</span>
+        <span className="absolute right-1/4 bottom-20 text-5xl animate-float-slow">📈</span>
       </section>
 
       {/* Value Proposition & Incentive Section */}
@@ -178,6 +173,28 @@ export default function RetailEcommerce() {
               <div className="text-blue-700 text-base text-center">{p.desc}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section>
+        <div className='flex items-center justify-center h-screen my-20' style={{ backgroundImage: 'url(/hd5.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundBlendMode: 'overlay' }}>
+          <div className='bg-white/90 rounded-2xl shadow-lg p-10 flex flex-col items-center max-w-2xl hover:shadow-2xl hover:scale-105 transition-transform duration-200 border-t-4 border-pink-200 transition-all duration-700'>
+            <h2 className='text-2xl font-semibold mb-6 text-pink-600'>Why Modern Retailers Choose Us</h2>
+            <p className='text-md text-blue-800 mb-6 text-center'>
+              Our platform empowers eCommerce brands and retailers to deliver personalized, seamless, and data-driven shopping experiences that drive real results. By unifying your customer data, automating campaigns, and leveraging AI-powered recommendations, you can:
+            </p>
+            <ul className='text-blue-700 text-base mb-6 space-y-3 text-left max-w-xl mx-auto list-disc pl-6'>
+              <li><span className='font-bold text-pink-600'>•</span> <b>Boost Conversions:</b> Show the right products to the right customers at the right time, increasing sales and average order value.</li>
+              <li><span className='font-bold text-pink-600'>•</span> <b>Build Loyalty:</b> Create memorable, personalized journeys that keep shoppers coming back.</li>
+              <li><span className='font-bold text-pink-600'>•</span> <b>Save Time:</b> Automate repetitive marketing tasks and reporting, freeing your team to focus on growth.</li>
+              <li><span className='font-bold text-pink-600'>•</span> <b>Gain Insights:</b> Access a single, actionable view of every customer and campaign, so you can make smarter decisions, faster.</li>
+              <li><span className='font-bold text-pink-600'>•</span> <b>Stand Out:</b> Offer a modern, delightful experience that sets your brand apart from the competition.</li>
+            </ul>
+            <div className='text-pink-700 font-semibold mb-2 text-center'>
+              Influence your customers at every touchpoint—turn browsers into buyers, and buyers into loyal fans.
+            </div>
+            <div className='mt-4 text-xs text-blue-500 text-center'>Ready to transform your retail business? Discover how our solution can help you grow faster and smarter.</div>
+          </div>
         </div>
       </section>
 
@@ -223,7 +240,7 @@ export default function RetailEcommerce() {
 
       {/* Testimonial carousel */}
       <section className="py-20 px-6 mb-20 bg-gradient-to-br from-pink-100 to-blue-100 text-center">
-        <h2 className="text-3xl font-semibold mb-10 text-pink-600">What Clients Say</h2>
+        <h2 className="relative text-3xl font-semibold mb-10 text-pink-600">What Clients Say</h2>
         <div className="max-w-xl mx-auto">
           <div className="relative bg-white/90 rounded-2xl shadow-lg p-8 min-h-[160px] flex flex-col items-center">
             <blockquote className="text-lg italic text-blue-700 mb-4 transition-all duration-500 animate-fade-in">
@@ -249,18 +266,18 @@ export default function RetailEcommerce() {
         </div>
       </section>
 
-      {/* Sticky CTA bar */}
+      {/* Sticky CTA */}
       <div className="fixed bottom-0 left-0 w-full bg-pink-600/90 shadow-lg py-4 flex justify-center items-center z-50 backdrop-blur-md">
         <span className="mr-4 font-semibold text-white">Ready to boost your sales?</span>
         <a
           href="#leadform"
-          className="px-6 py-3 bg-pink-500 text-white rounded-full shadow hover:bg-pink-600 hover:scale-105 transition-transform duration-200 font-semibold"
+          className="px-6 py-3 bg-white text-pink-600 rounded-full shadow hover:bg-gray-100 hover:scale-105 transition-transform duration-200 font-semibold"
         >
           Book a Free Demo
         </a>
       </div>
 
-      {/* Animations */}
+      {/* Animation Styles */}
       <style jsx>{`
         @keyframes float {
           0% { transform: translateY(0); }
@@ -273,22 +290,7 @@ export default function RetailEcommerce() {
         .animate-float-slow {
           animation: float 5s ease-in-out infinite;
         }
-        @keyframes step-float {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-18px); }
-          100% { transform: translateY(0); }
-        }
-        .animate-step-float {
-          animation: step-float 3.5s ease-in-out infinite;
-        }
-        @keyframes fade-in {
-          0% { opacity: 0; transform: translateY(24px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
       `}</style>
     </main>
   );
-} 
+}

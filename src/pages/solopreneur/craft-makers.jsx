@@ -424,7 +424,7 @@ function ModernHeader() {
         <a href="#about" className="px-4 sm:px-5 py-2 rounded-full font-semibold bg-white/90 text-[#6b4f27] shadow hover:bg-[#e7c9a9] transition text-sm sm:text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg">About</a>
         <a href="#services" className="px-4 sm:px-5 py-2 rounded-full font-semibold bg-white/90 text-[#6b4f27] shadow hover:bg-[#e7c9a9] transition text-sm sm:text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg">Services</a>
         <a href="#contact" className="px-4 sm:px-5 py-2 rounded-full font-semibold bg-white/90 text-[#6b4f27] shadow hover:bg-[#e7c9a9] transition text-sm sm:text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg">Contact</a>
-      </nav>
+    </nav>
     </header>
   );
 }
@@ -660,7 +660,7 @@ export default function CraftMakersShowcase() {
           <div className="flex-1 flex flex-col items-center">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#c8b08e] flex items-center justify-center mb-2 font-bold text-[#6b4f27]">2023</div>
             <div className="text-[#6b4f27] mb-4 text-sm sm:text-base">Reached 10,000+ customers and expanded to global shipping.</div>
-          </div>
+            </div>
         </div>
       </section>
       {/* Motive & Goal */}
@@ -680,12 +680,12 @@ export default function CraftMakersShowcase() {
                 <div key={prod.title} className="bg-[#f5eee6] rounded-2xl shadow p-4 sm:p-6 flex flex-col items-center hover:shadow-xl hover:scale-105 transition-all duration-300 border-t-4 border-[#e7c9a9] border">
                   <img src={prod.image} alt={prod.title} className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-xl mb-4 shadow max-w-full" />
                   <h3 className="text-base sm:text-lg font-semibold text-[#6b4f27] mb-1 text-center">{prod.title}</h3>
-                </div>
+              </div>
               ))}
             </div>
             {idx < visibleCategories.length - 1 && <div className="my-8 sm:my-12 border-t border-dashed border-[#e7c9a9]" />}
-          </div>
-        ))}
+            </div>
+          ))}
         <div className="flex justify-center mt-6 sm:mt-8">
           <button
             className="px-5 sm:px-6 py-2 sm:py-3 bg-[#a47551] text-white rounded-full font-bold shadow hover:bg-[#bfa181] hover:text-[#6b4f27] transition-all duration-300 text-base sm:text-lg"
@@ -735,7 +735,7 @@ export default function CraftMakersShowcase() {
             <span className="text-4xl sm:text-5xl mb-2">🤝</span>
             <h3 className="font-bold text-base sm:text-lg mb-1 text-[#6b4f27]">Support Artisans</h3>
             <p className="text-[#a47551] text-xs sm:text-base">Directly empower local and global makers.</p>
-          </div>
+            </div>
           <div className="flex flex-col items-center">
             <span className="text-4xl sm:text-5xl mb-2">🚚</span>
             <h3 className="font-bold text-base sm:text-lg mb-1 text-[#6b4f27]">Fast Delivery</h3>
@@ -806,7 +806,7 @@ export default function CraftMakersShowcase() {
               <button type="submit" className="bg-[#e7c9a9] text-[#6b4f27] font-bold rounded px-3 py-2 hover:bg-[#bfa181] transition">Subscribe</button>
             </form>
           </div>
-        </div>
+      </div>
         <div className="text-center text-xs text-[#e7c9a9] mt-8">&copy; {new Date().getFullYear()} Craft Makers. All rights reserved.</div>
       </footer>
     </main>
