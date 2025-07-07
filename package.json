@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "@react-three/cannon": "^6.6.0",
-    "@react-three/drei": "^10.3.0",
-    "@react-three/fiber": "^9.1.4",
+    "@react-three/drei": "^10.4.4",
+    "@react-three/fiber": "^9.2.0",
+    "@types/recharts": "^1.8.29",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-countdown": "^2.3.6",

@@ -39,15 +39,39 @@ const testimonials = [
 
 function FloatingCanvasArt() {
   return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 60 }} style={{ height: 400 }}>
+    <Canvas
+      camera={{ position: [0, 0, 5], fov: 60 }}
+      style={{
+        width: '100vw',
+        height: '100vh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        background: '#0a0a0a'
+      }}
+    >
       <ambientLight intensity={0.4} />
       <directionalLight position={[2, 5, 2]} intensity={1} />
-      <Stars radius={80} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+      <Stars
+        radius={50}
+        depth={100}
+        count={8000}
+        factor={4}
+        saturation={0}
+        fade
+        speed={1}
+      />
       <Suspense fallback={<Html center>Loading...</Html>}>
         <Float speed={1.5} rotationIntensity={2} floatIntensity={2}>
-          <mesh>
-            <dodecahedronGeometry args={[2]} />
-            <meshStandardMaterial color={'#e0b0ff'} wireframe={false} roughness={0.3} metalness={0.7} />
+          <mesh position={[0, 1, 0]}> {/* ↑ moved up on Y axis */}
+            <dodecahedronGeometry args={[1]} />
+            <meshStandardMaterial
+              color={'#b388ff'}
+              wireframe={false}
+              roughness={0.3}
+              metalness={0.7}
+            />
           </mesh>
         </Float>
         <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1.2} />
@@ -55,6 +79,7 @@ function FloatingCanvasArt() {
     </Canvas>
   );
 }
+
 
 export default function ArtistLandingPage() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);

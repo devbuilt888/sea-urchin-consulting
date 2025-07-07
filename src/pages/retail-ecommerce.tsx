@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import RetailEcom3DBackground from '../components/RetailEcom3DBackground';
 
 // Custom hook for scroll reveal
 function useReveal(threshold = 0.15) {
@@ -19,24 +20,42 @@ function useReveal(threshold = 0.15) {
   return [ref, visible] as const;
 }
 
+const painPoints = [
+  {
+    icon: '😕',
+    title: 'Low Personalization',
+    desc: 'Generic shopping experiences and high cart abandonment rates.'
+  },
+  {
+    icon: '🔗',
+    title: 'Fragmented Data',
+    desc: 'Customer data scattered across multiple channels and tools.'
+  },
+  {
+    icon: '📊',
+    title: 'Manual Reporting',
+    desc: 'Time-consuming campaign reporting and lack of real-time insights.'
+  }
+];
+
 const features = [
   {
-    icon: '🛒',
+    icon: '🤖',
     title: 'AI Recommendations',
-    desc: 'Personalized product suggestions to boost conversion.'
+    desc: 'Personalized product suggestions to boost conversion and retention.'
   },
   {
     icon: '💸',
     title: 'Dynamic Pricing',
-    desc: 'AI-driven pricing to maximize sales and margin.'
+    desc: 'AI-driven pricing to maximize sales and margin in real time.'
   },
   {
     icon: '🧑‍💻',
     title: 'Single Customer View',
-    desc: 'Unified data-lake for all customer touchpoints.'
+    desc: 'Unified data-lake for all customer touchpoints and analytics.'
   },
   {
-    icon: '📊',
+    icon: '📈',
     title: 'Automated Campaigns',
     desc: 'Email/SMS workflows and real-time performance dashboards.'
   }
@@ -45,22 +64,22 @@ const features = [
 const steps = [
   {
     icon: '🔍',
-    title: '1. Audit',
+    title: 'Audit',
     desc: 'We review your data, channels, and goals.'
   },
   {
-    icon: '🛒',
-    title: '2. AI & Data Integration',
+    icon: '🤖',
+    title: 'AI & Data Integration',
     desc: 'We implement recommendations, pricing, and data-lake.'
   },
   {
     icon: '📊',
-    title: '3. Campaign Automation',
+    title: 'Campaign Automation',
     desc: 'We set up automated email/SMS workflows.'
   },
   {
     icon: '🚀',
-    title: '4. Launch & Optimize',
+    title: 'Launch & Optimize',
     desc: 'You launch, we monitor and optimize for results.'
   }
 ];
@@ -69,6 +88,10 @@ const testimonials = [
   {
     quote: '“Our cart abandonment dropped and our campaigns basically run themselves now!”',
     author: 'Head of Digital, Fashion Retailer'
+  },
+  {
+    quote: '“We finally have a single view of our customers and can personalize at scale.”',
+    author: 'Director of Ecommerce, Home Goods'
   }
 ];
 
@@ -76,41 +99,85 @@ export default function RetailEcommerce() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [featuresRef, featuresVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
-  const [testimonialsRef, testimonialsVisible] = useReveal();
+  const [painRef, painVisible] = useReveal();
+  const [formRef, formVisible] = useReveal();
+
+  // Testimonial carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTestimonialIdx((idx) => (idx + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <main className="min-h-screen text-gray-900 font-sans overflow-x-hidden relative" style={{ background: 'radial-gradient(ellipse at 60% 40%, #f472b6 0%, #60a5fa 60%, #fff 100%)' }}>
-      {/* Animated gradient blobs */}
-      <div className="absolute top-[-120px] left-[-120px] w-[340px] h-[340px] bg-pink-200 rounded-full blur-3xl opacity-40 animate-blob1 z-0" />
-      <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-blue-200 rounded-full blur-3xl opacity-30 animate-blob2 z-0" />
-      <div className="absolute top-1/2 left-[-80px] w-[180px] h-[180px] bg-yellow-100 rounded-full blur-2xl opacity-30 animate-blob3 z-0" />
-      {/* Floating SVG icons in hero */}
-      <span className="absolute left-16 top-32 text-5xl animate-float z-10">🛒</span>
-      <span className="absolute right-20 top-40 text-4xl animate-float-slow z-10">💸</span>
-      <span className="absolute left-1/3 bottom-20 text-4xl animate-float z-10">🧑‍💻</span>
-      <span className="absolute right-1/4 bottom-32 text-4xl animate-float-slow z-10">📊</span>
-      {/* Hero */}
+    <main className="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden relative">
+      <RetailEcom3DBackground />
+      {/* SVG/Geometric Backgrounds */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <svg width="100%" height="100%" className="absolute top-0 left-0" style={{opacity:0.13}}>
+          <defs>
+            <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#f472b6" />
+              <stop offset="100%" stopColor="#60a5fa" />
+            </linearGradient>
+          </defs>
+          <circle cx="20%" cy="15%" r="180" fill="url(#bg1)" />
+          <rect x="70%" y="70" width="320" height="320" rx="160" fill="#fef9c3" />
+          <rect x="-80" y="70%" width="220" height="220" rx="110" fill="#bbf7d0" />
+        </svg>
+      </div>
+
+      {/* Hero Section */}
       <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 overflow-hidden">
-        <h1 className="text-5xl font-bold mb-4 max-w-2xl relative z-10 text-pink-600 drop-shadow bg-black rounded-[100px] p-4">Modern Retail & eCommerce Growth</h1>
-        <h6 className="text-lg text-blue-600 mb-2 relative z-10">AI, Data, and Automation for Marketers</h6>
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 max-w-3xl relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-blue-500 to-yellow-400 drop-shadow-lg">
+          Retail & eCommerce Growth, Powered by AI
+        </h1>
+        <h6 className="text-lg text-blue-600 mb-2 relative z-10 font-semibold">For Marketing & Digital Leaders at Mid-Sized Retailers</h6>
         <p className="text-xl max-w-xl mb-8 text-blue-700 relative z-10">
-          Directors of Ecommerce & Digital at mid-sized retailers <br />(50–500 staff). $5K–$75K/project. Boost personalization, unify data, and automate campaigns.
+          Personalize, unify, and automate your marketing with next-gen data and AI. $5K–$75K/project.
         </p>
         <a
           href="#leadform"
-          className="px-8 py-4 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 hover:scale-105 transition-transform duration-200 font-semibold text-lg relative z-10"
+          className="px-8 py-4 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-200 font-semibold text-lg relative z-10"
         >
           Book a Free Demo
         </a>
+        {/* Floating icons */}
+        <span className="absolute left-16 top-32 text-5xl animate-float z-10">🤖</span>
+        <span className="absolute right-20 top-40 text-4xl animate-float-slow z-10">💸</span>
+        <span className="absolute left-1/3 bottom-20 text-4xl animate-float z-10">🧑‍💻</span>
+        <span className="absolute right-1/4 bottom-32 text-4xl animate-float-slow z-10">📈</span>
+      </section>
+
+      {/* Value Proposition & Incentive Section */}
+      <section className="flex justify-center px-4 mb-12">
+        <div className="relative bg-gradient-to-br from-pink-100 via-blue-50 to-white border-2 border-pink-400 shadow-xl rounded-2xl px-10 py-10 max-w-3xl w-full flex flex-col items-center text-center overflow-hidden">
+          <div className="absolute top-0 right-0 m-4 px-4 py-1 bg-pink-500 text-white text-xs font-bold rounded-full shadow animate-pulse">LIMITED TIME: 20% OFF FIRST PROJECT</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-blue-700">Why Choose Us?</h2>
+          <p className="text-lg text-blue-800 mb-4 font-medium">Unlock the power of AI-driven marketing and data integration—without the enterprise price tag or complexity.</p>
+          <ul className="text-blue-700 text-base mb-6 space-y-2 text-left max-w-xl mx-auto">
+            <li><span className="font-bold text-pink-600">•</span> Instantly boost conversions with personalized recommendations and dynamic pricing.</li>
+            <li><span className="font-bold text-pink-600">•</span> Eliminate data silos—get a single, actionable view of every customer.</li>
+            <li><span className="font-bold text-pink-600">•</span> Automate campaigns and reporting, so your team can focus on growth, not grunt work.</li>
+            <li><span className="font-bold text-pink-600">•</span> Designed for mid-sized retailers—fast setup, real results, and ongoing support.</li>
+          </ul>
+          <div className="text-pink-700 font-semibold mb-4">Explore our solutions and see how we can help you outpace the competition.</div>
+          <a href="#features" className="inline-block px-6 py-3 bg-pink-500 text-white rounded-full shadow hover:bg-pink-600 hover:scale-105 transition-transform duration-200 font-semibold text-lg">See Features</a>
+          <div className="mt-6 text-xs text-blue-500">Book a free strategy session today and get 20% off your first project—offer ends soon!</div>
+        </div>
       </section>
 
       {/* Pain Points */}
-      <section className="flex flex-col items-center px-4 mb-12">
-        <div className="bg-pink-100/90 border-l-4 border-blue-400 shadow-lg rounded-xl px-8 py-6 max-w-2xl w-full flex flex-col items-center">
-          <span className="uppercase text-xs tracking-widest text-blue-500 font-bold mb-2">Pain Points</span>
-          <div className="text-lg font-semibold text-blue-700 mb-1">Low personalization and high cart abandonment</div>
-          <div className="text-lg font-semibold text-blue-700 mb-1">Fragmented customer data across channels</div>
-          <div className="text-lg font-semibold text-blue-700 mb-1">Manual campaign reporting</div>
+      <section ref={painRef} className={`flex flex-col items-center px-4 mb-12 transition-all duration-700 ${painVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+        <div className="flex flex-col md:flex-row gap-8 max-w-4xl w-full">
+          {painPoints.map((p, i) => (
+            <div key={p.title} className="flex-1 bg-gradient-to-br from-pink-100 via-blue-50 to-white border-l-4 border-pink-400 shadow-lg rounded-2xl px-8 py-8 flex flex-col items-center hover:scale-105 transition-transform duration-200">
+              <span className="text-4xl mb-3">{p.icon}</span>
+              <div className="font-bold text-blue-700 mb-1 text-lg">{p.title}</div>
+              <div className="text-blue-700 text-base text-center">{p.desc}</div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -155,7 +222,7 @@ export default function RetailEcommerce() {
       </section>
 
       {/* Testimonial carousel */}
-      <section ref={testimonialsRef} className={`py-20 px-6 mb-20 bg-gradient-to-br from-pink-100 to-blue-100 text-center transition-all duration-700 ${testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <section className="py-20 px-6 mb-20 bg-gradient-to-br from-pink-100 to-blue-100 text-center">
         <h2 className="text-3xl font-semibold mb-10 text-pink-600">What Clients Say</h2>
         <div className="max-w-xl mx-auto">
           <div className="relative bg-white/90 rounded-2xl shadow-lg p-8 min-h-[160px] flex flex-col items-center">
@@ -168,13 +235,14 @@ export default function RetailEcommerce() {
       </section>
 
       {/* Lead capture form placeholder */}
-      <section id="leadform" className="flex flex-col items-center px-4 mb-32">
+      <section id="leadform" ref={formRef} className={`flex flex-col items-center px-4 mb-32 transition-all duration-700 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <div className="bg-white border-l-4 border-pink-400 shadow-lg rounded-xl px-8 py-12 max-w-xl w-full flex flex-col items-center mb-20">
           <span className="uppercase text-xs tracking-widest text-pink-700 font-bold mb-4">Get Started</span>
           <div className="text-lg font-semibold text-blue-700 mb-8 text-center">Ready to grow your eCommerce? <br />Leave your email and we'll reach out for a free demo.</div>
           {/* Replace with real form integration */}
           <form className="w-full flex flex-col gap-4">
             <input type="email" placeholder="Your Email" className="rounded-lg px-4 py-3 bg-pink-100 text-blue-700 placeholder:text-pink-400 border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400" />
+            <input type="text" placeholder="Company Name" className="rounded-lg px-4 py-3 bg-blue-50 text-blue-700 placeholder:text-blue-300 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400" />
             <button type="submit" className="px-6 py-3 bg-pink-500 text-white rounded-full shadow hover:bg-pink-600 hover:scale-105 transition-transform duration-200 font-semibold">Request Free Demo</button>
           </form>
           <div className="text-xs text-blue-500 mt-4">We respect your privacy. No spam, ever.</div>
@@ -219,27 +287,6 @@ export default function RetailEcommerce() {
         }
         .animate-fade-in {
           animation: fade-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        @keyframes blob1 {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50% { transform: scale(1.15) translateY(30px); }
-        }
-        .animate-blob1 {
-          animation: blob1 8s ease-in-out infinite;
-        }
-        @keyframes blob2 {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50% { transform: scale(1.1) translateY(-20px); }
-        }
-        .animate-blob2 {
-          animation: blob2 10s ease-in-out infinite;
-        }
-        @keyframes blob3 {
-          0%, 100% { transform: scale(1) translateX(0px); }
-          50% { transform: scale(1.2) translateX(20px); }
-        }
-        .animate-blob3 {
-          animation: blob3 12s ease-in-out infinite;
         }
       `}</style>
     </main>
