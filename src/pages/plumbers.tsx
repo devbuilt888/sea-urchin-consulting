@@ -67,8 +67,9 @@ const pricing = [
 
 export default function Plumbers() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-100 to-white text-gray-900 font-sans">
+    <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-100 to-white text-gray-900 font-sans relative">
       <PipesThreeBackground />
+      <div className="relative z-10">
       {/* Hero */}
       <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-100 via-blue-200 to-blue-900 rounded-full blur-3xl opacity-40 z-0" />
@@ -78,30 +79,34 @@ export default function Plumbers() {
         <span className="absolute left-1/3 bottom-20 text-4xl animate-bounce z-10">💰</span>
         <span className="absolute right-1/4 bottom-32 text-4xl animate-pulse z-10">📞</span>
         
-        <h1 className="text-5xl font-bold mb-6 max-w-3xl relative z-10 text-blue-900 drop-shadow">
-          Modernize Your Plumbing Business
-        </h1>
-        <p className="text-xl max-w-2xl mb-8 text-blue-800 relative z-10 leading-relaxed">
-          From emergency calls to follow-up maintenance - streamline your entire plumbing operation 
-          with our custom portal and automation system.
-        </p>
-        <a
-          href="#pricing"
-          className="px-8 py-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transition-transform duration-200 font-semibold text-lg relative z-10"
-        >
-          Get Started Today
-        </a>
+        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/30 relative z-20">
+          <h1 className="text-5xl font-bold mb-6 max-w-3xl text-blue-900">
+            Modernize Your Plumbing Business
+          </h1>
+          <p className="text-xl max-w-2xl mb-8 text-blue-800 leading-relaxed">
+            From emergency calls to follow-up maintenance - streamline your entire plumbing operation 
+            with our custom portal and automation system.
+          </p>
+          <a
+            href="#pricing"
+            className="px-8 py-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transition-transform duration-200 font-semibold text-lg"
+          >
+            Get Started Today
+          </a>
+        </div>
       </section>
 
       {/* Features */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 text-blue-900">
-            Built Specifically for Plumbers
-          </h2>
-          <p className="text-xl text-center mb-12 text-blue-700 max-w-3xl mx-auto">
-            Every feature designed around the unique challenges of plumbing services
-          </p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 mb-12 shadow-lg border border-white/20">
+            <h2 className="text-4xl font-bold text-center mb-4 text-blue-900">
+              Built Specifically for Plumbers
+            </h2>
+            <p className="text-xl text-center text-blue-700 max-w-3xl mx-auto">
+              Every feature designed around the unique challenges of plumbing services
+            </p>
+          </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {plumberFeatures.map((feature, idx) => (
@@ -225,16 +230,19 @@ export default function Plumbers() {
       </section>
 
       {/* Back Link */}
-      <section className="py-8 px-6 bg-gray-50">
+      <section className="py-8 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <a 
-            href="/local-services-modern"
-            className="text-blue-600 hover:text-blue-800 font-semibold"
-          >
-            ← Back to Service Selection
-          </a>
+          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-white/30">
+            <a 
+              href="/local-services-modern"
+              className="text-blue-600 hover:text-blue-800 font-semibold"
+            >
+              ← Back to Service Selection
+            </a>
+          </div>
         </div>
       </section>
+      </div>
     </main>
   );
 } 
