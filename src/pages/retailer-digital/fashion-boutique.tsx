@@ -72,11 +72,21 @@ export default function FashionBoutique() {
       )}
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-28" style={{ backgroundImage: 'url(/collections/boutique.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-28 overflow-hidden">
+        <div className="absolute inset-0 hero-background-white"></div>
+        <div className="absolute inset-0 hero-background"></div>
         <div className="absolute inset-0 bg-black/50 z-0"></div>
+        
+        {/* Elegant Spiral Overlay */}
+        <div className="absolute inset-0 z-5">
+          <div className="spiral-container">
+            <div className="spiral-overlay"></div>
+          </div>
+        </div>
+        
         <div className="relative z-10 max-w-2xl">
-          <h1 className="text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl">Your Boutique. <br />Your Style. Online.</h1>
-          <p className="text-lg text-white/90 mb-6">Discover curated collections and redefine your wardrobe with a single click.</p>
+          <h1 className="text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl yantra-text">Your Boutique. <br />Your Style. Online.</h1>
+          <p className="text-lg text-white/90 mb-6 yantra-text-subtitle">Discover curated collections and redefine your wardrobe with a single click.</p>
           <a href="#leadform" className="px-8 py-4 bg-rose-500 text-white rounded-full shadow-lg hover:bg-rose-600 transition font-semibold text-lg">Start Shopping</a>
         </div>
       </section>
@@ -168,6 +178,361 @@ export default function FashionBoutique() {
           <a href="mailto:hello@theboutique.com" className="hover:text-rose-600 transition">hello@theboutique.com</a>
         </div>
       </footer>
+
+      {/* Elegant Spiral Animation Styles */}
+      <style jsx>{`
+        .hero-background {
+          background-image: url('/collections/boutique.jpg');
+          background-size: cover;
+          background-position: center;
+          clip-path: polygon(0 0, 100% 0, 100% 75%, 85% 85%, 70% 90%, 55% 88%, 40% 85%, 25% 88%, 15% 92%, 0 85%);
+        }
+
+        .hero-background-white {
+          background: white;
+          clip-path: polygon(0 78%, 100% 78%, 100% 81%, 88% 91%, 73% 96%, 58% 94%, 43% 91%, 28% 94%, 18% 98%, 0 91%, 0 78%);
+          z-index: -1;
+        }
+
+        @keyframes yantra-expand {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
+          }
+          8% {
+            opacity: 0.8;
+          }
+          20% {
+            transform: scale(4) rotate(120deg);
+            opacity: 0.95;
+          }
+          28% {
+            transform: scale(4) rotate(180deg);
+            opacity: 0.95;
+          }
+          36% {
+            transform: scale(4) rotate(240deg);
+            opacity: 0.95;
+          }
+          44% {
+            opacity: 0.8;
+          }
+          48% {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes text-border-sync {
+          0% {
+            text-shadow: 0 0 0 transparent;
+          }
+          8% {
+            text-shadow: 
+              1px 1px 0 rgba(0, 0, 0, 0.4),
+              -1px -1px 0 rgba(0, 0, 0, 0.4),
+              1px -1px 0 rgba(0, 0, 0, 0.4),
+              -1px 1px 0 rgba(0, 0, 0, 0.4);
+          }
+          20% {
+            text-shadow: 
+              3px 3px 0 rgba(0, 0, 0, 0.9),
+              -3px -3px 0 rgba(0, 0, 0, 0.9),
+              3px -3px 0 rgba(0, 0, 0, 0.9),
+              -3px 3px 0 rgba(0, 0, 0, 0.9),
+              0 0 15px rgba(0, 0, 0, 0.7);
+          }
+          28% {
+            text-shadow: 
+              3px 3px 0 rgba(0, 0, 0, 0.9),
+              -3px -3px 0 rgba(0, 0, 0, 0.9),
+              3px -3px 0 rgba(0, 0, 0, 0.9),
+              -3px 3px 0 rgba(0, 0, 0, 0.9),
+              0 0 15px rgba(0, 0, 0, 0.7);
+          }
+          36% {
+            text-shadow: 
+              3px 3px 0 rgba(0, 0, 0, 0.9),
+              -3px -3px 0 rgba(0, 0, 0, 0.9),
+              3px -3px 0 rgba(0, 0, 0, 0.9),
+              -3px 3px 0 rgba(0, 0, 0, 0.9),
+              0 0 15px rgba(0, 0, 0, 0.7);
+          }
+          44% {
+            text-shadow: 
+              1px 1px 0 rgba(0, 0, 0, 0.4),
+              -1px -1px 0 rgba(0, 0, 0, 0.4),
+              1px -1px 0 rgba(0, 0, 0, 0.4),
+              -1px 1px 0 rgba(0, 0, 0, 0.4);
+          }
+          48% {
+            text-shadow: 0 0 0 transparent;
+          }
+          100% {
+            text-shadow: 0 0 0 transparent;
+          }
+        }
+
+        @keyframes text-border-sync-subtitle {
+          0% {
+            text-shadow: 0 0 0 transparent;
+          }
+          8% {
+            text-shadow: 
+              0.5px 0.5px 0 rgba(0, 0, 0, 0.2),
+              -0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
+              0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
+              -0.5px 0.5px 0 rgba(0, 0, 0, 0.2);
+          }
+          20% {
+            text-shadow: 
+              1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              0 0 8px rgba(0, 0, 0, 0.35);
+          }
+          28% {
+            text-shadow: 
+              1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              0 0 8px rgba(0, 0, 0, 0.35);
+          }
+          36% {
+            text-shadow: 
+              1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              1.5px -1.5px 0 rgba(0, 0, 0, 0.45),
+              -1.5px 1.5px 0 rgba(0, 0, 0, 0.45),
+              0 0 8px rgba(0, 0, 0, 0.35);
+          }
+          44% {
+            text-shadow: 
+              0.5px 0.5px 0 rgba(0, 0, 0, 0.2),
+              -0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
+              0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
+              -0.5px 0.5px 0 rgba(0, 0, 0, 0.2);
+          }
+          48% {
+            text-shadow: 0 0 0 transparent;
+          }
+          100% {
+            text-shadow: 0 0 0 transparent;
+          }
+        }
+        
+        .spiral-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+        }
+
+        .yantra-text {
+          animation: text-border-sync 35s ease-in-out infinite;
+        }
+
+        .yantra-text-subtitle {
+          animation: text-border-sync-subtitle 35s ease-in-out infinite;
+        }
+        
+        .spiral-overlay {
+          position: absolute;
+          width: 95vw;
+          height: 95vw;
+          max-width: 1000px;
+          max-height: 1000px;
+          background: 
+            /* Outer Sri Yantra triangles - upward pointing */
+            conic-gradient(
+              from 0deg,
+              transparent 0deg,
+              rgba(255, 255, 255, 0.8) 5deg,
+              transparent 10deg,
+              transparent 50deg,
+              rgba(255, 255, 255, 0.8) 55deg,
+              transparent 60deg,
+              transparent 110deg,
+              rgba(255, 255, 255, 0.8) 115deg,
+              transparent 120deg,
+              transparent 170deg,
+              rgba(255, 255, 255, 0.8) 175deg,
+              transparent 180deg,
+              transparent 230deg,
+              rgba(255, 255, 255, 0.8) 235deg,
+              transparent 240deg,
+              transparent 290deg,
+              rgba(255, 255, 255, 0.8) 295deg,
+              transparent 300deg,
+              transparent 350deg,
+              rgba(255, 255, 255, 0.8) 355deg,
+              transparent 360deg
+            ),
+            /* Sacred lotus petals - 8 directions */
+            radial-gradient(ellipse 45% 25% at 50% 12%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+            radial-gradient(ellipse 45% 25% at 88% 50%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+            radial-gradient(ellipse 45% 25% at 50% 88%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+            radial-gradient(ellipse 45% 25% at 12% 50%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+            radial-gradient(ellipse 35% 20% at 76% 24%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+            radial-gradient(ellipse 35% 20% at 76% 76%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+            radial-gradient(ellipse 35% 20% at 24% 76%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+            radial-gradient(ellipse 35% 20% at 24% 24%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+            /* Intermediate petals */
+            radial-gradient(ellipse 30% 15% at 62% 18%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 82% 38%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 82% 62%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 62% 82%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 38% 82%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 18% 62%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 18% 38%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 30% 15% at 38% 18%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+            /* Sacred center mandala */
+            radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 4%, transparent 8%),
+            radial-gradient(circle at center, transparent 10%, rgba(255, 255, 255, 0.8) 11%, rgba(255, 255, 255, 0.8) 13%, transparent 14%);
+          border-radius: 50%;
+          animation: yantra-expand 35s ease-in-out infinite;
+          transform-origin: center;
+        }
+        
+        .spiral-overlay::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          background: 
+            /* Intersecting sacred triangles - downward pointing */
+            conic-gradient(
+              from 30deg,
+              transparent 0deg,
+              rgba(255, 255, 255, 0.7) 8deg,
+              transparent 16deg,
+              transparent 56deg,
+              rgba(255, 255, 255, 0.7) 64deg,
+              transparent 72deg,
+              transparent 116deg,
+              rgba(255, 255, 255, 0.7) 124deg,
+              transparent 132deg,
+              transparent 176deg,
+              rgba(255, 255, 255, 0.7) 184deg,
+              transparent 192deg,
+              transparent 236deg,
+              rgba(255, 255, 255, 0.7) 244deg,
+              transparent 252deg,
+              transparent 296deg,
+              rgba(255, 255, 255, 0.7) 304deg,
+              transparent 312deg,
+              transparent 356deg,
+              rgba(255, 255, 255, 0.7) 364deg,
+              transparent 372deg
+            ),
+            /* Hexagonal sacred pattern */
+            conic-gradient(
+              from 60deg,
+              rgba(255, 255, 255, 0.6) 0deg,
+              transparent 20deg,
+              rgba(255, 255, 255, 0.6) 40deg,
+              transparent 60deg,
+              rgba(255, 255, 255, 0.6) 80deg,
+              transparent 100deg,
+              rgba(255, 255, 255, 0.6) 120deg,
+              transparent 140deg,
+              rgba(255, 255, 255, 0.6) 160deg,
+              transparent 180deg,
+              rgba(255, 255, 255, 0.6) 200deg,
+              transparent 220deg,
+              rgba(255, 255, 255, 0.6) 240deg,
+              transparent 260deg,
+              rgba(255, 255, 255, 0.6) 280deg,
+              transparent 300deg,
+              rgba(255, 255, 255, 0.6) 320deg,
+              transparent 340deg,
+              rgba(255, 255, 255, 0.6) 360deg
+            );
+          border-radius: 50%;
+          transform: translate(-50%, -50%) rotate(22.5deg);
+        }
+        
+        .spiral-overlay::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 75%;
+          height: 75%;
+          background: 
+            /* Inner sacred geometry - 12-pointed star */
+            conic-gradient(
+              from 15deg,
+              rgba(255, 255, 255, 0.9) 0deg,
+              transparent 12.5deg,
+              rgba(255, 255, 255, 0.8) 15deg,
+              transparent 27.5deg,
+              rgba(255, 255, 255, 0.9) 30deg,
+              transparent 42.5deg,
+              rgba(255, 255, 255, 0.8) 45deg,
+              transparent 57.5deg,
+              rgba(255, 255, 255, 0.9) 60deg,
+              transparent 72.5deg,
+              rgba(255, 255, 255, 0.8) 75deg,
+              transparent 87.5deg,
+              rgba(255, 255, 255, 0.9) 90deg,
+              transparent 102.5deg,
+              rgba(255, 255, 255, 0.8) 105deg,
+              transparent 117.5deg,
+              rgba(255, 255, 255, 0.9) 120deg,
+              transparent 132.5deg,
+              rgba(255, 255, 255, 0.8) 135deg,
+              transparent 147.5deg,
+              rgba(255, 255, 255, 0.9) 150deg,
+              transparent 162.5deg,
+              rgba(255, 255, 255, 0.8) 165deg,
+              transparent 177.5deg,
+              rgba(255, 255, 255, 0.9) 180deg,
+              transparent 192.5deg,
+              rgba(255, 255, 255, 0.8) 195deg,
+              transparent 207.5deg,
+              rgba(255, 255, 255, 0.9) 210deg,
+              transparent 222.5deg,
+              rgba(255, 255, 255, 0.8) 225deg,
+              transparent 237.5deg,
+              rgba(255, 255, 255, 0.9) 240deg,
+              transparent 252.5deg,
+              rgba(255, 255, 255, 0.8) 255deg,
+              transparent 267.5deg,
+              rgba(255, 255, 255, 0.9) 270deg,
+              transparent 282.5deg,
+              rgba(255, 255, 255, 0.8) 285deg,
+              transparent 297.5deg,
+              rgba(255, 255, 255, 0.9) 300deg,
+              transparent 312.5deg,
+              rgba(255, 255, 255, 0.8) 315deg,
+              transparent 327.5deg,
+              rgba(255, 255, 255, 0.9) 330deg,
+              transparent 342.5deg,
+              rgba(255, 255, 255, 0.8) 345deg,
+              transparent 357.5deg,
+              rgba(255, 255, 255, 0.9) 360deg
+            ),
+            /* Inner concentric rings */
+            radial-gradient(circle at center, transparent 18%, rgba(255, 255, 255, 0.9) 19%, rgba(255, 255, 255, 0.9) 21%, transparent 22%),
+            radial-gradient(circle at center, transparent 30%, rgba(255, 255, 255, 0.8) 31%, rgba(255, 255, 255, 0.8) 33%, transparent 34%);
+          border-radius: 50%;
+          transform: translate(-50%, -50%) rotate(-22.5deg);
+        }
+      `}</style>
     </main>
   );
 }

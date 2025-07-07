@@ -37,7 +37,7 @@ export default function YogaLandingPage() {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
-            </nav>
+          </nav>
             
             <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
               Book Trial
@@ -136,7 +136,7 @@ export default function YogaLandingPage() {
             <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-60 animate-pulse"></div>
             <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-gradient-to-br from-pink-400 to-violet-400 rounded-full opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
             <div className="absolute top-1/4 -right-8 w-6 h-6 bg-gradient-to-br from-violet-400 to-purple-400 rounded-full opacity-40 animate-pulse" style={{animationDelay: '2s'}}></div>
-          </div>
+        </div>
         </div>
       </section>
 
@@ -197,8 +197,8 @@ export default function YogaLandingPage() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">{offering.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{offering.description}</p>
                 </div>
-              </div>
-            ))}
+            </div>
+          ))}
           </div>
         </div>
       </section>
@@ -348,8 +348,8 @@ export default function YogaLandingPage() {
                     Choose {plan.name}
                   </button>
                 </div>
-              </div>
-            ))}
+            </div>
+          ))}
           </div>
         </div>
       </section>

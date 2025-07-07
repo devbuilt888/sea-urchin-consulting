@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // Custom hook for scroll reveal
 function useReveal(threshold = 0.15) {
@@ -73,10 +74,39 @@ const testimonials = [
 ];
 
 export default function LocalServicesModern() {
+  const router = useRouter();
   const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [selectedService, setSelectedService] = useState('');
   const [featuresRef, featuresVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
   const [testimonialsRef, testimonialsVisible] = useReveal();
+
+  const services = [
+    {
+      id: 'plumbers',
+      title: 'Plumbers',
+      icon: '🔧',
+      description: 'Emergency calls, estimates, and service tracking',
+      features: ['Emergency dispatch', 'Quote automation', 'Parts inventory', 'Customer follow-up'],
+      color: 'from-blue-500 to-blue-700'
+    },
+    {
+      id: 'hvac',
+      title: 'HVAC',
+      icon: '❄️',
+      description: 'Seasonal maintenance and emergency repairs',
+      features: ['Maintenance scheduling', 'System diagnostics', 'Contract management', 'Energy audits'],
+      color: 'from-green-500 to-green-700'
+    },
+    {
+      id: 'landscapers',
+      title: 'Landscapers',
+      icon: '🌱',
+      description: 'Design, maintenance, and seasonal services',
+      features: ['Project planning', 'Seasonal scheduling', 'Equipment tracking', 'Photo documentation'],
+      color: 'from-emerald-500 to-emerald-700'
+    }
+  ];
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-900 via-green-100 to-white text-gray-900 font-sans overflow-x-hidden">
@@ -98,6 +128,81 @@ export default function LocalServicesModern() {
         >
           Book a Free Demo
         </a>
+      </section>
+
+      {/* Service Selection */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-4 text-green-900">Choose Your Service Type</h2>
+          <p className="text-xl text-center mb-12 text-blue-800 max-w-2xl mx-auto">
+            Select your business type to see customized features and pricing
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                onClick={() => router.push(`/${service.id}`)}
+                className={`relative bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl group ${
+                  selectedService === service.id ? 'ring-4 ring-green-400 scale-105' : ''
+                }`}
+              >
+                {/* Gradient header */}
+                <div className={`h-24 bg-gradient-to-r ${service.color} relative`}>
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute top-4 left-6 text-4xl">{service.icon}</div>
+                  <div className="absolute top-4 right-6">
+                    {selectedService === service.id && (
+                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-3 text-gray-900">{service.title}</h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Key Features:</h4>
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-gray-600">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 ${
+                      selectedService === service.id 
+                        ? 'bg-green-600 text-white shadow-lg' 
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}>
+                      {selectedService === service.id ? 'Selected ✓' : 'Select This Service'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {selectedService && (
+            <div className="mt-12 text-center">
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6 max-w-2xl mx-auto">
+                <h3 className="text-xl font-semibold text-green-800 mb-2">
+                  Great choice! 🎉
+                </h3>
+                <p className="text-green-700">
+                  You've selected <strong>{services.find(s => s.id === selectedService)?.title}</strong>. 
+                  Continue below to see how we can modernize your {services.find(s => s.id === selectedService)?.title.toLowerCase()} business.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Pain Points */}
@@ -167,11 +272,37 @@ export default function LocalServicesModern() {
       <section id="leadform" className="flex flex-col items-center px-4 mb-32">
         <div className="bg-white/90 border-l-4 border-green-400 shadow-lg rounded-xl px-8 py-8 max-w-xl w-full flex flex-col items-center">
           <span className="uppercase text-xs tracking-widest text-green-700 font-bold mb-4">Get Started</span>
-          <div className="text-lg font-semibold text-green-900 mb-4 text-center">Ready to modernize your business?<br/>Leave your email and we'll reach out for a free demo.</div>
+          <div className="text-lg font-semibold text-green-900 mb-4 text-center">
+            Ready to modernize your {selectedService ? services.find(s => s.id === selectedService)?.title.toLowerCase() : ''} business?
+            <br/>Leave your email and we'll reach out for a free demo.
+          </div>
           {/* Replace with real form integration */}
           <form className="w-full flex flex-col gap-4">
-            <input type="email" placeholder="Your Email" className="rounded-lg px-4 py-3 bg-green-100 text-green-900 placeholder:text-green-400 border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400" />
-            <button type="submit" className="px-6 py-3 bg-green-600 text-white rounded-full shadow hover:bg-green-700 hover:scale-105 transition-transform duration-200 font-semibold">Request Free Demo</button>
+            <input 
+              type="text" 
+              placeholder="Your Name" 
+              className="rounded-lg px-4 py-3 bg-green-100 text-green-900 placeholder:text-green-400 border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400" 
+            />
+            <input 
+              type="email" 
+              placeholder="Your Email" 
+              className="rounded-lg px-4 py-3 bg-green-100 text-green-900 placeholder:text-green-400 border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400" 
+            />
+            <input 
+              type="tel" 
+              placeholder="Phone Number" 
+              className="rounded-lg px-4 py-3 bg-green-100 text-green-900 placeholder:text-green-400 border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400" 
+            />
+            {selectedService && (
+              <input 
+                type="hidden" 
+                value={selectedService} 
+                name="selectedService"
+              />
+            )}
+            <button type="submit" className="px-6 py-3 bg-green-600 text-white rounded-full shadow hover:bg-green-700 hover:scale-105 transition-transform duration-200 font-semibold">
+              Request Free Demo {selectedService ? `for ${services.find(s => s.id === selectedService)?.title}` : ''}
+            </button>
           </form>
           <div className="text-xs text-green-700 mt-3">We respect your privacy. No spam, ever.</div>
         </div>

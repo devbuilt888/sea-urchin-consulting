@@ -59,11 +59,21 @@ export default function FoodMarket() {
     <main className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-100 to-white text-gray-800 font-sans relative overflow-x-hidden">
       {/* Hero Section */}
       <section className="flex flex-col items-center text-center px-6 pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-200/60 via-yellow-100/60 to-white/80 pointer-events-none -z-10" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2Fu6QEeiZnm__Mq7EaMVMmxyayifYY7sYw&s" alt="Fresh Produce" className="w-24 h-24 mb-4 animate-float" />
-        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-yellow-500 bg-clip-text text-transparent drop-shadow">Take Your Food Market Digital</h1>
-        <p className="text-xl max-w-xl mb-8 text-gray-700">Connect with your community, offer online ordering, and grow your market with a fresh, vibrant website.</p>
-        <a href="#leadform" className="px-8 py-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-transform duration-200 font-semibold text-lg">Get Started</a>
+        {/* Large faded background image */}
+        <div 
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20 animate-float-reverse"
+          style={{
+            backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2Fu6QEeiZnm__Mq7EaMVMmxyayifYY7sYw&s')`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-200/60 via-yellow-100/60 to-white/80 pointer-events-none" />
+        
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2Fu6QEeiZnm__Mq7EaMVMmxyayifYY7sYw&s" alt="Fresh Produce" className="w-24 h-24 mb-4 animate-float relative z-10 rounded-2xl" />
+        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-yellow-500 bg-clip-text text-transparent drop-shadow relative z-10">Take Your Food Market Digital</h1>
+        <p className="text-xl max-w-xl mb-8 text-gray-700 relative z-10">Connect with your community, offer online ordering, and grow your market with a fresh, vibrant website.</p>
+        <a href="#leadform" className="px-8 py-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-transform duration-200 font-semibold text-lg relative z-10">Get Started</a>
       </section>
 
       {/* Features Section */}
@@ -135,7 +145,7 @@ export default function FoodMarket() {
       {/* Lead Capture / Contact Form */}
       <section id="leadform" className="py-20 px-6 text-center bg-white">
         <h2 className="text-3xl font-semibold text-green-700 mb-6">Get In Touch</h2>
-        <p className="text-gray-700 mb-6">Leave your contact and we’ll help you get started with online ordering or answer your questions.</p>
+        <p className="text-gray-700 mb-6">Leave your contact and we'll help you get started with online ordering or answer your questions.</p>
         <form className="max-w-md mx-auto flex flex-col gap-4">
           <input type="text" placeholder="Your Name" className="px-4 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400" />
           <input type="email" placeholder="Your Email" className="px-4 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400" />
@@ -166,8 +176,16 @@ export default function FoodMarket() {
           50% { transform: translateY(-20px) rotate(5deg); }
           100% { transform: translateY(0) rotate(0deg); }
         }
+        @keyframes float-reverse {
+          0% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(-5deg); }
+          100% { transform: translateY(0) rotate(0deg); }
+        }
         .animate-float {
           animation: float 5s ease-in-out infinite;
+        }
+        .animate-float-reverse {
+          animation: float-reverse 5s ease-in-out infinite;
         }
       `}</style>
     </main>
