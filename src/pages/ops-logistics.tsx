@@ -196,8 +196,20 @@ export default function OpsLogistics() {
             These are the kinds of insights you'll have at your fingertips, updated in real-time.
           </p>
 
+          {/* Chart Loading Spinner */}
+          {!chartsVisible && (
+            <div className="flex justify-center items-center py-20">
+              <div className="relative">
+                <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                <div className="absolute top-20 left-1/2 transform -translate-x-1/2 text-slate-600 font-semibold">
+                  Loading Analytics...
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Inventory Management */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">📦</span>
               Inventory Management Dashboard
@@ -219,7 +231,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Order Fulfillment */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">📋</span>
               Order Fulfillment Performance
@@ -281,7 +293,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Supplier Performance */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">🏭</span>
               Supplier Performance Metrics
@@ -304,7 +316,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Cost Analysis */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">💰</span>
               Cost Breakdown Analysis
@@ -351,7 +363,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Route Optimization */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">🚚</span>
               Route Optimization Dashboard
@@ -374,7 +386,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Advanced Analytics */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">📈</span>
               Advanced Analytics
@@ -419,7 +431,7 @@ export default function OpsLogistics() {
           </div>
 
           {/* Warehouse Performance */}
-          <div className="mb-16">
+          <div className={`mb-16 ${chartsVisible ? 'block' : 'hidden'}`}>
             <h3 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
               <span className="text-3xl mr-3">🏬</span>
               Warehouse Performance Radar

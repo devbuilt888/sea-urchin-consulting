@@ -62,11 +62,11 @@ export default function ArtistLandingPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-100 font-sans overflow-x-hidden">
-      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
+      <section className="relative flex flex-col justify-center items-center text-center px-6 pt-64 pb-32 overflow-hidden min-h-screen">
+        <div className="fixed inset-0 w-full h-[200vh] z-0 pointer-events-none">
           <FloatingCanvasArt />
         </div>
-        <div className="relative z-10 bg-black/70 backdrop-blur-lg p-8 rounded-xl shadow-xl">
+        <div className="relative z-10 bg-black/70 backdrop-blur-lg p-8 rounded-xl shadow-xl" style={{ marginTop: '-40px' }}>
           <h1>Solopreneur Portfolio</h1>
           <h1 className="text-3xl sm:text-5xl font-extrabold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
             Your Art, Your Gallery
@@ -83,7 +83,34 @@ export default function ArtistLandingPage() {
         </div>
       </section>
 
-      <section className="w-full flex justify-center px-4 -mt-8 sm:-mt-12 mb-8 sm:mb-12  z-10">
+      <section className="relative w-full flex justify-center px-4 mt-16 mb-48 z-10">
+        {/* Cutting-Edge Floating Cards */}
+        <div className="absolute -top-64 left-1/4 transform -translate-x-1/2 -rotate-3 group z-15 animate-float">
+          <div className="relative bg-gradient-to-r from-cyan-400/20 via-blue-500/30 to-purple-600/20 backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-3 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-purple-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+            <div className="relative flex items-center space-x-2">
+              <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-white/90 text-sm font-medium tracking-wide">Have a website as unique as you</span>
+              <div className="text-cyan-300">✨</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="absolute -top-44 right-1/4 transform translate-x-1/2 rotate-2 group z-15 animate-float-slow">
+          <div className="relative bg-gradient-to-r from-violet-500/20 via-purple-600/30 to-pink-500/20 backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-3 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-pink-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+            <div className="relative flex items-center space-x-2">
+              <div className="w-2 h-2 bg-gradient-to-r from-violet-400 to-pink-500 rounded-full animate-pulse"></div>
+              <span className="text-white/90 text-sm font-medium tracking-wide">The sky is the limit</span>
+              <div className="text-pink-300">🚀</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Subtle Mist Effect */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-transparent via-gray-900/20 to-gray-900/60 pointer-events-none z-5"></div>
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-transparent via-white/5 to-white/15 pointer-events-none z-5 animate-subtle-float"></div>
+        
         <div className="bg-gray-800/90 backdrop-blur-lg border-4 border-purple-500 shadow-xl rounded-2xl px-6 sm:px-8 py-6 sm:py-8 max-w-6xl w-full z-10" style={{ backgroundImage: 'url(https://img.freepik.com/premium-vector/sunset-mountains-wild-mountains-landscape_263779-1389.jpg?semt=ais_hybrid&w=740)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="text-center mb-4 bg-black/50 backdrop-blur-lg rounded-2xl p-4">
             <span className="text-2xl mb-2 block animate-float">🧭</span>
@@ -111,7 +138,7 @@ export default function ArtistLandingPage() {
         </div>
       </section>
 
-      <section ref={featuresRef} className={`overflow-hidden sm:overflow-visible py-20 px-6 text-center transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <section ref={featuresRef} className={`overflow-hidden sm:overflow-visible py-32 px-6 text-center transition-all duration-700 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
         <h2 className="relative text-xl sm:text-3xl text-violet-900 font-semibold mb-12 bg-white p-4 rounded-2xl shadow-lg z-100 sm:z-1">Why Artists Love This</h2>
         <div className='flex absolute  top-[-40px] left-0 justify-center items-center animate-float-slow'>
           <img src="https://media.istockphoto.com/id/577949148/photo/vintage-stylized-photo-of-paintbrushes-closeup-and-artist-palett.jpg?s=612x612&w=0&k=20&c=8fuPBz7S5wGDOMix0t0ubL0578WpIslf8INTDYBQU4Y=" alt="" className='sm:w-[400px] h-[400px] brightness-30 sm:brightness-50 blur-xs' style={{ clipPath: 'polygon(0 1%, 70% 0, 79% 100%, 9% 100%)' }} />
@@ -134,7 +161,7 @@ export default function ArtistLandingPage() {
         </div>
       </section>
 
-      <section className="py-20 px-6 mb-20 bg-gradient-to-br from-gray-800 to-black text-center">
+      <section className="py-32 px-6 mb-32 bg-gradient-to-br from-gray-800 to-black text-center">
         <h2 className="relative text-3xl font-semibold mb-10 text-purple-900 bg-white p-4 rounded-2xl shadow-lg z-100 sm:z-1">What Creators Say</h2>
         <div className="max-w-xl mx-auto">
           <div className="relative bg-gray-900 rounded-2xl shadow-lg p-8 min-h-[160px] flex flex-col items-center">
@@ -162,11 +189,28 @@ export default function ArtistLandingPage() {
           50% { transform: translateY(-18px); }
           100% { transform: translateY(0); }
         }
+        @keyframes subtle-float {
+          0% { 
+            transform: translateY(0) scale(1);
+            opacity: 0.15;
+          }
+          50% { 
+            transform: translateY(-8px) scale(1.02);
+            opacity: 0.25;
+          }
+          100% { 
+            transform: translateY(0) scale(1);
+            opacity: 0.15;
+          }
+        }
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
         .animate-float-slow {
           animation: float 5s ease-in-out infinite;
+        }
+        .animate-subtle-float {
+          animation: subtle-float 8s ease-in-out infinite;
         }
       `}</style>
     </main>
