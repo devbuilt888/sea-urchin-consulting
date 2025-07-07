@@ -192,8 +192,8 @@ export default function MidMarketTech() {
                   <h3 className="text-2xl font-bold mb-4 text-white">{feature.title}</h3>
                   <p className="text-gray-400 leading-relaxed">{feature.description}</p>
                 </div>
-              </div>
-            ))}
+            </div>
+          ))}
           </div>
         </div>
       </section>
@@ -228,7 +228,7 @@ export default function MidMarketTech() {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
         </div>
       </section>
 
@@ -299,7 +299,7 @@ export default function MidMarketTech() {
                 >
                   Get Your Free Assessment
                 </button>
-              </form>
+          </form>
               <p className="text-gray-500 text-sm mt-4">
                 Free 30-minute consultation • No obligation • Response within 24 hours
               </p>
