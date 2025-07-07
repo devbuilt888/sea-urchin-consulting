@@ -25,7 +25,7 @@ export default function HealthcareIT() {
             <span className="text-2xl text-teal-600 font-extrabold">CuraCart</span>
             <span className="italic text-xs text-teal-400">Your Trusted Health Partner</span>
           </div>
-          
+
           {/* User/Cart */}
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1 text-gray-700 cursor-pointer"><span className="text-xl">👤</span> Hello, Log in</span>
@@ -47,6 +47,45 @@ export default function HealthcareIT() {
           </div>
         </nav>
       </header>
+
+      <section>
+        <div className="w-full h-screen mb-20 flex bg-amber-200 justify-end" style={{ backgroundImage: 'url(https://www.singlecare.com/blog/wp-content/uploads/2021/08/Blog_082321_Immunosuppressants_affect_COVID_vaccine.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          {/* <div className='w-1/2 h-full'>
+            <img src="https://www.mankindpharma.com/wp-content/uploads/2025/02/what-are-capsule-covers-made-up-of-are-they-safe-1546000159.jpg" className='h-full w-full object-cover' alt="" />
+          </div> */}
+          <div className='w-1/2 h-full flex items-center justify-center'>
+            <div className='w-full max-w-md bg-white p-8 rounded-lg shadow-lg'>
+              <h2 className='text-2xl font-bold mb-4'>Welcome to CuraCart</h2>
+              <p className='text-gray-600'>Your trusted health partner for fast, secure, and reliable medicine delivery.</p>
+              <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+              <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className='flex flex-wrap gap-2 px-4 py-4 justify-evenly'>
+          <div className='w-[100px] flex flex-col items-center text-center'>
+            <img src="https://cdn-icons-png.flaticon.com/512/4212/4212257.png" className='h-19 w-18 object-cover border-2 ' alt="" />
+            <span className='text-lg font-bold'>Fast Delivery</span>
+            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+          </div>
+          <div className='w-[100px] flex flex-col items-center text-center'>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9oxtDHFRbPBESOyTqCGcwgVCS1Dh2LOGg&s" className='h-18 w-18 object-cover border-2' alt="" />
+            <span className='text-lg font-bold'>Government Approved</span>
+            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+          </div>
+          <div className='w-[100px] flex flex-col items-center text-center'>
+            <img src="https://static.vecteezy.com/system/resources/previews/009/898/154/non_2x/24-hours-7-days-black-icon-isolated-on-white-background-free-vector.jpg" className='h-18 w-18 object-cover border-2' alt="" />
+            <span className='text-lg font-bold'>Support 24/7</span>
+            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+          </div>
+        </div>
+      </section>
 
       {/* Hero/Search */}
       <section className="w-full py-10 px-4 bg-gradient-to-r from-blue-50 via-white to-amber-50 flex flex-col items-center">
@@ -82,16 +121,36 @@ export default function HealthcareIT() {
           <span className="text-3xl mb-2">🚚</span>
           <div className="font-bold text-lg mb-1 text-teal-700">Fast Home Delivery</div>
           <div className="text-gray-600">Get medicines and health products delivered to your doorstep quickly and safely.</div>
-              </div>
+        </div>
         <div className="bg-white rounded-2xl shadow p-6 flex flex-col items-center text-center border-t-4 border-teal-200">
           <span className="text-3xl mb-2">🩺</span>
           <div className="font-bold text-lg mb-1 text-teal-700">Licensed Pharmacists</div>
           <div className="text-gray-600">Expert advice and support from certified professionals, always available for you.</div>
-            </div>
+        </div>
         <div className="bg-white rounded-2xl shadow p-6 flex flex-col items-center text-center border-t-4 border-teal-200">
           <span className="text-3xl mb-2">🔒</span>
           <div className="font-bold text-lg mb-1 text-teal-700">Privacy & Security</div>
           <div className="text-gray-600">Your health data and orders are always safe, secure, and confidential.</div>
+        </div>
+      </section>
+
+      {/* About us */}
+      <section className="max-w-4xl mx-auto py-12 px-4 ">
+
+        <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
+          <div className="bg-white rounded-2xl shadow p-6 flex-1 justify-center items-center text-center border-t-4 border-teal-200">
+        <h2 className="text-2xl font-bold mb-8 text-teal-700 text-center">About Us</h2>
+            <div className='flex justify-center items-center'>
+              <img src="https://img.freepik.com/premium-photo/drawing-pills-green-bottle-with-brown-top_910054-37823.jpg" className='w-100' alt="" />
+            </div>
+            <div className="italic text-gray-700 mb-2">Curacart is a modern healthcare company focused on simplifying access to essential medicines. Through its digital-first approach, Curacart provides an easy-to-use platform where users can order prescription medications online and have them delivered directly to their doorstep. The company aims to ensure timely, reliable, and affordable access to healthcare, especially for patients managing chronic conditions.
+
+              Curacart works only with licensed pharmacies and follows strict quality assurance processes to guarantee the authenticity and safety of every product. Customers can also access detailed prescription information, dosage instructions, and refill reminders—helping improve treatment adherence and patient outcomes.
+
+              What sets Curacart apart is its focus on convenience and care. The platform supports personalized services such as automated refill alerts, pharmacist consultations, and transparent pricing, making it easier for individuals and families to stay on track with their medications.
+
+              In a world where healthcare is becoming increasingly digital, Curacart stands at the forefront of innovation—combining technology, trust, and compassion to enhance everyday wellness. Whether managing long-term health needs or short-term recovery, Curacart is committed to being a reliable partner in every patient’s healthcare journey.</div>
+          </div>
         </div>
       </section>
 
