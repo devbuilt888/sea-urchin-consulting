@@ -52,6 +52,24 @@ export default function CuraCartPatternBg() {
               );
             })}
           </g>
+          {/* Lotus petals (mandala style) */}
+          <g opacity="18">
+            {[...Array(12)].map((_, i) => {
+              const angle = (i * 360) / 12;
+              return (
+                <ellipse
+                  key={i}
+                  cx={1960}
+                  cy={940}
+                  rx={160}
+                  ry={1220}
+                  fill="url(#lotusGradient)"
+                  transform={`rotate(${angle} 960 540)`}
+                  style={{ mixBlendMode: 'lighten' }}
+                />
+              );
+            })}
+          </g>
           {/* Chakra/hospital cross at center */}
           <g opacity="0.6">
             <rect x={930} y={500} width={60} height={80} rx={18} fill="url(#crossGradient)" />

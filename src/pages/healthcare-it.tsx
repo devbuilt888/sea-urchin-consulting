@@ -130,26 +130,6 @@ export default function HealthcareIT() {
   `}</style>
       </section>
 
-      {/* <section>
-        <div className='flex flex-wrap gap-2 px-4 py-4 justify-evenly'>
-          <div className='w-[100px] flex flex-col items-center text-center'>
-            <img src="https://cdn-icons-png.flaticon.com/512/4212/4212257.png" className='h-19 w-18 object-cover border-2 ' alt="" />
-            <span className='text-lg font-bold'>Fast Delivery</span>
-            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-          </div>
-          <div className='w-[100px] flex flex-col items-center text-center'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUV9oxtDHFRbPBESOyTqCGcwgVCS1Dh2LOGg&s" className='h-18 w-18 object-cover border-2' alt="" />
-            <span className='text-lg font-bold'>Government Approved</span>
-            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-          </div>
-          <div className='w-[100px] flex flex-col items-center text-center'>
-            <img src="https://static.vecteezy.com/system/resources/previews/009/898/154/non_2x/24-hours-7-days-black-icon-isolated-on-white-background-free-vector.jpg" className='h-18 w-18 object-cover border-2' alt="" />
-            <span className='text-lg font-bold'>Support 24/7</span>
-            <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-          </div>
-        </div>
-      </section> */}
-
       {/* Hero/Search */}
       <section className="w-full py-10 px-4 bg-gradient-to-r from-blue-50 via-white to-amber-50 flex flex-col items-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">What are you looking for?</h1>
@@ -178,8 +158,50 @@ export default function HealthcareIT() {
         </div>
       </section>
 
+      {/* Problems We Help Solve */}
+      <section className="max-w-5xl mx-auto py-12 px-4">
+        <h2 className="text-2xl font-bold mb-6 text-teal-700 text-center">Problems We Help Solve</h2>
+        <div className="grid md:grid-cols-3 gap-6 text-center">
+          <div className="bg-white shadow rounded-lg p-6 border-t-4 border-pink-300">
+            <h3 className="font-semibold text-lg mb-2">Inefficient Intake & Triage</h3>
+            <p className="text-gray-600 text-sm">Manual processes delay patient care and overwhelm staff.</p>
+          </div>
+          <div className="bg-white shadow rounded-lg p-6 border-t-4 border-pink-300">
+            <h3 className="font-semibold text-lg mb-2">Data Privacy & HIPAA Concerns</h3>
+            <p className="text-gray-600 text-sm">Keeping up with compliance while managing patient data securely is challenging.</p>
+          </div>
+          <div className="bg-white shadow rounded-lg p-6 border-t-4 border-pink-300">
+            <h3 className="font-semibold text-lg mb-2">Disconnected Systems</h3>
+            <p className="text-gray-600 text-sm">EHRs, billing, and scheduling tools often don’t talk to each other.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* From Problems to Solutions */}
+      <section className="max-w-6xl mx-auto py-12 px-4">
+        <h2 className="text-2xl font-bold text-center text-teal-700 mb-8">From Problems to Solutions</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded shadow">
+            <h3 className="text-lg font-bold text-red-600 mb-2">The Challenges</h3>
+            <ul className="list-disc list-inside text-gray-700">
+              <li>Inefficient patient intake and triage</li>
+              <li>HIPAA and data-privacy struggles</li>
+              <li>Siloed EHR, billing, and scheduling systems</li>
+            </ul>
+          </div>
+          <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded shadow">
+            <h3 className="text-lg font-bold text-green-600 mb-2">Our Solutions</h3>
+            <ul className="list-disc list-inside text-gray-700">
+              <li>Streamlined digital intake & smart triage</li>
+              <li>End-to-end encrypted, HIPAA-compliant platform</li>
+              <li>Fully integrated care coordination systems</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* CIO/VP Patient Experience Section */}
-      <section className="w-full flex justify-center py-10 px-4 bg-gradient-to-r from-white via-blue-50 to-amber-50">
+      <section className="w-full flex justify-center py-10 px-4 ">
         <div className="max-w-3xl w-full bg-white/80 rounded-2xl shadow-lg border-t-4 border-indigo-300 flex flex-col md:flex-row items-center gap-8 p-8">
           {/* Icon cluster */}
           <div className="flex flex-col items-center gap-2">
