@@ -130,7 +130,7 @@ export default function HealthcareIT() {
   `}</style>
       </section>
 
-      <section>
+      {/* <section>
         <div className='flex flex-wrap gap-2 px-4 py-4 justify-evenly'>
           <div className='w-[100px] flex flex-col items-center text-center'>
             <img src="https://cdn-icons-png.flaticon.com/512/4212/4212257.png" className='h-19 w-18 object-cover border-2 ' alt="" />
@@ -148,7 +148,7 @@ export default function HealthcareIT() {
             <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Hero/Search */}
       <section className="w-full py-10 px-4 bg-gradient-to-r from-blue-50 via-white to-amber-50 flex flex-col items-center">
@@ -175,6 +175,30 @@ export default function HealthcareIT() {
               {cat.offer && <div className="text-xs text-pink-600 font-bold mt-1">{cat.offer}</div>}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* CIO/VP Patient Experience Section */}
+      <section className="w-full flex justify-center py-10 px-4 bg-gradient-to-r from-white via-blue-50 to-amber-50">
+        <div className="max-w-3xl w-full bg-white/80 rounded-2xl shadow-lg border-t-4 border-indigo-300 flex flex-col md:flex-row items-center gap-8 p-8">
+          {/* Icon cluster */}
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-5xl">🏥</span>
+            <span className="text-4xl">👔</span>
+            <span className="text-4xl">💡</span>
+          </div>
+          {/* Content */}
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-indigo-700 mb-2">For CIOs & Patient Experience Leaders</h2>
+            <div className="text-md text-gray-700 mb-2 font-semibold">Empowering Regional Clinics & Small Hospitals</div>
+            <ul className="list-disc pl-5 text-gray-700 space-y-2">
+              <li><span className="font-bold text-indigo-600">Digital Transformation:</span> Streamline operations and enable secure, cloud-based patient management.</li>
+              <li><span className="font-bold text-indigo-600">Patient Satisfaction:</span> Enhance patient journeys with digital touchpoints and real-time feedback.</li>
+              <li><span className="font-bold text-indigo-600">Operational Efficiency:</span> Reduce costs and improve care delivery with integrated digital tools.</li>
+              <li><span className="font-bold text-indigo-600">AI Chatbots:</span> Pre-visit triage and instant FAQs for patients, improving access and efficiency.</li>
+              <li><span className="font-bold text-indigo-600">Secure Data Integration:</span> Unified, secure data layer across all systems for seamless interoperability.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -255,6 +279,12 @@ export default function HealthcareIT() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="max-w-3xl mx-auto py-12 px-4">
+        <h2 className="text-2xl font-bold mb-8 text-teal-700 text-center">Frequently Asked Questions</h2>
+        <FAQ />
+      </section>
+
       {/* Lead Form */}
       <section className="max-w-xl mx-auto mb-20 py-12 px-4">
         <h2 className="text-xl font-bold mb-4 text-teal-700 text-center">Transfer Your Prescription or Get Started</h2>
@@ -302,5 +332,63 @@ export default function HealthcareIT() {
         <button className="px-6 py-3 bg-white text-teal-600 rounded-full shadow hover:bg-gray-100 hover:scale-105 transition-transform duration-200 font-semibold">Order Now</button>
       </div>
     </main>
+  );
+} 
+
+// FAQ Accordion Component
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+  const faqs = [
+    {
+      q: 'How does CuraCart help improve patient experience at clinics and hospitals?',
+      a: 'CuraCart provides digital tools for appointment scheduling, pre-visit triage, and real-time feedback, making the patient journey smoother and more efficient.'
+    },
+    {
+      q: 'Are AI chatbots secure and compliant with healthcare regulations?',
+      a: 'Yes, our AI chatbots are built with security and compliance in mind, ensuring patient data privacy and adherence to healthcare standards.'
+    },
+    {
+      q: 'Can CuraCart integrate with our existing hospital/clinic systems?',
+      a: 'Absolutely! CuraCart features a secure data-integration layer that connects seamlessly with your current EHR, billing, and management systems.'
+    },
+    {
+      q: 'Is CuraCart suitable for small and regional clinics?',
+      a: 'Yes, CuraCart is designed to be scalable and cost-effective, making it ideal for clinics and hospitals of all sizes.'
+    },
+    {
+      q: 'How quickly can we get started with CuraCart?',
+      a: 'Most clinics and hospitals can be onboarded within a few days, with full support from our implementation team.'
+    },
+  ];
+  return (
+    <div className="space-y-4">
+      {faqs.map((item, idx) => (
+        <div key={idx} className="border border-teal-100 rounded-lg bg-white shadow">
+          <button
+            className="w-full flex justify-between items-center px-4 py-3 text-left font-semibold text-teal-700 focus:outline-none"
+            onClick={() => setOpen(open === idx ? null : idx)}
+            aria-expanded={open === idx}
+            aria-controls={`faq-${idx}`}
+          >
+            <span>{item.q}</span>
+            <span className="ml-2 text-xl">{open === idx ? '−' : '+'}</span>
+          </button>
+          {open === idx && (
+            <div id={`faq-${idx}`} className="px-4 pb-4 text-gray-700 animate-fade-in">
+              {item.a}
+            </div>
+          )}
+        </div>
+      ))}
+      <style jsx>{`
+        .animate-fade-in {
+          animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
   );
 } 
