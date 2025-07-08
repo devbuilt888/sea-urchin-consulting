@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import CuraCartPatternBg from '../components/CuraCartPatternBg';
+import dynamic from 'next/dynamic';
+
+const CuraCartPatternBg = dynamic(() => import('../components/CuraCartPatternBg'), {
+  ssr: false,
+});
 
 const categories = [
   { icon: '💊', label: 'Medicine', offer: 'SAVE 25%' },
@@ -15,7 +19,7 @@ const categories = [
 export default function HealthcareIT() {
   const [search, setSearch] = useState('');
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 text-gray-900 font-sans overflow-x-hidden relative">
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 text-gray-900 font-sans overflow-x-hidden relative z-0">
       <CuraCartPatternBg />
       {/* Header */}
       <header className="w-full bg-white shadow-sm sticky top-0 z-30">
@@ -49,24 +53,83 @@ export default function HealthcareIT() {
       </header>
 
       <section>
-        <div className="w-full h-screen mb-20 flex bg-amber-200 justify-end" style={{ backgroundImage: 'url(https://www.singlecare.com/blog/wp-content/uploads/2021/08/Blog_082321_Immunosuppressants_affect_COVID_vaccine.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-          {/* <div className='w-1/2 h-full'>
-            <img src="https://www.mankindpharma.com/wp-content/uploads/2025/02/what-are-capsule-covers-made-up-of-are-they-safe-1546000159.jpg" className='h-full w-full object-cover' alt="" />
-          </div> */}
-          <div className='w-1/2 h-full flex items-center justify-center'>
-            <div className='w-full max-w-md bg-white p-8 rounded-lg shadow-lg'>
-              <h2 className='text-2xl font-bold mb-4'>Welcome to CuraCart</h2>
-              <p className='text-gray-600'>Your trusted health partner for fast, secure, and reliable medicine delivery.</p>
-              <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-              <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+        <div
+          className="relative w-full h-screen mb-20 flex bg-amber-200 justify-end"
+          style={{
+            backgroundImage:
+              'url(https://www.singlecare.com/blog/wp-content/uploads/2021/08/Blog_082321_Immunosuppressants_affect_COVID_vaccine.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+        {/* Rotating Hospitality Icons */}
+<div className="absolute inset-0 z-0 pointer-events-none">
+  {[
+    { img: 'https://cdn-icons-png.flaticon.com/512/7196/7196460.png', top: '10%', left: '10%' },
+    { img: 'https://cdn-icons-png.flaticon.com/512/2904/2904131.png', top: '10%', left: '80%' }, 
+    { img: 'https://cdn-icons-png.flaticon.com/512/9696/9696215.png', top: '60%', left: '10%' }, 
+    { img: 'https://cdn-icons-png.flaticon.com/512/4178/4178695.png', top: '75%', left: '70%' },
+    { img: 'https://static.vecteezy.com/system/resources/previews/046/593/438/non_2x/capsule-with-viruses-3d-free-png.png', top: '20%', left: '30%' }, 
+    { img: 'https://static.vecteezy.com/system/resources/thumbnails/022/923/884/small/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png', top: '45%', left: '50%' }, 
+  ].map((item, idx) => (
+    <div
+      key={idx}
+      className="absolute animate-spin-slow"
+      style={{
+        top: item.top,
+        left: item.left,
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <img
+        src={item.img}
+        alt="hospitality icon"
+        className="w-20 h-20 opacity-70 object-contain"
+      />
+    </div>
+  ))}
+</div>
+
+
+
+
+          {/* Right Content */}
+          <div className="w-1/2 h-full flex items-center justify-center relative z-10">
+            <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+              <h2 className="text-2xl font-bold mb-4">Welcome to CuraCart</h2>
+              <p className="text-gray-600">
+                Your trusted health partner for fast, secure, and reliable medicine delivery.
+              </p>
+              <p className="text-gray-600">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
               </p>
-
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Quisquam, quos.
+              </p>
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+    .animate-spin-slow {
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(180deg) scale(1.1);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+  `}</style>
       </section>
+
       <section>
         <div className='flex flex-wrap gap-2 px-4 py-4 justify-evenly'>
           <div className='w-[100px] flex flex-col items-center text-center'>
@@ -139,11 +202,12 @@ export default function HealthcareIT() {
 
         <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
           <div className="bg-white rounded-2xl shadow p-6 flex-1 justify-center items-center text-center border-t-4 border-teal-200">
-        <h2 className="text-2xl font-bold mb-8 text-teal-700 text-center">About Us</h2>
+            <h2 className="text-2xl font-bold mb-8 text-teal-700 text-center">About Us</h2>
             <div className='flex justify-center items-center'>
               <img src="https://img.freepik.com/premium-photo/drawing-pills-green-bottle-with-brown-top_910054-37823.jpg" className='w-100' alt="" />
             </div>
-            <div className="italic text-gray-700 mb-2">Curacart is a modern healthcare company focused on simplifying access to essential medicines. Through its digital-first approach, Curacart provides an easy-to-use platform where users can order prescription medications online and have them delivered directly to their doorstep. The company aims to ensure timely, reliable, and affordable access to healthcare, especially for patients managing chronic conditions.
+            <div className="italic text-gray-700 mb-2 text-sm ">
+              Curacart is a modern healthcare company focused on simplifying access to essential medicines. Through its digital-first approach, Curacart provides an easy-to-use platform where users can order prescription medications online and have them delivered directly to their doorstep. The company aims to ensure timely, reliable, and affordable access to healthcare, especially for patients managing chronic conditions.
 
               Curacart works only with licensed pharmacies and follows strict quality assurance processes to guarantee the authenticity and safety of every product. Customers can also access detailed prescription information, dosage instructions, and refill reminders—helping improve treatment adherence and patient outcomes.
 
@@ -204,7 +268,7 @@ export default function HealthcareIT() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-r from-teal-600 via-teal-500 to-blue-500 mt-16 z-20 relative text-white">
+      <footer className="w-full bg-gradient-to-r from-teal-600 via-teal-500 to-blue-500 mt-16 mb-20 z-20 relative text-white">
         <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           {/* Logo and tagline */}
           <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
