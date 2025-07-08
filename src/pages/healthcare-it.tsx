@@ -351,7 +351,7 @@ export default function HealthcareIT() {
       {/* Sticky CTA */}
       <div className="fixed bottom-0 left-0 w-full bg-teal-600/90 shadow-lg py-4 flex justify-center items-center z-50 backdrop-blur-md">
         <span className="mr-4 font-semibold text-white">Need medicines or lab tests?</span>
-        <button className="px-6 py-3 bg-white text-teal-600 rounded-full shadow hover:bg-gray-100 hover:scale-105 transition-transform duration-200 font-semibold">Order Now</button>
+        <button className="px-6 py-3 bg-white text-teal-600 rounded-full shadow hover:bg-gray-100 hover:scale-105 transition-transform duration-200 font-semibold">Join Us</button>
       </div>
     </main>
   );
