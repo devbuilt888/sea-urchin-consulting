@@ -101,6 +101,48 @@ const testimonials = [
   }
 ];
 
+const videoSources:string[] = [
+  "https://www.shutterstock.com/shutterstock/videos/3548074267/preview/stock-footage-a-woman-holds-money-on-a-background-of-a-sink-with-water-utility-estimates-repairs-and-plumbing.webm",
+  "https://www.shutterstock.com/shutterstock/videos/1105046351/preview/stock-footage-industrial-air-conditioning-technician-hvac-cooling-system-repair.webm",
+  "https://media.istockphoto.com/id/2164967460/video/father-and-child-planting-sapling-in-forest-at-sunset.mp4?s=mp4-640x640-is&k=20&c=4CwRdJQbNTO9dargjk833IvIGTIJKbdQ2-QAWxTT7Xo="
+];
+const AlternatingVideoBackground: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const handleEnded = () => {
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoSources.length);
+    };
+
+    videoElement.addEventListener('ended', handleEnded);
+    return () => videoElement.removeEventListener('ended', handleEnded);
+  }, []);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.load();
+      videoElement.play().catch((err) => {
+        console.error('Autoplay error:', err);
+      });
+    }
+  }, [currentVideoIndex]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="fixed inset-0 w-full h-screen object-cover z-0"
+      src={videoSources[currentVideoIndex]}
+      autoPlay
+      muted
+      playsInline
+    />
+  );
+};
 export default function ModernLandingPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [heroRef, heroVisible] = useReveal(0.3);
@@ -134,14 +176,7 @@ export default function ModernLandingPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Fixed Background Video */}
-      <video
-        className="fixed inset-0 w-full h-screen object-cover z-0"
-        src="https://www.w3schools.com/howto/rain.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
+      <AlternatingVideoBackground />
       
       {/* Dark Overlay */}
       <div className="fixed inset-0 bg-black/60 z-10" />
