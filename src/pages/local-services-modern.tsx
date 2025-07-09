@@ -261,7 +261,7 @@ export default function ModernLandingPage() {
       </section>
 
               {/* About Section */}
-        <section className="bg-gradient-to-b from-gray-900 to-black py-20 px-4 sm:px-6 lg:px-8 sm:py-40 relative overflow-hidden">
+        <section className="bg-gradient-to-b from-gray-900 to-black py-20 px-4 sm:px-6 lg:px-8 sm:py-40 relative overflow-hidden"  style={{borderRadius:'50px 50px 0px 0px',  boxShadow: '0 -20px 30px rgba(0, 0, 0, 0.4)', }}>
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
