@@ -4,6 +4,107 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Animations - These will definitely work */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes blob1 {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50% { transform: scale(1.15) translateY(30px); }
+}
+
+@keyframes blob2 {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50% { transform: scale(1.1) translateY(-20px); }
+}
+
+@keyframes blob3 {
+  0%, 100% { transform: scale(1) translateX(0px); }
+  50% { transform: scale(1.2) translateX(20px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.3) rotate(20deg); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bokeh {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+@keyframes gridLines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-blob1 {
+  animation: blob1 8s ease-in-out infinite;
+}
+
+.animate-blob2 {
+  animation: blob2 10s ease-in-out infinite;
+}
+
+.animate-blob3 {
+  animation: blob3 12s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+
+.animate-sparkle-delay {
+  animation: sparkle 2.5s 1.2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 1.2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-bokeh {
+  animation: bokeh 20s linear infinite;
+}
+
+.animate-grid-lines {
+  animation: gridLines 15s linear infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
 @keyframes fadeinup {
   0% {
     opacity: 0;

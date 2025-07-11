@@ -104,58 +104,13 @@ export default function Home() {
         >
           HR PeopleOps Landing Page
         </Link>
+        <Link
+        href="/test-animations"
+        className="px-2 py-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-200 font-semibold text-md text-center md:text-lg md:text-md md:px-8 md:py-4"
+        >
+          Test animations Landing Page
+        </Link>
       </div>
-      <style jsx>{`
-        @keyframes float {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-18px); }
-          100% { transform: translateY(0); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        .animate-float-slow {
-          animation: float 5s ease-in-out infinite;
-        }
-        @keyframes blob1 {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50% { transform: scale(1.15) translateY(30px); }
-        }
-        .animate-blob1 {
-          animation: blob1 8s ease-in-out infinite;
-        }
-        @keyframes blob2 {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50% { transform: scale(1.1) translateY(-20px); }
-        }
-        .animate-blob2 {
-          animation: blob2 10s ease-in-out infinite;
-        }
-        @keyframes blob3 {
-          0%, 100% { transform: scale(1) translateX(0px); }
-          50% { transform: scale(1.2) translateX(20px); }
-        }
-        .animate-blob3 {
-          animation: blob3 12s ease-in-out infinite;
-        }
-        @keyframes sparkle {
-          0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-          50% { opacity: 1; transform: scale(1.3) rotate(20deg); }
-        }
-        .animate-sparkle {
-          animation: sparkle 2.5s ease-in-out infinite;
-        }
-        .animate-sparkle-delay {
-          animation: sparkle 2.5s 1.2s ease-in-out infinite;
-        }
-        @keyframes wiggle {
-          0%, 100% { transform: rotate(-2deg); }
-          50% { transform: rotate(2deg); }
-        }
-        .animate-wiggle {
-          animation: wiggle 1.2s ease-in-out infinite;
-        }
-      `}</style>
     </main>
   );
 }

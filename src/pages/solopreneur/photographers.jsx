@@ -122,6 +122,7 @@ export default function PhotographerLanding() {
     const [heroBackgroundIndex, setHeroBackgroundIndex] = useState(0);
     const [lightbox, setLightbox] = useState({ open: false, category: '', images: [], index: 0 });
     const [showAllCategories, setShowAllCategories] = useState(false);
+    const [hoveredImg, setHoveredImg] = useState(null);
 
     // For gallery animation
     const galleryRefs = useRef([]);
@@ -211,7 +212,23 @@ export default function PhotographerLanding() {
     const lightboxPrev = () => setLightbox(l => ({ ...l, index: (l.index - 1 + l.images.length) % l.images.length }));
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans overflow-x-hidden">
+        <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans">
+            {/* Add header and navbar at the top */}
+            <header className=" fixed top-0 z-30 w-full bg-gradient-to-r from-[#6b4f27] via-[#a47551] to-[#c8b08e] shadow-lg ">
+                <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
+                    {/* Logo/Title */}
+                    <div className="flex items-center gap-2">
+                        <span className="text-2xl text-yellow-400 font-extrabold">Photographer</span>
+                    </div>
+                    {/* Navbar */}
+                    <nav className="flex items-center gap-8 text-white text-base font-medium">
+                        <a href="#" className="hover:text-yellow-400 transition">Home</a>
+                        <a href="#about" className="hover:text-yellow-400 transition">About</a>
+                        <a href="#gallery" className="hover:text-yellow-400 transition">Gallery</a>
+                        <a href="#contact" className="hover:text-yellow-400 transition">Contact</a>
+                    </nav>
+                </div>
+            </header>
             {/* Lightbox Overlay */}
             {lightbox.open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setLightbox({ open: false, category: '', images: [], index: 0 })}>
@@ -243,27 +260,174 @@ export default function PhotographerLanding() {
                 </div>
             )}
             {/* Hero Section */}
-            <section className="relative flex flex-col items-center justify-center text-center px-6 pt-32 pb-28 bg-cover bg-center transition-all duration-1000" style={{ backgroundImage: `url(${heroBackgroundImages[heroBackgroundIndex]})` }}>
-                <div className="absolute inset-0 bg-black/60 z-0"></div>
-                <div className="relative z-10 max-w-2xl">
-                    <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl text-yellow-400">Capturing Moments, Creating Memories</h1>
-                    <p className="text-lg md:text-2xl text-white/90 mb-8">Professional Photography for Weddings, Portraits, Events & More</p>
-                    <a href="#contact" className="px-10 py-4 bg-gradient-to-r from-pink-500 to-yellow-400 text-black rounded-full shadow-lg hover:scale-105 transition font-bold text-lg">Book a Session</a>
+            <section
+                className="relative flex flex-col md:flex-row items-center justify-center text-center px-6 pt-32 pb-28 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-hidden"
+            >
+                {/* Bokeh/flare background shapes */}
+                <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+                    {/* Bokeh circles */}
+                    <div className="absolute left-1/4 top-10 w-60 h-60 bg-violet-900/10 rounded-full blur-3xl animate-pulse-slow" />
+                    <div className="absolute right-4 top-1/3 w-40 h-40 bg-pink-900/10 rounded-full blur-2xl animate-bounce" />
+                    <div className="absolute left-1/3 bottom-1/4 w-48 h-48 bg-purple-400/10 rounded-full blur-2xl animate-pulse-slow" />
+                    {/* Faint grid overlay */}
+                    <svg className="absolute inset-0 w-full h-full opacity-10" width="100%" height="100%" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fff" strokeWidth="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="400" fill="url(#grid)" />
+                    </svg>
                 </div>
-                {/* Hero Background Carousel Indicators */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
-                    {heroBackgroundImages.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setHeroBackgroundIndex(idx)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                idx === heroBackgroundIndex 
-                                    ? 'bg-yellow-400 scale-125' 
-                                    : 'bg-white/50 hover:bg-white/70'
-                            }`}
-                            aria-label={`Go to background ${idx + 1}`}
+                <div className="relative z-10 max-w-xl md:w-1/2 mb-10 md:mb-0 md:mr-12">
+                    <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight drop-shadow-xl text-yellow-400 animate-float">
+                        Capturing Moments, Creating Memories
+                    </h1>
+                    <p className="text-lg md:text-2xl text-white/90 mb-8">
+                        Professional Photography for Weddings, Portraits, Events & More
+                    </p>
+                    <a
+                        href="#contact"
+                        className="px-10 py-4 bg-gradient-to-r from-pink-500 to-yellow-400 text-black rounded-full shadow-lg hover:scale-105 transition font-bold text-lg"
+                    >
+                        Book a Session
+                    </a>
+                </div>
+               
+                <div className="relative md:w-[600px] md:h-full w-full flex flex-col items-center border border-white rounded-xl p-4 flex items-center ">
+                    <div className="bg-gray-900 p-4 rounded-2xl shadow-lg flex items-center justify-center w-full h-100">
+                        <img
+                            src={heroBackgroundImages[heroBackgroundIndex]}
+                            alt={`Portfolio ${heroBackgroundIndex + 1}`}
+                            className="w-full h-full object-cover rounded-lg transition-all duration-700"
                         />
-                    ))}
+                    </div>
+                    <div className="absolute top-50 right-[-10px] bg-gray-900 p-2 rounded-2xl shadow-lg flex items-center justify-center w-[160px] h-[250px] border border-white p-3 animate-float">
+                        <img
+                            src={heroBackgroundImages[heroBackgroundIndex]}
+                            alt={`Portfolio ${heroBackgroundIndex + 1}`}
+                            className="w-full h-full object-cover rounded-xl transition-all duration-700"
+                        />
+                    </div>
+
+                </div>
+            </section>
+
+            {/* About Section */}
+            <section id="about" className='bg-gradient-to-b from-black via-gray-700 to-black px-auto py-20 flex justify-center'>
+                <div className="relative max-w-4xl px-6 py-14 bg-gradient-to-b from-black via-gray-800 to-black rounded-3xl shadow-2xl flex flex-col md:flex-row items-center gap-12 overflow-hidden">
+                    {/* Decorative background shapes */}
+                    <div className="absolute -top-10 -left-10 w-60 h-56 bg-yellow-900 rounded-full blur-2xl z-0 animate-bounce" />
+                    <div className="absolute -bottom-30 right-0 w-30 h-30 bg-pink-500 rounded-full blur-3xl z-0 animate-bounce" />
+                    {/* Portfolio Image with glow */}
+                    <div className="flex-shrink-0 relative z-10">
+                        <div className="p-2 bg-gradient-to-tr from-yellow-400 via-pink-400 to-purple-400 rounded-2xl shadow-2xl">
+                            <img
+                                src="https://static.vecteezy.com/system/resources/thumbnails/011/155/410/small_2x/wild-photography-and-photo-studio-logo-vector.jpg"
+                                alt="Portfolio website preview"
+                                className="w-48 h-48 rounded-2xl object-cover bg-gray-800 shadow-xl border-4 border-gray-900"
+                                style={{ boxShadow: '0 0 32px 0 rgba(255, 221, 51, 0.15)' }}
+                            />
+                        </div>
+                    </div>
+                    {/* About Content */}
+                    <div className="flex-1 text-left relative z-10">
+                        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg">
+                            About Us
+                        </h2>
+                        <p className="text-lg text-white/90 mb-8">
+                            Welcome to our website! Here you can explore a curated selection of my best work, from weddings and portraits to events and creative projects. Easily browse galleries, read client testimonials, and book your next session—all in one place.
+                        </p>
+                        {/* Highlight Features */}
+                        <div className="flex flex-col sm:flex-row gap-8 mt-6">
+                            <div className="text-center flex-1">
+                                <div className="text-xl font-extrabold text-yellow-400 mb-1">Easy Booking</div>
+                                <div className="text-sm text-white/70">Schedule your session online</div>
+                            </div>
+                            <div className="text-center flex-1">
+                                <div className="text-xl font-extrabold text-pink-400 mb-1">Portfolio Highlights</div>
+                                <div className="text-sm text-white/70">Curated galleries & projects</div>
+                            </div>
+                            <div className="text-center flex-1">
+                                <div className="text-xl font-extrabold text-purple-400 mb-1">Client Stories</div>
+                                <div className="text-sm text-white/70">Read real testimonials</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* E-commerce Section */}
+            <section className='bg-gradient-to-b from-black via-gray-700 to-black px-auto py-20 flex justify-center'>
+                <div className="relative w-full flex flex-col md:flex-row items-center justify-center bg-gradient-to-br from-[#181818] via-[#232526] to-[#181818] py-20 px-6 rounded-3xl my-20 shadow-2xl max-w-5xl mx-auto overflow-hidden">
+                    {/* Decorative glowing shapes */}
+                    <div className="absolute -top-16 -left-16 w-72 h-72 bg-yellow-400/10 rounded-full blur-3xl z-0" />
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-2xl z-0" />
+                    {/* Images Side */}
+                    <div className="relative flex-1 flex justify-center mb-10 md:mb-0 min-h-[240px] z-10 ">
+                        {/* Background images */}
+                        <img
+                            src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+                            alt="Product 1"
+                            className={`w-40 h-40 object-cover rounded-xl shadow-2xl absolute left-0 top-12 border-4 border-gray-900 transition-all duration-300 ${hoveredImg === 0 ? 'z-30 scale-105' : 'z-0'} animate-sparkle`}
+                            style={{ boxShadow: '0 8px 32px 0 rgba(255, 221, 51, 0.10)' }}
+                            onMouseEnter={() => setHoveredImg(0)}
+                            onMouseLeave={() => setHoveredImg(null)}
+                        />
+                        <img
+                            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+                            alt="Product 2"
+                            className={`w-40 h-40 object-cover rounded-xl shadow-2xl absolute left-80 top-0 border-4 border-gray-900 transition-all duration-300 ${hoveredImg === 1 ? 'z-30 scale-105' : 'z-10'} animate-sparkle`}
+                            style={{ boxShadow: '0 8px 32px 0 rgba(236, 72, 153, 0.10)' }}
+                            onMouseEnter={() => setHoveredImg(1)}
+                            onMouseLeave={() => setHoveredImg(null)}
+                        />
+                        {/* Foreground image with price and cart */}
+                        <div
+                            className={`relative transition-all duration-300 ${hoveredImg === 2 ? 'z-40 scale-110' : 'z-20'}`}
+                            onMouseEnter={() => setHoveredImg(2)}
+                            onMouseLeave={() => setHoveredImg(null)}
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+                                alt="Small Dusk Vase"
+                                className="w-52 h-52 object-cover rounded-2xl shadow-2xl border-4 border-gray-900 animate-blob1"
+                                style={{ boxShadow: '0 12px 48px 0 rgba(255, 221, 51, 0.18)' }}
+                            />
+                            {/* Price tag */}
+                            {/* <div className="absolute top-4 left-4 bg-white/90 rounded-xl px-4 py-2 text-gray-900 font-bold shadow-lg text-base flex items-center gap-2 border border-yellow-300">
+                                <span className="text-yellow-500 font-extrabold">$30</span> Small Dusk Vase
+                            </div> */}
+                            {/* Cart button */}
+                            <button className="absolute bottom-4 right-4 bg-yellow-400 hover:bg-yellow-300 rounded-full w-12 h-12 flex items-center justify-center shadow-xl border-4 border-white/80 hover:scale-110 transition-all duration-200 animate-wiggle">
+                                <svg className="w-7 h-7 text-black" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+                                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+                                    <circle cx="7" cy="21" r="1" />
+                                    <circle cx="20" cy="21" r="1" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    {/* Text Side */}
+                    <div className="flex-1 flex flex-col items-start md:pl-16 z-10">
+                        <div className="text-4xl mb-4 text-white flex items-center gap-3 font-extrabold">
+                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                                <path d="M6 6h15l-1.5 9h-13z" />
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                            </svg>
+                            <span>Sell online. <span className="text-yellow-400">Commission free.</span></span>
+                        </div>
+                        <p className="text-gray-300 mb-8 max-w-md text-lg">
+                            The Format Store is e-commerce made easy. Sell your unique products, services, and digital downloads online. You self-fulfill orders with no commission.
+                        </p>
+                        <a
+                            href="#"
+                            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-pink-400 text-black rounded-full font-bold shadow-xl hover:from-yellow-300 hover:to-pink-300 hover:text-black transition text-lg tracking-wide"
+                        >
+                            Start Selling Today
+                            <span className="ml-3 text-2xl">→</span>
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -342,32 +506,41 @@ export default function PhotographerLanding() {
                 </div>
             </section>
 
-            {/* About Section */}
-            <section className="py-20 px-6 text-center bg-black/80">
-                <h2 className="text-4xl font-bold mb-6 text-yellow-400">Meet Your Photographer</h2>
-                <div className="max-w-3xl mx-auto text-lg text-gray-200 mb-8">With a passion for storytelling and an eye for detail, I transform fleeting moments into timeless art. Whether it's a grand celebration or an intimate portrait, every frame is crafted with creativity and care.</div>
-                <div className='animate-bounce'>
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Photographer" className="mx-auto rounded-full w-40 h-40 object-cover border-4 border-pink-500 shadow-xl" />
-                </div>
-            </section>
-
             {/* Carousel Section */}
-            <section className="py-20 px-6 bg-gradient-to-br from-gray-800 to-black text-center">
-                <h2 className="text-3xl font-bold mb-10 text-pink-400">Featured Shots</h2>
-                <div className="relative max-w-2xl mx-auto">
-                    <img src={carouselImages[carouselIndex]} alt="Featured" className="rounded-3xl shadow-2xl w-full h-96 object-cover transition-all duration-500" />
-                    <button onClick={prevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-pink-500 text-white rounded-full p-3 shadow-lg transition z-10"><span className="text-2xl">&#8592;</span></button>
-                    <button onClick={nextSlide} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-pink-500 text-white rounded-full p-3 shadow-lg transition z-10"><span className="text-2xl">&#8594;</span></button>
+            <section className="w-full bg-white pb-12">
+                {/* Top Image */}
+                <div className="w-full">
+                    <img
+                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" // Replace with your own image
+                        alt="Colorful bath bombs"
+                        className="w-full h-80 object-cover object-center"
+                    />
                 </div>
-                <div className="flex justify-center gap-2 mt-4">
-                    {carouselImages.map((_, idx) => (
-                        <span key={idx} className={`inline-block w-3 h-3 rounded-full ${idx === carouselIndex ? 'bg-pink-500' : 'bg-gray-500'}`}></span>
-                    ))}
+                {/* Three Columns */}
+                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6 mt-12">
+                    <div>
+                        <h3 className="text-xl font-bold text-yellow-600 mb-3">What is Branding Photography?</h3>
+                        <p className="text-gray-700 text-base">
+                            Branding photography harnesses lifestyle and product photography and professional portraiture to show the complete story of your brand. Together we will create a library of custom images that define your brand and can be used for all marketing purposes, from your website to online stores to social media and print advertising, and more.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-yellow-600 mb-3">What is Product Photography?</h3>
+                        <p className="text-gray-700 text-base">
+                            Product Photography shows your fabulous creations in the best light for your e-commerce needs, from layflat to lifestyle to a pure white background for your online store, Amazon and more outlets. Create a consistent, clean look with images optimized for the web, as well as print media.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-yellow-600 mb-3">What is a Personal Branding Session?</h3>
+                        <p className="text-gray-700 text-base">
+                            Personal Branding Photography combines both professional headshots and lifestyle/environmental portraits (carefully curated shots of you doing what you do best, in your element) for a full suite of visual imagery that tells your brand’s story clearly and effectively.
+                        </p>
+                    </div>
                 </div>
             </section>
 
             {/* Gallery Section */}
-            <section className="py-20 px-6 bg-black/90">
+            <section id='gallery' className="py-20 px-6 bg-black/90">
                 <h2 className="text-3xl font-bold mb-10 text-yellow-400">Gallery</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {categoriesToShow.map((cat, idx) => (
@@ -398,7 +571,7 @@ export default function PhotographerLanding() {
             </section>
 
             {/* Testimonials Section */}
-            <section className="py-20 px-6 bg-gradient-to-br from-gray-800 to-black text-center">
+            <section className="py-20 px-6 bg-gradient-to-b from-black via-gray-700  to-black text-center">
                 <h2 className="text-3xl font-bold mb-10 text-pink-400">What Clients Say</h2>
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {testimonials.map(({ quote, author }, idx) => (
@@ -414,9 +587,63 @@ export default function PhotographerLanding() {
                     ))}
                 </div>
             </section>
+            {/* Pricing Section */}
+            <section className="bg-gradient-to-b from-black via-gray-800 to-black py-16 flex flex-col items-center">
+                {/* Most Popular Label */}
+                <div className="w-full max-w-5xl flex justify-center relative mb-0">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 text-black text-xs font-bold px-8 py-2 rounded-t-lg tracking-widest shadow z-10">
+                        MOST POPULAR FOR PHOTOGRAPHERS
+                    </div>
+                </div>
+                {/* Pricing Cards */}
+                <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+                    {/* Basic */}
+                    <div className="bg-gray-800 flex flex-col items-center py-12 px-6 ">
+                        <div className="text-lg font-bold mb-2 text-yellow-300">BASIC</div>
+                        <div className="text-sm text-gray-300 mb-6">Start your creative career</div>
+                        <div className="mb-2 text-gray-500 text-lg">
+                            <span className="line-through">$10</span>
+                        </div>
+                        <div className="text-4xl font-extrabold mb-1 text-white">$8<span className="text-lg font-normal">/mo</span></div>
+                        <div className="text-gray-300 mb-1">billed annually</div>
+                        <div className="text-gray-500 text-sm mb-8">or $12 monthly</div>
+                        <button className="bg-yellow-400 text-black rounded-full px-8 py-3 font-semibold text-base shadow hover:bg-yellow-300 transition">Buy Basic</button>
+                    </div>
+                    {/* Pro */}
+                    <div className="bg-gradient-to-br from-yellow-400 via-pink-400 to-purple-400 text-black flex flex-col items-center py-16 px-6 relative">
+                        <div className="text-lg font-bold mb-2 text-black">PRO</div>
+                        <div className="text-sm text-black/80 mb-6">Build your business</div>
+                        <div className="mb-2 text-black/60 text-lg">
+                            <span className="line-through">$17</span>
+                        </div>
+                        <div className="text-4xl font-extrabold mb-1 text-black">$11<span className="text-lg font-normal">/mo</span></div>
+                        <div className="text-black mb-1">billed annually</div>
+                        <div className="text-black/60 text-sm mb-8">or $24 monthly</div>
+                        <button className="bg-black text-yellow-400 rounded-full px-8 py-3 font-semibold text-base shadow hover:bg-gray-900 hover:text-yellow-300 transition">Buy Pro</button>
+                    </div>
+                    {/* Pro Plus */}
+                    <div className="bg-gray-800 flex flex-col items-center py-12 px-6">
+                        <div className="text-lg font-bold mb-2 text-purple-300">PRO PLUS</div>
+                        <div className="text-sm text-gray-300 mb-6">Grow your business</div>
+                        <div className="mb-2 text-gray-500 text-lg">
+                            <span className="line-through">$26</span>
+                        </div>
+                        <div className="text-4xl font-extrabold mb-1 text-white">$13<span className="text-lg font-normal">/mo</span></div>
+                        <div className="text-gray-300 mb-1">billed annually</div>
+                        <div className="text-gray-500 text-sm mb-8">or $36 monthly</div>
+                        <button className="bg-purple-400 text-black rounded-full px-8 py-3 font-semibold text-base shadow hover:bg-purple-300 transition">Buy Pro Plus</button>
+                    </div>
+                </div>
+                {/* See Top Features Button */}
+                <div className="mt-10">
+                    <button className="bg-black text-yellow-400 rounded-full px-8 py-4 font-semibold text-lg flex items-center gap-2 hover:bg-gray-900 hover:text-yellow-300 transition">
+                        See Top Features <span className="text-2xl">→</span>
+                    </button>
+                </div>
+            </section>
 
             {/* Contact Section */}
-            <section id="contact" className="py-20 px-6 bg-black/80 text-center">
+            <section id="contact" className="py-20 px-6 bg-gradient-to-b from-black via-gray-700 to-black text-center">
                 <h2 className="text-3xl font-semibold mb-6 text-pink-400">Let's Connect</h2>
                 <p className="text-gray-300 mb-8">Ready to capture your story? Reach out for bookings or inquiries.</p>
                 <form className="max-w-lg mx-auto flex flex-col gap-4">

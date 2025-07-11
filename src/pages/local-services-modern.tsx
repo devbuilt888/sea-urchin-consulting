@@ -103,7 +103,7 @@ const testimonials = [
 
 const videoSources:string[] = [
   "https://www.shutterstock.com/shutterstock/videos/3548074267/preview/stock-footage-a-woman-holds-money-on-a-background-of-a-sink-with-water-utility-estimates-repairs-and-plumbing.webm",
-  "https://www.shutterstock.com/shutterstock/videos/1105046351/preview/stock-footage-industrial-air-conditioning-technician-hvac-cooling-system-repair.webm",
+  "https://www.shutterstock.com/shutterstock/videos/3541782671/preview/stock-footage-professional-hvac-technician-performing-a-commercial-air-conditioner-installation-and-maintenance.webm",
   "https://media.istockphoto.com/id/2164967460/video/father-and-child-planting-sapling-in-forest-at-sunset.mp4?s=mp4-640x640-is&k=20&c=4CwRdJQbNTO9dargjk833IvIGTIJKbdQ2-QAWxTT7Xo="
 ];
 const AlternatingVideoBackground: React.FC = () => {
