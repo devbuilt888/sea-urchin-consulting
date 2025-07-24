@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next build && next export",
-    "build-static": "npm run build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@react-three/cannon": "^6.6.0",
