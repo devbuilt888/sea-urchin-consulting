@@ -138,10 +138,7 @@ export default function HVAC() {
     <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-100 to-white text-gray-900 font-sans relative overflow-x-hidden">
       <HVACFanBackground />
       
-      {/* Freeze Overlay */}
-      <div className={`fixed inset-0 pointer-events-none z-20 transition-all duration-3000 ${
-        isFrozen ? 'freeze-overlay-active' : 'freeze-overlay-inactive'
-      }`} />
+
       
       {/* Snow Particles */}
       {snowParticles.length > 0 && (
@@ -449,32 +446,7 @@ export default function HVAC() {
            animation-duration: 3.5s;
          }
 
-         /* Freeze Overlay Effects */
-         .freeze-overlay-inactive {
-           background: transparent;
-           backdrop-filter: none;
-         }
 
-         .freeze-overlay-active {
-           background: linear-gradient(
-             135deg,
-             rgba(173, 216, 230, 0.3) 0%,
-             rgba(176, 196, 222, 0.4) 25%,
-             rgba(135, 206, 235, 0.35) 50%,
-             rgba(176, 224, 230, 0.3) 75%,
-             rgba(173, 216, 230, 0.25) 100%
-           );
-           backdrop-filter: blur(1px) brightness(1.1) contrast(0.95);
-         }
-
-         /* Frozen Content Effects */
-         .frozen-content {
-           filter: hue-rotate(20deg) saturate(0.7) brightness(1.1);
-         }
-
-         .frozen-content * {
-           text-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
-         }
 
          /* Snow Particles */
          @keyframes snowFall {

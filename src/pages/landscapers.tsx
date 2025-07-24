@@ -101,7 +101,7 @@ export default function Landscapers() {
       {/* Tall Grass Background */}
       <div className="grass-field fixed inset-0 z-0 pointer-events-none">
         {/* Generate multiple grass blades */}
-        {Array.from({ length: 150 }, (_, i) => (
+        {Array.from({ length: 200 }, (_, i) => (
           <div
             key={i}
             className="grass-blade"
@@ -113,6 +113,26 @@ export default function Landscapers() {
               '--grass-speed': `${Math.random() * 2 + 2}s`,
               '--grass-intensity': Math.random() * 15 + 5,
               '--grass-hue': Math.random() * 40 + 100, // Green hues between 100-140
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
+      {/* Overlaying Foreground Grass */}
+      <div className="grass-field-overlay fixed inset-0 z-50 pointer-events-none">
+        {/* Generate foreground grass blades */}
+        {Array.from({ length: 80 }, (_, i) => (
+          <div
+            key={`overlay-${i}`}
+            className="grass-blade-overlay"
+            style={{
+              '--grass-height': `${Math.random() * 120 + 80}px`,
+              '--grass-width': `${Math.random() * 6 + 3}px`,
+              '--grass-left': `${Math.random() * 100}%`,
+              '--grass-delay': `${Math.random() * 4}s`,
+              '--grass-speed': `${Math.random() * 3 + 2}s`,
+              '--grass-intensity': Math.random() * 20 + 8,
+              '--grass-hue': Math.random() * 30 + 110, // Slightly different green hues
             } as React.CSSProperties}
           />
         ))}
@@ -498,22 +518,149 @@ export default function Landscapers() {
           z-index: 10;
         }
 
-        /* Add subtle grass shadow effect */
-        .grass-blade::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: calc(var(--grass-width) * 1.5);
-          height: 3px;
-          background: radial-gradient(
-            ellipse,
-            rgba(0, 100, 0, 0.3) 0%,
-            transparent 70%
-          );
-          border-radius: 50%;
-        }
+                 /* Add subtle grass shadow effect */
+         .grass-blade::after {
+           content: '';
+           position: absolute;
+           bottom: -2px;
+           left: 50%;
+           transform: translateX(-50%);
+           width: calc(var(--grass-width) * 1.5);
+           height: 3px;
+           background: radial-gradient(
+             ellipse,
+             rgba(0, 100, 0, 0.3) 0%,
+             transparent 70%
+           );
+           border-radius: 50%;
+         }
+
+         /* Overlaying Foreground Grass Styles */
+         .grass-field-overlay {
+           bottom: 0;
+           height: 100vh;
+           background: transparent;
+         }
+
+         .grass-blade-overlay {
+           position: absolute;
+           bottom: 0;
+           left: var(--grass-left);
+           width: var(--grass-width);
+           height: var(--grass-height);
+           background: linear-gradient(
+             to top,
+             hsl(var(--grass-hue), 70%, 20%) 0%,
+             hsl(var(--grass-hue), 80%, 30%) 30%,
+             hsl(var(--grass-hue), 85%, 40%) 60%,
+             hsl(var(--grass-hue), 90%, 50%) 85%,
+             hsl(var(--grass-hue), 95%, 60%) 100%
+           );
+           border-radius: 50% 50% 50% 50% / 10% 10% 90% 90%;
+           transform-origin: bottom center;
+           animation: grassOverlaySway var(--grass-speed) ease-in-out infinite;
+           animation-delay: var(--grass-delay);
+           opacity: 0.4;
+           box-shadow: 
+             inset 1px 0 rgba(255, 255, 255, 0.3),
+             0 0 4px rgba(0, 120, 0, 0.2);
+         }
+
+         @keyframes grassOverlaySway {
+           0%, 100% {
+             transform: rotate(0deg) translateX(0px) scaleY(1);
+           }
+           20% {
+             transform: rotate(calc(var(--grass-intensity) * 1.2deg)) translateX(3px) scaleY(1.02);
+           }
+           40% {
+             transform: rotate(calc(var(--grass-intensity) * -0.8deg)) translateX(-2px) scaleY(0.98);
+           }
+           60% {
+             transform: rotate(calc(var(--grass-intensity) * 0.6deg)) translateX(2px) scaleY(1.01);
+           }
+           80% {
+             transform: rotate(calc(var(--grass-intensity) * -0.4deg)) translateX(-1px) scaleY(0.99);
+           }
+         }
+
+         /* Overlay grass variations */
+         .grass-blade-overlay:nth-child(2n) {
+           animation: grassOverlayGust calc(var(--grass-speed) * 1.2) ease-in-out infinite;
+           animation-delay: var(--grass-delay);
+           opacity: 0.5;
+         }
+
+         @keyframes grassOverlayGust {
+           0%, 70%, 100% {
+             transform: rotate(0deg) translateX(0px);
+           }
+           10% {
+             transform: rotate(calc(var(--grass-intensity) * 2.5deg)) translateX(5px);
+           }
+           25% {
+             transform: rotate(calc(var(--grass-intensity) * -1.8deg)) translateX(-4px);
+           }
+           40% {
+             transform: rotate(calc(var(--grass-intensity) * 1.3deg)) translateX(3px);
+           }
+           55% {
+             transform: rotate(calc(var(--grass-intensity) * -0.7deg)) translateX(-1px);
+           }
+         }
+
+         /* Tall overlay grass */
+         .grass-blade-overlay:nth-child(3n) {
+           height: calc(var(--grass-height) * 1.3);
+           animation: grassOverlayTall calc(var(--grass-speed) * 1.5) ease-in-out infinite;
+           animation-delay: var(--grass-delay);
+           opacity: 0.3;
+           background: linear-gradient(
+             to top,
+             hsl(calc(var(--grass-hue) - 10), 65%, 18%) 0%,
+             hsl(calc(var(--grass-hue) - 10), 75%, 28%) 40%,
+             hsl(calc(var(--grass-hue) - 10), 80%, 38%) 80%,
+             hsl(calc(var(--grass-hue) - 10), 85%, 48%) 100%
+           );
+         }
+
+         @keyframes grassOverlayTall {
+           0%, 100% {
+             transform: rotate(0deg) translateX(0px) scaleY(1);
+           }
+           25% {
+             transform: rotate(calc(var(--grass-intensity) * 0.6deg)) translateX(1px) scaleY(1.02);
+           }
+           50% {
+             transform: rotate(calc(var(--grass-intensity) * -0.4deg)) translateX(-1px) scaleY(0.98);
+           }
+           75% {
+             transform: rotate(calc(var(--grass-intensity) * 0.3deg)) translateX(1px) scaleY(1.01);
+           }
+         }
+
+         /* Dense short overlay grass */
+         .grass-blade-overlay:nth-child(4n) {
+           height: calc(var(--grass-height) * 0.7);
+           animation: grassOverlayShort calc(var(--grass-speed) * 0.8) ease-in-out infinite;
+           animation-delay: var(--grass-delay);
+           opacity: 0.6;
+           background: linear-gradient(
+             to top,
+             hsl(calc(var(--grass-hue) + 15), 75%, 25%) 0%,
+             hsl(calc(var(--grass-hue) + 15), 85%, 35%) 60%,
+             hsl(calc(var(--grass-hue) + 15), 90%, 45%) 100%
+           );
+         }
+
+         @keyframes grassOverlayShort {
+           0%, 100% {
+             transform: rotate(0deg) scaleX(1);
+           }
+           50% {
+             transform: rotate(calc(var(--grass-intensity) * 1.8deg)) scaleX(1.1);
+           }
+         }
       `}</style>
     </main>
   );
