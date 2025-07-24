@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
 
 const landscapeFeatures = [
   {
@@ -129,7 +130,7 @@ export default function Landscapers() {
           </h2>
           
           <div className="grid md:grid-cols-4 gap-6">
-            {services.map((service, idx) => (
+            {services.map((service, _idx) => (
               <div
                 key={service.title}
                 className={`${service.color} rounded-xl p-6 text-center hover:scale-105 transition-transform duration-200`}
@@ -154,7 +155,7 @@ export default function Landscapers() {
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {landscapeFeatures.map((feature, idx) => (
+            {landscapeFeatures.map((feature, _idx) => (
               <div
                 key={feature.title}
                 className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-emerald-400"
@@ -211,7 +212,7 @@ export default function Landscapers() {
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {pricing.map((plan, idx) => (
+            {pricing.map((plan, _idx) => (
               <div
                 key={plan.name}
                 className={`bg-white rounded-2xl shadow-lg overflow-hidden ${
@@ -319,12 +320,12 @@ export default function Landscapers() {
       {/* Back Link */}
       <section className="py-8 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <a 
+          <Link 
             href="/local-services-modern"
             className="text-emerald-600 hover:text-emerald-800 font-semibold"
           >
             ← Back to Service Selection
-          </a>
+          </Link>
         </div>
       </section>
     </main>

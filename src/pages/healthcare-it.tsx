@@ -259,7 +259,7 @@ export default function HealthcareIT() {
 
               What sets Curacart apart is its focus on convenience and care. The platform supports personalized services such as automated refill alerts, pharmacist consultations, and transparent pricing, making it easier for individuals and families to stay on track with their medications.
 
-              In a world where healthcare is becoming increasingly digital, Curacart stands at the forefront of innovation—combining technology, trust, and compassion to enhance everyday wellness. Whether managing long-term health needs or short-term recovery, Curacart is committed to being a reliable partner in every patient's healthcare journey.</div>
+              In a world where healthcare is becoming increasingly digital, Curacart stands at the forefront of innovation—combining technology, trust, and compassion to enhance everyday wellness. Whether managing long-term health needs or short-term recovery, Curacart is committed to being a reliable partner in every patient&apos;s healthcare journey.</div>
           </div>
         </div>
       </section>
@@ -271,7 +271,7 @@ export default function HealthcareIT() {
           <div className="flex flex-col items-center text-center">
             <div className="w-16 h-16 flex items-center justify-center bg-teal-50 rounded-full text-3xl mb-3 border border-teal-200">📄</div>
             <div className="font-semibold mb-1">Upload Prescription</div>
-            <div className="text-gray-600 text-sm">Snap a photo or upload your doctor's prescription.</div>
+            <div className="text-gray-600 text-sm">Snap a photo or upload your doctor&apos;s prescription.</div>
           </div>
           <div className="flex flex-col items-center text-center">
             <div className="w-16 h-16 flex items-center justify-center bg-teal-50 rounded-full text-3xl mb-3 border border-teal-200">🛒</div>
@@ -291,11 +291,11 @@ export default function HealthcareIT() {
         <h2 className="text-2xl font-bold mb-8 text-teal-700 text-center">What Our Customers Say</h2>
         <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
           <div className="bg-white rounded-2xl shadow p-6 flex-1 text-center border-t-4 border-teal-200">
-            <div className="italic text-gray-700 mb-2">"Super fast delivery and genuine medicines. I trust them for my family's health!"</div>
+            <div className="italic text-gray-700 mb-2">&quot;Super fast delivery and genuine medicines. I trust them for my family&apos;s health!&quot;</div>
             <div className="font-bold text-teal-700">— Priya S.</div>
           </div>
           <div className="bg-white rounded-2xl shadow p-6 flex-1 text-center border-t-4 border-teal-200">
-            <div className="italic text-gray-700 mb-2">"Easy to upload prescription and order. Customer support is excellent!"</div>
+            <div className="italic text-gray-700 mb-2">&quot;Easy to upload prescription and order. Customer support is excellent!&quot;</div>
             <div className="font-bold text-teal-700">— Rahul M.</div>
           </div>
         </div>

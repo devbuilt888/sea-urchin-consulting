@@ -58,7 +58,7 @@ export default function FashionBoutique() {
     <main className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-100 to-white text-gray-800 font-sans relative overflow-x-hidden">
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white p-8 rounded-xl shadow-xl max-w-sm text-center animate-fade-in">
+          <div className="bg-white p-8 rounded-xl shadow-xl max-w-sm lg:max-w-md xl:max-w-lg text-center animate-fade-in">
             <h3 className="text-2xl font-semibold text-rose-600 mb-4">Welcome to The Boutique Co.</h3>
             <p className="text-sm text-gray-600 mb-6">Sign up today and get 10% off your first purchase!</p>
             <button

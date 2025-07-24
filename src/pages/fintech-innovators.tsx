@@ -73,7 +73,7 @@ const testimonials = [
 ];
 
 export default function FintechInnovators() {
-  const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [testimonialIdx] = useState(0);
   const [featuresRef, featuresVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
   const [testimonialsRef, testimonialsVisible] = useReveal();
@@ -176,7 +176,7 @@ export default function FintechInnovators() {
       <section id="leadform" className="flex flex-col items-center px-4 mb-32">
         <div className="bg-white border-l-4 border-emerald-400 shadow-lg rounded-xl px-8 py-12 max-w-xl w-full flex flex-col items-center mb-20">
           <span className="uppercase text-xs tracking-widest text-emerald-700 font-bold mb-4">Get Started</span>
-          <div className="text-lg font-semibold text-emerald-900 mb-8 text-center">Ready to modernize your fintech stack?<br />Leave your email and we'll reach out for a free consultation.</div>
+          <div className="text-lg font-semibold text-emerald-900 mb-8 text-center">Ready to modernize your fintech stack?<br />Leave your email and we&apos;ll reach out for a free consultation.</div>
           {/* Replace with real form integration */}
           <form className="w-full flex flex-col gap-4">
             <input type="email" placeholder="Your Email" className="rounded-lg px-4 py-3 bg-emerald-100 text-emerald-900 placeholder:text-emerald-400 border border-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" />

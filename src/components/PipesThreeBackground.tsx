@@ -63,7 +63,7 @@ export default function PipesThreeBackground() {
     });
 
     // Helper function to create hollow pipe geometry
-    const createHollowPipe = (outerRadius: number, innerRadius: number, height: number, segments = 16) => {
+    const createHollowPipe = (outerRadius: number, innerRadius: number, height: number) => {
       const shape = new THREE.Shape();
       shape.arc(0, 0, outerRadius, 0, Math.PI * 2, false);
       

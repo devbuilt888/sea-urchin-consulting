@@ -232,7 +232,7 @@ export default function PhotographerLanding() {
             {/* Lightbox Overlay */}
             {lightbox.open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setLightbox({ open: false, category: '', images: [], index: 0 })}>
-                    <div className="relative max-w-3xl w-full px-4" onClick={e => e.stopPropagation()}>
+                    <div className="relative max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl w-full px-4" onClick={e => e.stopPropagation()}>
                         <button
                             className="absolute w-10 h-10 top-5 right-10 bg-black/70 text-white rounded-full p-2 text-2xl hover:bg-pink-500 transition z-10"
                             onClick={() => setLightbox({ open: false, category: '', images: [], index: 0 })}

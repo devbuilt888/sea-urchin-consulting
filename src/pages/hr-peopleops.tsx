@@ -73,7 +73,7 @@ const testimonials = [
 ];
 
 export default function HRPeopleOps() {
-  const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [testimonialIdx] = useState(0);
   const [featuresRef, featuresVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
   const [testimonialsRef, testimonialsVisible] = useReveal();
@@ -171,7 +171,7 @@ export default function HRPeopleOps() {
       <section id="leadform" className="flex flex-col items-center px-4 mb-32">
         <div className="bg-white border-l-4 border-purple-400 shadow-lg rounded-xl px-8 py-12 max-w-xl w-full flex flex-col items-center mb-20">
           <span className="uppercase text-xs tracking-widest text-purple-700 font-bold mb-4">Get Started</span>
-          <div className="text-lg font-semibold text-blue-700 mb-8 text-center">Ready to modernize your HR? <br />Leave your email and we'll reach out for a free demo.</div>
+          <div className="text-lg font-semibold text-blue-700 mb-8 text-center">Ready to modernize your HR? <br />Leave your email and we&apos;ll reach out for a free demo.</div>
           {/* Replace with real form integration */}
           <form className="w-full flex flex-col gap-4">
             <input type="email" placeholder="Your Email" className="rounded-lg px-4 py-3 bg-purple-100 text-blue-700 placeholder:text-purple-400 border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" />
