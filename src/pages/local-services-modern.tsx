@@ -260,6 +260,74 @@ export default function ModernLandingPage() {
         </div>
       </section>
 
+      {/* Service Selection Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Choose Your Service
+          </h2>
+          <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+            Get a specialized landing page designed specifically for your industry
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Plumbers Button */}
+            <a 
+              href="/plumbers"
+              className="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                🔧
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Plumbers</h3>
+              <p className="text-white/70 mb-6">Emergency dispatch, parts inventory, customer follow-up, and automated estimates</p>
+              <div className="inline-flex items-center text-blue-400 font-semibold group-hover:text-white transition-colors">
+                View Plumbers Page
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+
+            {/* HVAC Button */}
+            <a 
+              href="/hvac"
+              className="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                ❄️
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">HVAC</h3>
+              <p className="text-white/70 mb-6">Emergency service, maintenance contracts, parts tracking, and customer management</p>
+              <div className="inline-flex items-center text-cyan-400 font-semibold group-hover:text-white transition-colors">
+                View HVAC Page
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+
+            {/* Landscapers Button */}
+            <a 
+              href="/landscapers"
+              className="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                🌿
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Landscapers</h3>
+              <p className="text-white/70 mb-6">Seasonal scheduling, crew management, project planning, and recurring revenue</p>
+              <div className="inline-flex items-center text-emerald-400 font-semibold group-hover:text-white transition-colors">
+                View Landscapers Page
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
               {/* About Section */}
         <section className="bg-gradient-to-b from-gray-900 to-black py-20 px-4 sm:px-6 lg:px-8 sm:py-40 relative overflow-hidden"  style={{borderRadius:'50px 50px 0px 0px',  boxShadow: '0 -20px 30px rgba(0, 0, 0, 0.4)', }}>
           {/* Background Pattern */}
