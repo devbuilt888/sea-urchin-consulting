@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import HVACFanBackground from '../components/HVACFanBackground';
 
@@ -68,10 +68,87 @@ const pricing = [
 ];
 
 export default function HVAC() {
+  const [isFrozen, setIsFrozen] = useState(false);
+  const [isThawing, setIsThawing] = useState(false);
+  const [snowParticles, setSnowParticles] = useState<Array<{id: number, x: number, y: number}>>([]);
+
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    let freezeTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      // Clear existing timeouts
+      clearTimeout(scrollTimeout);
+      clearTimeout(freezeTimeout);
+
+      // If we were frozen, start thawing
+      if (isFrozen) {
+        setIsThawing(true);
+        setIsFrozen(false);
+        
+        // Create snow particles effect
+        const particles = Array.from({ length: 20 }, (_, i) => ({
+          id: i,
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight
+        }));
+        setSnowParticles(particles);
+
+        // Clear snow particles after animation
+        setTimeout(() => {
+          setSnowParticles([]);
+          setIsThawing(false);
+        }, 1000);
+      }
+
+      // Set timeout to detect when scrolling stops
+      scrollTimeout = setTimeout(() => {
+        // Start freezing process after 2 seconds of no scrolling
+        freezeTimeout = setTimeout(() => {
+          if (!isThawing) {
+            setIsFrozen(true);
+          }
+        }, 2000);
+      }, 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+      clearTimeout(freezeTimeout);
+    };
+  }, [isFrozen, isThawing]);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-100 to-white text-gray-900 font-sans relative overflow-x-hidden">
       <HVACFanBackground />
-      <div className="relative z-10">
+      
+      {/* Freeze Overlay */}
+      <div className={`fixed inset-0 pointer-events-none z-20 transition-all duration-3000 ${
+        isFrozen ? 'freeze-overlay-active' : 'freeze-overlay-inactive'
+      }`} />
+      
+      {/* Snow Particles */}
+      {snowParticles.length > 0 && (
+        <div className="fixed inset-0 pointer-events-none z-30">
+          {snowParticles.map((particle) => (
+            <div
+              key={particle.id}
+              className="snow-particle"
+              style={{
+                left: `${particle.x}px`,
+                top: `${particle.y}px`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+      
+      <div className={`relative z-10 transition-all duration-2000 ${
+        isFrozen ? 'frozen-content' : ''
+      }`}>
       {/* Hero */}
       <section className="relative flex flex-col justify-center items-center text-center px-6 pt-32 pb-24">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-100 via-blue-200 to-blue-900 rounded-full blur-3xl opacity-40 z-0" />
@@ -348,11 +425,101 @@ export default function HVAC() {
           animation-duration: 4.1s;
         }
 
-        .windy-text-strong:nth-child(odd) {
-          animation-delay: 0.3s;
-          animation-duration: 3.5s;
-        }
-      `}</style>
+                 .windy-text-strong:nth-child(odd) {
+           animation-delay: 0.3s;
+           animation-duration: 3.5s;
+         }
+
+         /* Freeze Overlay Effects */
+         .freeze-overlay-inactive {
+           background: transparent;
+           backdrop-filter: none;
+         }
+
+         .freeze-overlay-active {
+           background: linear-gradient(
+             135deg,
+             rgba(173, 216, 230, 0.3) 0%,
+             rgba(176, 196, 222, 0.4) 25%,
+             rgba(135, 206, 235, 0.35) 50%,
+             rgba(176, 224, 230, 0.3) 75%,
+             rgba(173, 216, 230, 0.25) 100%
+           );
+           backdrop-filter: blur(1px) brightness(1.1) contrast(0.95);
+         }
+
+         /* Frozen Content Effects */
+         .frozen-content {
+           filter: hue-rotate(20deg) saturate(0.7) brightness(1.1);
+         }
+
+         .frozen-content * {
+           text-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+         }
+
+         /* Snow Particles */
+         @keyframes snowFall {
+           0% {
+             opacity: 1;
+             transform: translateY(0px) rotate(0deg) scale(1);
+           }
+           100% {
+             opacity: 0;
+             transform: translateY(100px) rotate(360deg) scale(0.3);
+           }
+         }
+
+         @keyframes snowShake {
+           0%, 100% {
+             transform: translateX(0px);
+           }
+           25% {
+             transform: translateX(-3px);
+           }
+           75% {
+             transform: translateX(3px);
+           }
+         }
+
+         .snow-particle {
+           position: absolute;
+           width: 6px;
+           height: 6px;
+           background: radial-gradient(
+             circle,
+             rgba(255, 255, 255, 0.9) 0%,
+             rgba(173, 216, 230, 0.7) 50%,
+             rgba(176, 224, 230, 0.5) 100%
+           );
+           border-radius: 50%;
+           animation: snowFall 1s ease-out forwards, snowShake 0.2s ease-in-out 3;
+           box-shadow: 
+             0 0 6px rgba(255, 255, 255, 0.8),
+             0 0 12px rgba(173, 216, 230, 0.4);
+         }
+
+         .snow-particle:nth-child(odd) {
+           animation-delay: 0.1s;
+           animation-duration: 1.2s, 0.25s;
+         }
+
+         .snow-particle:nth-child(even) {
+           animation-delay: 0.05s;
+           animation-duration: 0.8s, 0.15s;
+         }
+
+         .snow-particle:nth-child(3n) {
+           width: 8px;
+           height: 8px;
+           animation-duration: 1.5s, 0.3s;
+         }
+
+         .snow-particle:nth-child(4n) {
+           width: 4px;
+           height: 4px;
+           animation-duration: 0.6s, 0.1s;
+         }
+       `}</style>
     </main>
   );
 } 
