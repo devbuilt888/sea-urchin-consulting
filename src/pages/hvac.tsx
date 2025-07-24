@@ -135,12 +135,12 @@ export default function HVAC() {
 
       // Set timeout to detect when scrolling stops
       scrollTimeout = setTimeout(() => {
-        // Start freezing process after 5 seconds of no scrolling (much longer for gradual effect)
+        // Start freezing process after 3 seconds of no scrolling (longer for gradual effect)
         freezeTimeout = setTimeout(() => {
           if (!isThawing) {
             setIsFrozen(true);
           }
-        }, 5000);
+        }, 3000);
       }, 100);
     };
 
@@ -204,10 +204,10 @@ export default function HVAC() {
         <span className="absolute left-1/3 bottom-20 text-4xl animate-bounce z-10">📅</span>
         <span className="absolute right-1/4 bottom-32 text-4xl animate-pulse z-10">⚡</span>
         
-        <h1 className="text-5xl font-bold mb-6 max-w-3xl relative z-10 text-blue-900 drop-shadow windy-text-strong">
+        <h1 className="text-5xl font-bold mb-6 max-w-3xl relative z-10 text-blue-900 drop-shadow-lg windy-text-strong" style={{textShadow: '0 3px 6px rgba(59, 130, 246, 0.4)'}}>
           Transform Your HVAC Business
         </h1>
-        <p className="text-xl max-w-2xl mb-8 text-blue-800 relative z-10 leading-relaxed windy-text">
+        <p className="text-xl max-w-2xl mb-8 text-blue-800 relative z-10 leading-relaxed windy-text" style={{textShadow: '0 2px 4px rgba(59, 130, 246, 0.3)'}}>
           From seasonal maintenance to emergency repairs - manage your entire HVAC operation 
           with intelligent scheduling and automated customer communications.
         </p>
@@ -222,10 +222,10 @@ export default function HVAC() {
       {/* Features */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 text-blue-900 windy-text-medium">
+          <h2 className="text-4xl font-bold text-center mb-4 text-blue-900 windy-text-medium" style={{textShadow: '0 2px 4px rgba(59, 130, 246, 0.3)'}}>
             HVAC-Specific Tools & Features
           </h2>
-          <p className="text-xl text-center mb-12 text-blue-700 max-w-3xl mx-auto windy-text">
+          <p className="text-xl text-center mb-12 text-blue-700 max-w-3xl mx-auto windy-text" style={{textShadow: '0 1px 2px rgba(59, 130, 246, 0.2)'}}>
             Designed for heating, cooling, and ventilation professionals
           </p>
           
@@ -584,55 +584,25 @@ export default function HVAC() {
          .feature-card-frozen {
            background: linear-gradient(
              180deg,
-             rgba(173, 216, 230, 0.95) 0%,
-             rgba(176, 196, 222, 0.9) 30%,
-             rgba(135, 206, 235, 0.85) 60%,
-             rgba(176, 224, 230, 0.9) 100%
-           ) !important;
-           border: 2px solid rgba(100, 149, 237, 0.6);
-           box-shadow: 
-             0 0 20px rgba(173, 216, 230, 0.4),
-             inset 0 0 20px rgba(255, 255, 255, 0.3);
-           transition: all 6s ease-in-out;
+             rgba(255, 255, 255, 0.95) 0%,
+             rgba(240, 248, 255, 0.9) 50%,
+             rgba(230, 245, 255, 0.85) 100%
+           );
+           transition: all 4s ease-in-out;
            transition-delay: var(--freeze-delay);
          }
 
          .feature-card-frozen * {
-           color: rgba(30, 58, 138, 0.9) !important;
-           text-shadow: 0 0 12px rgba(173, 216, 230, 0.8);
-           transition: all 6s ease-in-out;
+           color: rgba(30, 58, 138, 0.8) !important;
+           text-shadow: 0 0 8px rgba(173, 216, 230, 0.6);
+           transition: all 4s ease-in-out;
            transition-delay: var(--freeze-delay);
          }
 
          .feature-card-frozen .text-5xl {
            filter: hue-rotate(180deg) saturate(0.5) brightness(1.2);
-           transition: all 6s ease-in-out;
+           transition: all 4s ease-in-out;
            transition-delay: var(--freeze-delay);
-         }
-
-         /* Ice crack effects */
-         .feature-card-frozen::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: 0;
-           right: 0;
-           bottom: 0;
-           background-image: 
-             linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.8) 49%, rgba(255, 255, 255, 0.8) 51%, transparent 52%),
-             linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.6) 49%, rgba(255, 255, 255, 0.6) 51%, transparent 52%),
-             linear-gradient(135deg, transparent 48%, rgba(173, 216, 230, 0.4) 49%, rgba(173, 216, 230, 0.4) 51%, transparent 52%),
-             linear-gradient(-135deg, transparent 48%, rgba(176, 224, 230, 0.5) 49%, rgba(176, 224, 230, 0.5) 51%, transparent 52%),
-             radial-gradient(circle at 20% 30%, transparent 25%, rgba(255, 255, 255, 0.3) 26%, rgba(255, 255, 255, 0.3) 35%, transparent 36%),
-             radial-gradient(circle at 80% 70%, transparent 30%, rgba(173, 216, 230, 0.4) 31%, rgba(173, 216, 230, 0.4) 40%, transparent 41%);
-           background-size: 100px 100px, 120px 120px, 80px 80px, 90px 90px, 200px 200px, 150px 150px;
-           background-position: 0 0, 30px 30px, 0 0, 20px 20px, 0 0, 50px 50px;
-           opacity: 0;
-           animation: iceCrackFormation 6s ease-in-out forwards;
-           animation-delay: calc(var(--freeze-delay) + 2s);
-           pointer-events: none;
-           border-radius: 1rem;
-           z-index: 1;
          }
 
          /* Ice crystals effect on frozen cards */
@@ -644,57 +614,27 @@ export default function HVAC() {
            right: 0;
            bottom: 0;
            background-image: 
-             radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.4) 2px, transparent 3px),
-             radial-gradient(circle at 80% 30%, rgba(173, 216, 230, 0.5) 1px, transparent 2px),
-             radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.3) 3px, transparent 4px),
-             radial-gradient(circle at 90% 80%, rgba(176, 224, 230, 0.4) 2px, transparent 3px),
-             radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.35) 2px, transparent 3px),
-             radial-gradient(circle at 60% 40%, rgba(173, 216, 230, 0.3) 1px, transparent 2px),
-             radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.25) 2px, transparent 3px);
-           background-size: 50px 50px, 30px 30px, 40px 40px, 25px 25px, 35px 35px, 45px 45px, 38px 38px;
+             radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+             radial-gradient(circle at 80% 30%, rgba(173, 216, 230, 0.4) 1px, transparent 1px),
+             radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.2) 3px, transparent 3px),
+             radial-gradient(circle at 90% 80%, rgba(176, 224, 230, 0.3) 2px, transparent 2px),
+             radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.25) 2px, transparent 2px);
+           background-size: 50px 50px, 30px 30px, 40px 40px, 25px 25px, 35px 35px;
            opacity: 0;
-           animation: iceFormation 6s ease-in-out forwards;
-           animation-delay: calc(var(--freeze-delay) + 3s);
+           animation: iceFormation 4s ease-in-out forwards;
+           animation-delay: calc(var(--freeze-delay) + 2s);
            pointer-events: none;
            border-radius: 1rem;
-           z-index: 2;
          }
 
          @keyframes iceFormation {
            0% {
              opacity: 0;
-             transform: scale(0.8) rotate(0deg);
-           }
-           30% {
-             opacity: 0.3;
-             transform: scale(0.95) rotate(1deg);
-           }
-           60% {
-             opacity: 0.6;
-             transform: scale(1.05) rotate(-0.5deg);
-           }
-           100% {
-             opacity: 0.9;
-             transform: scale(1) rotate(0deg);
-           }
-         }
-
-         @keyframes iceCrackFormation {
-           0% {
-             opacity: 0;
-             transform: scale(0.9);
-           }
-           25% {
-             opacity: 0.3;
-             transform: scale(0.95);
+             transform: scale(0.8);
            }
            50% {
-             opacity: 0.5;
-             transform: scale(1.02);
-           }
-           75% {
-             opacity: 0.7;
-             transform: scale(1.01);
+             opacity: 0.6;
+             transform: scale(1.05);
            }
            100% {
              opacity: 0.8;
@@ -716,7 +656,7 @@ export default function HVAC() {
          }
 
          .feature-card-frozen::before {
-           animation: freezeWave 6s ease-in-out forwards;
+           animation: freezeWave 4s ease-in-out forwards;
            animation-delay: var(--freeze-delay);
          }
 
@@ -772,31 +712,16 @@ export default function HVAC() {
            background-size: 40px 40px, 25px 25px, 35px 35px, 20px 20px, 30px 30px, 45px 45px, 28px 28px, 22px 22px;
          }
 
-         /* Updated freeze wave animation - more gradual */
+         /* Progressive freeze wave effect */
          @keyframes freezeWave {
            0% {
              transform: translateY(-100%) scaleY(0);
-             opacity: 0;
            }
-           20% {
-             transform: translateY(-80%) scaleY(0.2);
-             opacity: 0.1;
-           }
-           40% {
-             transform: translateY(-60%) scaleY(0.4);
-             opacity: 0.3;
-           }
-           60% {
-             transform: translateY(-40%) scaleY(0.6);
-             opacity: 0.5;
-           }
-           80% {
-             transform: translateY(-20%) scaleY(0.8);
-             opacity: 0.7;
+           50% {
+             transform: translateY(-50%) scaleY(0.5);
            }
            100% {
              transform: translateY(0%) scaleY(1);
-             opacity: 1;
            }
          }
 
