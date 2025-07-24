@@ -86,29 +86,42 @@ export default function HVAC() {
         setIsThawing(true);
         setIsFrozen(false);
         
-        // Create snow particles effect
-        const particles = Array.from({ length: 20 }, (_, i) => ({
-          id: i,
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight
-        }));
+        // Create snow particles effect - more particles from card areas
+        const particles = Array.from({ length: 30 }, (_, i) => {
+          // Some particles come from feature card positions
+          const isFromCard = i < 16; // First 16 particles come from cards
+          let x, y;
+          
+          if (isFromCard) {
+            // Approximate card positions (4 cards in a grid)
+            const cardIndex = Math.floor(i / 4);
+            const cardWidth = window.innerWidth / 4;
+            x = (cardIndex * cardWidth) + (Math.random() * cardWidth * 0.8) + (cardWidth * 0.1);
+            y = Math.random() * 300 + 400; // Around where feature cards are
+          } else {
+            x = Math.random() * window.innerWidth;
+            y = Math.random() * window.innerHeight;
+          }
+          
+          return { id: i, x, y };
+        });
         setSnowParticles(particles);
 
         // Clear snow particles after animation
         setTimeout(() => {
           setSnowParticles([]);
           setIsThawing(false);
-        }, 1000);
+        }, 1500); // Slightly longer to match the gradual effect
       }
 
       // Set timeout to detect when scrolling stops
       scrollTimeout = setTimeout(() => {
-        // Start freezing process after 2 seconds of no scrolling
+        // Start freezing process after 3 seconds of no scrolling (longer for gradual effect)
         freezeTimeout = setTimeout(() => {
           if (!isThawing) {
             setIsFrozen(true);
           }
-        }, 2000);
+        }, 3000);
       }, 100);
     };
 
@@ -187,7 +200,13 @@ export default function HVAC() {
             {hvacFeatures.map((feature, _idx) => (
               <div
                 key={feature.title}
-                className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-blue-400"
+                className={`bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-blue-400 feature-card ${
+                  isFrozen ? 'feature-card-frozen' : ''
+                }`}
+                style={{ 
+                  '--freeze-delay': `${_idx * 0.8}s`,
+                  '--card-index': _idx 
+                } as React.CSSProperties}
               >
                 <div className="text-5xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-blue-900">{feature.title}</h3>
@@ -518,6 +537,171 @@ export default function HVAC() {
            width: 4px;
            height: 4px;
            animation-duration: 0.6s, 0.1s;
+         }
+
+         /* Feature Card Progressive Freeze Effects */
+         .feature-card {
+           position: relative;
+           overflow: hidden;
+         }
+
+         .feature-card::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background: linear-gradient(
+             180deg,
+             rgba(173, 216, 230, 0.7) 0%,
+             rgba(176, 196, 222, 0.6) 25%,
+             rgba(135, 206, 235, 0.5) 50%,
+             rgba(176, 224, 230, 0.4) 75%,
+             rgba(173, 216, 230, 0.3) 100%
+           );
+           opacity: 0;
+           transform: translateY(-100%);
+           transition: all 4s ease-in-out;
+           transition-delay: var(--freeze-delay);
+           pointer-events: none;
+           border-radius: 1rem;
+         }
+
+         .feature-card-frozen::before {
+           opacity: 1;
+           transform: translateY(0%);
+         }
+
+         .feature-card-frozen {
+           background: linear-gradient(
+             180deg,
+             rgba(255, 255, 255, 0.95) 0%,
+             rgba(240, 248, 255, 0.9) 50%,
+             rgba(230, 245, 255, 0.85) 100%
+           );
+           transition: all 4s ease-in-out;
+           transition-delay: var(--freeze-delay);
+         }
+
+         .feature-card-frozen * {
+           color: rgba(30, 58, 138, 0.8) !important;
+           text-shadow: 0 0 8px rgba(173, 216, 230, 0.6);
+           transition: all 4s ease-in-out;
+           transition-delay: var(--freeze-delay);
+         }
+
+         .feature-card-frozen .text-5xl {
+           filter: hue-rotate(180deg) saturate(0.5) brightness(1.2);
+           transition: all 4s ease-in-out;
+           transition-delay: var(--freeze-delay);
+         }
+
+         /* Ice crystals effect on frozen cards */
+         .feature-card-frozen::after {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background-image: 
+             radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+             radial-gradient(circle at 80% 30%, rgba(173, 216, 230, 0.4) 1px, transparent 1px),
+             radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.2) 3px, transparent 3px),
+             radial-gradient(circle at 90% 80%, rgba(176, 224, 230, 0.3) 2px, transparent 2px),
+             radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.25) 2px, transparent 2px);
+           background-size: 50px 50px, 30px 30px, 40px 40px, 25px 25px, 35px 35px;
+           opacity: 0;
+           animation: iceFormation 4s ease-in-out forwards;
+           animation-delay: calc(var(--freeze-delay) + 2s);
+           pointer-events: none;
+           border-radius: 1rem;
+         }
+
+         @keyframes iceFormation {
+           0% {
+             opacity: 0;
+             transform: scale(0.8);
+           }
+           50% {
+             opacity: 0.6;
+             transform: scale(1.05);
+           }
+           100% {
+             opacity: 0.8;
+             transform: scale(1);
+           }
+         }
+
+         /* Progressive freeze wave effect */
+         @keyframes freezeWave {
+           0% {
+             transform: translateY(-100%) scaleY(0);
+           }
+           50% {
+             transform: translateY(-50%) scaleY(0.5);
+           }
+           100% {
+             transform: translateY(0%) scaleY(1);
+           }
+         }
+
+         .feature-card-frozen::before {
+           animation: freezeWave 4s ease-in-out forwards;
+           animation-delay: var(--freeze-delay);
+         }
+
+         /* Thawing effect when scrolling resumes */
+         .feature-card:not(.feature-card-frozen) {
+           animation: thawShake 0.6s ease-in-out;
+         }
+
+         @keyframes thawShake {
+           0%, 100% {
+             transform: translateX(0) translateY(0) rotate(0deg);
+           }
+           10% {
+             transform: translateX(-2px) translateY(-1px) rotate(-0.5deg);
+           }
+           20% {
+             transform: translateX(2px) translateY(1px) rotate(0.5deg);
+           }
+           30% {
+             transform: translateX(-1px) translateY(-2px) rotate(-0.3deg);
+           }
+           40% {
+             transform: translateX(1px) translateY(2px) rotate(0.3deg);
+           }
+           50% {
+             transform: translateX(-1px) translateY(-1px) rotate(-0.2deg);
+           }
+           60% {
+             transform: translateX(1px) translateY(1px) rotate(0.2deg);
+           }
+           70% {
+             transform: translateX(-0.5px) translateY(-0.5px) rotate(-0.1deg);
+           }
+           80% {
+             transform: translateX(0.5px) translateY(0.5px) rotate(0.1deg);
+           }
+           90% {
+             transform: translateX(0) translateY(0) rotate(0deg);
+           }
+         }
+
+         /* Enhanced ice crystal patterns for gradual freeze */
+         .feature-card-frozen::after {
+           background-image: 
+             radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
+             radial-gradient(circle at 85% 25%, rgba(173, 216, 230, 0.5) 1px, transparent 1px),
+             radial-gradient(circle at 35% 65%, rgba(255, 255, 255, 0.3) 2px, transparent 3px),
+             radial-gradient(circle at 75% 75%, rgba(176, 224, 230, 0.4) 1px, transparent 2px),
+             radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.35) 1px, transparent 2px),
+             radial-gradient(circle at 65% 45%, rgba(173, 216, 230, 0.3) 2px, transparent 3px),
+             radial-gradient(circle at 45% 25%, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+             radial-gradient(circle at 85% 85%, rgba(176, 224, 230, 0.35) 1px, transparent 2px);
+           background-size: 40px 40px, 25px 25px, 35px 35px, 20px 20px, 30px 30px, 45px 45px, 28px 28px, 22px 22px;
          }
        `}</style>
     </main>
