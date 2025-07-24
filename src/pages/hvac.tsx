@@ -71,6 +71,7 @@ export default function HVAC() {
   const [isFrozen, setIsFrozen] = useState(false);
   const [isThawing, setIsThawing] = useState(false);
   const [snowParticles, setSnowParticles] = useState<Array<{id: number, x: number, y: number}>>([]);
+  const [thawParticles, setThawParticles] = useState<Array<{id: number, x: number, y: number, cardIndex: number}>>([]);
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
@@ -107,21 +108,39 @@ export default function HVAC() {
         });
         setSnowParticles(particles);
 
-        // Clear snow particles after animation
+        // Create localized thaw particles around each card
+        const cardThawParticles = Array.from({ length: 40 }, (_, i) => {
+          const cardIndex = Math.floor(i / 10); // 10 particles per card
+          const cardWidth = window.innerWidth > 1024 ? window.innerWidth / 4 : 
+                           window.innerWidth > 768 ? window.innerWidth / 2 : window.innerWidth;
+          const baseX = cardIndex * cardWidth + (cardWidth / 2);
+          const baseY = 500; // Approximate card center height
+          
+          return {
+            id: 1000 + i, // Use numeric ID starting from 1000
+            x: baseX + (Math.random() - 0.5) * 200, // Spread around card
+            y: baseY + (Math.random() - 0.5) * 150,
+            cardIndex
+          };
+        });
+        setThawParticles(cardThawParticles);
+
+        // Clear particles after animation
         setTimeout(() => {
           setSnowParticles([]);
+          setThawParticles([]);
           setIsThawing(false);
-        }, 1500); // Slightly longer to match the gradual effect
+        }, 2000); // Longer duration for better effect
       }
 
       // Set timeout to detect when scrolling stops
       scrollTimeout = setTimeout(() => {
-        // Start freezing process after 3 seconds of no scrolling (longer for gradual effect)
+        // Start freezing process after 5 seconds of no scrolling (much longer for gradual effect)
         freezeTimeout = setTimeout(() => {
           if (!isThawing) {
             setIsFrozen(true);
           }
-        }, 3000);
+        }, 5000);
       }, 100);
     };
 
@@ -151,6 +170,23 @@ export default function HVAC() {
                 left: `${particle.x}px`,
                 top: `${particle.y}px`,
               }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Thaw Particles - localized around cards */}
+      {thawParticles.length > 0 && (
+        <div className="fixed inset-0 pointer-events-none z-35">
+          {thawParticles.map((particle) => (
+            <div
+              key={particle.id}
+              className="thaw-particle"
+              style={{
+                left: `${particle.x}px`,
+                top: `${particle.y}px`,
+                '--card-index': particle.cardIndex,
+              } as React.CSSProperties}
             />
           ))}
         </div>
@@ -548,25 +584,55 @@ export default function HVAC() {
          .feature-card-frozen {
            background: linear-gradient(
              180deg,
-             rgba(255, 255, 255, 0.95) 0%,
-             rgba(240, 248, 255, 0.9) 50%,
-             rgba(230, 245, 255, 0.85) 100%
-           );
-           transition: all 4s ease-in-out;
+             rgba(173, 216, 230, 0.95) 0%,
+             rgba(176, 196, 222, 0.9) 30%,
+             rgba(135, 206, 235, 0.85) 60%,
+             rgba(176, 224, 230, 0.9) 100%
+           ) !important;
+           border: 2px solid rgba(100, 149, 237, 0.6);
+           box-shadow: 
+             0 0 20px rgba(173, 216, 230, 0.4),
+             inset 0 0 20px rgba(255, 255, 255, 0.3);
+           transition: all 6s ease-in-out;
            transition-delay: var(--freeze-delay);
          }
 
          .feature-card-frozen * {
-           color: rgba(30, 58, 138, 0.8) !important;
-           text-shadow: 0 0 8px rgba(173, 216, 230, 0.6);
-           transition: all 4s ease-in-out;
+           color: rgba(30, 58, 138, 0.9) !important;
+           text-shadow: 0 0 12px rgba(173, 216, 230, 0.8);
+           transition: all 6s ease-in-out;
            transition-delay: var(--freeze-delay);
          }
 
          .feature-card-frozen .text-5xl {
            filter: hue-rotate(180deg) saturate(0.5) brightness(1.2);
-           transition: all 4s ease-in-out;
+           transition: all 6s ease-in-out;
            transition-delay: var(--freeze-delay);
+         }
+
+         /* Ice crack effects */
+         .feature-card-frozen::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background-image: 
+             linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.8) 49%, rgba(255, 255, 255, 0.8) 51%, transparent 52%),
+             linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.6) 49%, rgba(255, 255, 255, 0.6) 51%, transparent 52%),
+             linear-gradient(135deg, transparent 48%, rgba(173, 216, 230, 0.4) 49%, rgba(173, 216, 230, 0.4) 51%, transparent 52%),
+             linear-gradient(-135deg, transparent 48%, rgba(176, 224, 230, 0.5) 49%, rgba(176, 224, 230, 0.5) 51%, transparent 52%),
+             radial-gradient(circle at 20% 30%, transparent 25%, rgba(255, 255, 255, 0.3) 26%, rgba(255, 255, 255, 0.3) 35%, transparent 36%),
+             radial-gradient(circle at 80% 70%, transparent 30%, rgba(173, 216, 230, 0.4) 31%, rgba(173, 216, 230, 0.4) 40%, transparent 41%);
+           background-size: 100px 100px, 120px 120px, 80px 80px, 90px 90px, 200px 200px, 150px 150px;
+           background-position: 0 0, 30px 30px, 0 0, 20px 20px, 0 0, 50px 50px;
+           opacity: 0;
+           animation: iceCrackFormation 6s ease-in-out forwards;
+           animation-delay: calc(var(--freeze-delay) + 2s);
+           pointer-events: none;
+           border-radius: 1rem;
+           z-index: 1;
          }
 
          /* Ice crystals effect on frozen cards */
@@ -578,27 +644,57 @@ export default function HVAC() {
            right: 0;
            bottom: 0;
            background-image: 
-             radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-             radial-gradient(circle at 80% 30%, rgba(173, 216, 230, 0.4) 1px, transparent 1px),
-             radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.2) 3px, transparent 3px),
-             radial-gradient(circle at 90% 80%, rgba(176, 224, 230, 0.3) 2px, transparent 2px),
-             radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.25) 2px, transparent 2px);
-           background-size: 50px 50px, 30px 30px, 40px 40px, 25px 25px, 35px 35px;
+             radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.4) 2px, transparent 3px),
+             radial-gradient(circle at 80% 30%, rgba(173, 216, 230, 0.5) 1px, transparent 2px),
+             radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.3) 3px, transparent 4px),
+             radial-gradient(circle at 90% 80%, rgba(176, 224, 230, 0.4) 2px, transparent 3px),
+             radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.35) 2px, transparent 3px),
+             radial-gradient(circle at 60% 40%, rgba(173, 216, 230, 0.3) 1px, transparent 2px),
+             radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.25) 2px, transparent 3px);
+           background-size: 50px 50px, 30px 30px, 40px 40px, 25px 25px, 35px 35px, 45px 45px, 38px 38px;
            opacity: 0;
-           animation: iceFormation 4s ease-in-out forwards;
-           animation-delay: calc(var(--freeze-delay) + 2s);
+           animation: iceFormation 6s ease-in-out forwards;
+           animation-delay: calc(var(--freeze-delay) + 3s);
            pointer-events: none;
            border-radius: 1rem;
+           z-index: 2;
          }
 
          @keyframes iceFormation {
            0% {
              opacity: 0;
-             transform: scale(0.8);
+             transform: scale(0.8) rotate(0deg);
+           }
+           30% {
+             opacity: 0.3;
+             transform: scale(0.95) rotate(1deg);
+           }
+           60% {
+             opacity: 0.6;
+             transform: scale(1.05) rotate(-0.5deg);
+           }
+           100% {
+             opacity: 0.9;
+             transform: scale(1) rotate(0deg);
+           }
+         }
+
+         @keyframes iceCrackFormation {
+           0% {
+             opacity: 0;
+             transform: scale(0.9);
+           }
+           25% {
+             opacity: 0.3;
+             transform: scale(0.95);
            }
            50% {
-             opacity: 0.6;
-             transform: scale(1.05);
+             opacity: 0.5;
+             transform: scale(1.02);
+           }
+           75% {
+             opacity: 0.7;
+             transform: scale(1.01);
            }
            100% {
              opacity: 0.8;
@@ -620,7 +716,7 @@ export default function HVAC() {
          }
 
          .feature-card-frozen::before {
-           animation: freezeWave 4s ease-in-out forwards;
+           animation: freezeWave 6s ease-in-out forwards;
            animation-delay: var(--freeze-delay);
          }
 
@@ -674,6 +770,108 @@ export default function HVAC() {
              radial-gradient(circle at 45% 25%, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
              radial-gradient(circle at 85% 85%, rgba(176, 224, 230, 0.35) 1px, transparent 2px);
            background-size: 40px 40px, 25px 25px, 35px 35px, 20px 20px, 30px 30px, 45px 45px, 28px 28px, 22px 22px;
+         }
+
+         /* Updated freeze wave animation - more gradual */
+         @keyframes freezeWave {
+           0% {
+             transform: translateY(-100%) scaleY(0);
+             opacity: 0;
+           }
+           20% {
+             transform: translateY(-80%) scaleY(0.2);
+             opacity: 0.1;
+           }
+           40% {
+             transform: translateY(-60%) scaleY(0.4);
+             opacity: 0.3;
+           }
+           60% {
+             transform: translateY(-40%) scaleY(0.6);
+             opacity: 0.5;
+           }
+           80% {
+             transform: translateY(-20%) scaleY(0.8);
+             opacity: 0.7;
+           }
+           100% {
+             transform: translateY(0%) scaleY(1);
+             opacity: 1;
+           }
+         }
+
+         /* Thaw particle styles */
+         .thaw-particle {
+           position: absolute;
+           width: 4px;
+           height: 4px;
+           background: radial-gradient(
+             circle,
+             rgba(173, 216, 230, 0.9) 0%,
+             rgba(255, 255, 255, 0.7) 50%,
+             transparent 100%
+           );
+           border-radius: 50%;
+           animation: thawParticleFloat 2s ease-out forwards;
+           pointer-events: none;
+           box-shadow: 
+             0 0 6px rgba(173, 216, 230, 0.6),
+             inset 0 0 2px rgba(255, 255, 255, 0.8);
+         }
+
+         @keyframes thawParticleFloat {
+           0% {
+             opacity: 1;
+             transform: translateY(0) translateX(0) scale(1);
+           }
+           20% {
+             opacity: 0.8;
+             transform: translateY(-20px) translateX(calc((var(--card-index) - 1.5) * 10px)) scale(1.2);
+           }
+           50% {
+             opacity: 0.5;
+             transform: translateY(-40px) translateX(calc((var(--card-index) - 1.5) * 15px)) scale(0.8);
+           }
+           80% {
+             opacity: 0.2;
+             transform: translateY(-60px) translateX(calc((var(--card-index) - 1.5) * 20px)) scale(0.4);
+           }
+           100% {
+             opacity: 0;
+             transform: translateY(-80px) translateX(calc((var(--card-index) - 1.5) * 25px)) scale(0.1);
+           }
+         }
+
+         /* Enhanced snow particle effect */
+         .snow-particle {
+           position: absolute;
+           width: 3px;
+           height: 3px;
+           background: radial-gradient(
+             circle,
+             rgba(255, 255, 255, 0.9) 0%,
+             rgba(173, 216, 230, 0.6) 70%,
+             transparent 100%
+           );
+           border-radius: 50%;
+           animation: snowFall 3s ease-in-out forwards;
+           pointer-events: none;
+           box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+         }
+
+         @keyframes snowFall {
+           0% {
+             opacity: 1;
+             transform: translateY(0) translateX(0) rotate(0deg);
+           }
+           50% {
+             opacity: 0.6;
+             transform: translateY(50px) translateX(10px) rotate(180deg);
+           }
+           100% {
+             opacity: 0;
+             transform: translateY(100px) translateX(-10px) rotate(360deg);
+           }
          }
        `}</style>
     </main>
